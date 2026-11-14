@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#000;color:#fff;font-family:-apple-system,"SF Pro Display","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+:root{--lime:#9BF05C}
+#glow{position:absolute;inset:-200px;background:radial-gradient(60% 55% at 62% 105%,#17400f 0%,#061006 50%,#000 78%)}
+.scene{position:absolute;inset:0;display:none;overflow:hidden}
+.cam{position:absolute;left:50%;top:50%;width:414px;height:900px;margin:-450px 0 0 -207px;will-change:transform}
+.phone{position:absolute;inset:0;border-radius:62px;overflow:hidden;border:6px solid #2c2c2e;background:#000;box-shadow:0 0 140px rgba(155,240,92,.22)}
+.phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
+.phone .fl{position:absolute;inset:0;background:var(--lime);opacity:0;mix-blend-mode:screen}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.h{font-weight:800;letter-spacing:-5px;line-height:.98;font-size:176px}
+.h span{display:inline-block;white-space:pre}
+.lime{color:var(--lime)}
+.tiles{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:56px;padding-bottom:70px}
+.tile{width:780px;height:440px;background:#1C1C1E;border-radius:52px;padding:56px 60px;display:flex;flex-direction:column;justify-content:center}
+.tile b{font-size:190px;font-weight:800;letter-spacing:-8px;color:var(--lime);line-height:1;font-variant-numeric:tabular-nums}
+.tile span{font-size:38px;line-height:1.28;color:#e2e2e6;margin-top:22px;font-weight:500}
+.tile i{font-style:normal;font-size:24px;color:#8e8e93;margin-top:14px}
+.photo{position:absolute;left:50%;top:47%;width:1320px;height:872px;margin:-436px 0 0 -660px;border-radius:40px;overflow:hidden;box-shadow:0 40px 160px rgba(0,0,0,.8),0 0 0 2px #2c2c2e}
+.photo img{width:100%;height:100%;object-fit:cover}
+.foot{position:absolute;inset:0}
+.foot img{position:absolute;inset:0;width:100%;height:100%;display:none}
+.black{position:absolute;inset:0;background:#000}
+#cap{position:absolute;left:0;right:0;bottom:64px;text-align:center;z-index:20}
+#cap span{display:inline-block;background:rgba(0,0,0,.78);padding:16px 38px;border-radius:24px;font-size:48px;font-weight:700;letter-spacing:-.8px;max-width:1700px}
+#wipe{position:absolute;top:-100px;left:0;width:2500px;height:1300px;background:var(--lime);transform:translateX(-3000px) skewX(-14deg);z-index:30;box-shadow:120px 0 0 rgba(155,240,92,.45),200px 0 0 rgba(155,240,92,.2)}
+.pill{position:absolute;top:60px;left:70px;border:2px solid var(--lime);color:var(--lime);font-size:26px;font-weight:800;letter-spacing:3px;padding:8px 24px;border-radius:40px}
+.sub{font-size:40px;color:#b0b0b6;font-weight:500;margin-top:34px;line-height:1.3;max-width:1300px}
+.icon{width:230px;height:230px;border-radius:52px;margin-bottom:44px}
+.link{font-size:44px;font-weight:700;color:#b0b0b6;margin-top:40px}
+</style></head><body>
+<div id="glow"></div><div id="stage"></div><div id="cap"><span></span></div><div id="wipe"></div>
+<script src="timing.js"></script>
+<script>
+const A='../../deck/assets/', SH='../../storyboard/shots/', PW=414, PH=900;
+const LAD=[.02,.158,.96,.372];
+const SC=[
+ {k:'title', w:[['Broke','by','Friday?'],['Not','this','month.']]},
+ {k:'phone', imgs:[0,1,2,3,5,8].map(n=>SH+'level-'+n+'.png'), crops:[LAD], cap:'From Broke by Friday… to Financially Free.', pill:'OVER TIME', flash:1},
+ {k:'tiles', wipe:1, focus:0, cap:'Almost 1 in 3 Europeans has no buffer.', tiles:[['30 %','of people in the EU cannot face an unexpected expense.','Eurostat, EU-SILC 2024',30,' %'],['1 in 4','Finnish households could not cover a surprise bill of about 1 200 €.','Statistics Finland, 2021']]},
+ {k:'tiles', focus:1, cap:'In Finland: 1 household in 4.', tiles:[['30 %','of people in the EU cannot face an unexpected expense.','Eurostat, EU-SILC 2024'],['1 in 4','Finnish households could not cover a surprise bill of about 1 200 €.','Statistics Finland, 2021']]},
+ {k:'phone', imgs:[A+'dashboard-baskets.png'], crops:[[.02,.33,.96,.2],[.02,.6,.96,.2]], cap:'Not the rent. 10 small payments. 2 866 € a year.'},
+ {k:'phone', imgs:[A+'chat-lookup.png'], crops:[[.3,.345,.7,.1],[.0,.43,.8,.22]], cap:'Ask your money anything.'},
+ {k:'phone', imgs:[A+'dashboard-baskets.png'], crops:[[.02,.14,.96,.2],[.02,.17,.96,.2]], cap:'Three baskets. Safe to spend: 225,94 € a week.'},
+ {k:'phone', imgs:[A+'chat-whatif.png'], crops:[[.4,.39,.6,.06],[.02,.655,.96,.185]], cap:'Cut eating out by 20 %: 539,86 € a year.'},
+ {k:'photo', src:SH+'cafe.jpg', cap:'Friday. One more coffee.'},
+ {k:'foot', n:120, cap:'Tap to pay…'},
+ {k:'phone', black:.5, imgs:[A+'lock-screen.png'], crops:[[.02,.06,.96,.095]], cap:'Card locked.'},
+ {k:'phone', imgs:[0,1,2,3,4].map(n=>SH+'nag-'+n+'.png'), crops:[[.06,.325,.88,.34]], cap:'Want it back? Hold on. We’ll wait.', shake:1},
+ {k:'phone', imgs:[A+'skip-confetti.png'], crops:[[.05,.33,.9,.33]], cap:'Or skip. Keep the 33,18 €.', pop:1},
+ {k:'phone', imgs:[SH+'level-0.png',SH+'level-1.png'], crops:[[.02,.36,.96,.17]], cap:'One skip. One step up.', flash:1},
+ {k:'tiles', wipe:1, focus:2, cap:'Code does the maths. The model talks.', tiles:[['593','transactions. Every figure computed by code.','',593,''],['22','unit tests pass on the money logic.','',22,'']]},
+ {k:'phone', imgs:[A+'strictness.png'], crops:[[.02,.12,.96,.16],[.02,.37,.96,.2]], cap:'Set up in a minute. One slider.'},
+ {k:'big', h:'<span class="lime">3,5 million</span><br>S-Bank customers.', sub:'Prototype on iPhone. Bank, card and decline are simulated. Not part of S-mobiili today.', cap:'Built for S-mobiili.'},
+ {k:'end', wipe:1, cap:'Talk with your money. Then keep it.'},
+];
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2, out=x=>1-Math.pow(1-x,3),
+      back=x=>{const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)}, mix=(a,b,p)=>a+(b-a)*p;
+const camOf=c=>{ if(!c) return {x:0,y:-30,s:1}; const [x,y,w,h]=c, s=Math.min(1500/(w*PW),690/(h*PH),3.4); return {x:-(x+w/2-.5)*PW*s, y:-(y+h/2-.5)*PH*s-56, s}; };
+const stage=document.getElementById('stage'), capEl=document.querySelector('#cap span'), wipe=document.getElementById('wipe');
+SC.forEach((s,i)=>{ const d=document.createElement('div'); d.className='scene'; s.el=d;
+  if(s.k=='title') d.innerHTML=`<div class="center"><div class="h">${s.w.map((l,li)=>l.map(w=>`<span class="${li?'lime':''}">${w} </span>`).join('')).join('<br>')}</div></div>`;
+  if(s.k=='phone') d.innerHTML=`<div class="cam"><div class="phone">${s.imgs.map(x=>`<img src="${x}">`).join('')}<div class="fl"></div></div></div>${s.pill?`<div class="pill">${s.pill}</div>`:''}${s.black?'<div class="black"></div>':''}`;
+  if(s.k=='tiles') d.innerHTML=`<div class="tiles">${s.tiles.map(t=>`<div class="tile"><b>${t[0]}</b><span>${t[1]}</span>${t[2]?`<i>${t[2]}</i>`:''}</div>`).join('')}</div>`;
+  if(s.k=='photo') d.innerHTML=`<div class="photo"><img src="${s.src}"></div>`;
+  if(s.k=='foot') d.innerHTML=`<div class="foot">${Array.from({length:s.n},(_,j)=>`<img src="foot/f${String(j+1).padStart(3,'0')}.jpg">`).join('')}</div>`;
+  if(s.k=='big') d.innerHTML=`<div class="center" style="padding-bottom:90px"><div class="h" style="font-size:150px">${s.h}</div><div class="sub">${s.sub}</div></div>`;
+  if(s.k=='end') d.innerHTML=`<div class="center" style="padding-bottom:110px"><img class="icon" src="${A}icon.png"><div class="h" style="font-size:128px;letter-spacing:-4px">Broke by Friday?<br><span class="lime">Not this month.</span></div><div class="link">thinktwice.pgf.lv</div></div>`;
+  stage.appendChild(d); });
+let cur=-1;
+function setT(t){
+  let i=T.findIndex(x=>t<x.start+x.dur); if(i<0) i=T.length-1;
+  const s=SC[i], u=t-T[i].start, d=T[i].dur, el=s.el;
+  if(i!=cur){ SC.forEach(x=>x.el.style.display='none'); el.style.display='block'; cur=i; capEl.textContent=s.cap||''; }
+  // caption
+  const cp=cl((u-.12-(s.black||0))/.25); capEl.parentNode.style.opacity=s.cap?cp:0; capEl.style.transform=`translateY(${(1-out(cp))*26}px)`;
+  // wipe across the cut into scenes marked wipe
+  let wx=-3200; SC.forEach((x,j)=>{ if(!x.wipe) return; const p=(t-(T[j].start-.27))/.52; if(p>0&&p<1) wx=mix(-2900,2300,p); });
+  wipe.style.transform=`translateX(${wx}px) skewX(-14deg)`;
+  document.getElementById('glow').style.transform=`translate(${Math.sin(t*.35)*60}px,${Math.cos(t*.3)*30}px)`;
+  if(s.k=='title'){ const sp=[...el.querySelectorAll('span')];
+    sp.forEach((w,k)=>{ const p=cl((u-.1-k*.13)/.24); w.style.opacity=cl(p*3); w.style.transform=`scale(${mix(1.7,1,out(p))})`; });
+    const e=io(cl((u-(d-.34))/.34)); el.firstChild.style.transform=`translateY(${-e*260}px) scale(${1-e*.35})`; el.firstChild.style.opacity=1-e; }
+  if(s.k=='phone'){ const camEl=el.querySelector('.cam'), imgs=[...el.querySelectorAll('.phone img')], b=s.black||0, v=u-b;
+    if(s.black) el.querySelector('.black').style.opacity=v<0?1:0;
+    const prevPhone=i>0&&SC[i-1].k=='phone', nextPhone=i<SC.length-1&&SC[i+1].k=='phone'&&!SC[i+1].black;
+    const full=camOf(), cs=s.crops.map(camOf), t0=.22, mv=.75, hold=(d-b-t0-mv-.25)/cs.length;
+    let c=full; if(v>t0){ let p=io(cl((v-t0)/mv)); c={x:mix(full.x,cs[0].x,p),y:mix(full.y,cs[0].y,p),s:mix(full.s,cs[0].s,p)};
+      for(let k=1;k<cs.length;k++){ const p2=io(cl((v-(t0+mv+hold*k-.35))/.7)); c={x:mix(c.x,cs[k].x,p2),y:mix(c.y,cs[k].y,p2),s:mix(c.s,cs[k].s,p2)}; } }
+    // slow creep while holding
+    c={...c,s:c.s*(1+cl(v/d)*.035)};
+    let ex=0, ey=0, blur=0, rot=0;
+    const en=out(cl(v/.42)); if(prevPhone&&!s.black){ ex+=(1-en)*2100; blur=(1-en)*14; } else if(!s.black) ey+=(1-en)*1150;
+    if(nextPhone){ const q=cl((u-(d-.2))/.2); ex-=q*q*2300; blur=Math.max(blur,q*16); }
+    // image swaps, one by one
+    const m=imgs.length, ts=t0+mv+.1, te=d-b-.45; let idx=0, since=9;
+    for(let k=1;k<m;k++){ const at=ts+(te-ts)*k/m; if(v>=at){ idx=k; since=v-at; } }
+    imgs.forEach((im,k)=>im.style.opacity=k<=idx?1:0);
+    const fl=el.querySelector('.fl'), f=s.flash&&idx>0?cl(1-since/.3):0; fl.style.opacity=f*.5;
+    let bump=1+f*.045;
+    if(s.pop){ const p=cl((v-t0-mv)/.5); bump*=1+Math.sin(p*Math.PI)*.08; }
+    if(s.shake){ const a=2+idx*3.2; ex+=Math.sin(v*47)*a; ey+=Math.cos(v*39)*a*.5; rot=Math.sin(v*31)*a*.07; }
+    camEl.style.transform=`translate(${c.x+ex}px,${c.y+ey}px) scale(${c.s*bump}) rotate(${rot}deg)`; camEl.style.filter=blur>.3?`blur(${blur}px)`:'none';
+    const pill=el.querySelector('.pill'); if(pill) pill.style.opacity=cl((v-1)/.3); }
+  if(s.k=='tiles'){ [...el.querySelectorAll('.tile')].forEach((tl,k)=>{ const on=s.focus==2||s.focus==k, p=out(cl((u-.1-(s.focus==2?k*.3:0))/.45));
+      const first=s.focus!=1; tl.style.opacity=on?(first?p:1):mix(first?0:1,.22,first?cl(u/.3):out(cl(u/.35)));
+      tl.style.transform=`scale(${on?mix(first?.86:.94,1.03,p):.94}) translateY(${on&&first?(1-p)*60:0}px)`;
+      const tt=s.tiles[k]; if(tt[3]&&on){ const q=out(cl((u-.15-(s.focus==2?k*.3:0))/.9)); tl.querySelector('b').textContent=Math.round(tt[3]*q)+tt[4]; } }); }
+  if(s.k=='photo'){ const p=u/d; el.firstChild.style.transform=`scale(${mix(1.02,1.16,p)}) rotate(${mix(-1.6,0,out(cl(u/.6)))}deg) translate(${p*40}px,${-p*20}px)`; }
+  if(s.k=='foot'){ const n=Math.min(s.n-1,Math.floor(u*30)); if(s.last!=n){ const im=el.querySelectorAll('img'); if(s.last!=null) im[s.last].style.display='none'; im[n].style.display='block'; s.last=n; }
+    el.firstChild.style.transform=`scale(${1.04+u/d*.08})`; }
+  if(s.k=='big'){ const p=out(cl((u-.08)/.5)); const h=el.querySelector('.h'); h.style.transform=`scale(${mix(1.35,1,p)})`; h.style.opacity=cl(p*2);
+    el.querySelector('.sub').style.opacity=cl((u-.7)/.4); }
+  if(s.k=='end'){ const p=back(cl((u-.25)/.5)); el.querySelector('.icon').style.transform=`scale(${cl(p,0,2)})`;
+    const q=out(cl((u-.5)/.45)); const h=el.querySelector('.h'); h.style.opacity=q; h.style.transform=`translateY(${(1-q)*50}px)`;
+    el.querySelector('.link').style.opacity=cl((u-1.1)/.4); }
+}
+setT(0);
+</script></body></html>

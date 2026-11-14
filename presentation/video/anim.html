@@ -1,0 +1,150 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Think Twice video</title>
+<!-- Animated titles for video.mp4. Drawn for a time t by setT(t); render.py captures every frame. The phone area is a
+     transparent hole (the black around it is the hole's shadow), so the app recording shows through from underneath.
+     The hole's slide-in and shake use the same formulas as the overlay position in build.py. -->
+<style>
+  :root { --lime: #9BF05C; --ink: #06140A; --sub: rgba(255,255,255,.66); }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: transparent; color: #fff;
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; }
+  .seg { position: absolute; inset: 0; display: none; overflow: hidden; }
+  .black { position: absolute; inset: 0; background: #000; }
+  .hole { position: absolute; box-shadow: 0 0 0 4000px #000, inset 0 0 0 3px rgba(255,255,255,.18); }
+  .glow { position: absolute; width: 1300px; height: 1300px; border-radius: 50%; background: radial-gradient(circle, rgba(155,240,92,.2), transparent 62%); }
+  .ghostbox { position: absolute; left: 0; top: 0; height: 1080px; overflow: hidden; }
+  .ghost { position: absolute; left: 0; top: 500px; font-size: 560px; font-weight: 900; letter-spacing: -.05em; line-height: 1; white-space: nowrap;
+    color: transparent; -webkit-text-stroke: 3px rgba(255,255,255,.075); }
+  .text { position: absolute; left: 120px; }
+  .line { font-weight: 800; letter-spacing: -.045em; line-height: 1.04; white-space: nowrap; }
+  .w { display: inline-block; margin-right: .22em; position: relative; }
+  .w.l { color: var(--ink); padding: 0 .1em; margin-left: -.03em; }
+  .w.l i { position: absolute; inset: .06em 0 .02em 0; background: var(--lime); border-radius: .1em; transform-origin: left center; z-index: -1; }
+  .big { font-weight: 800; letter-spacing: -.05em; line-height: .95; color: var(--lime); font-variant-numeric: tabular-nums; white-space: nowrap; transform-origin: left center; }
+  .big small { font-size: .26em; letter-spacing: -.02em; color: #fff; margin-left: .3em; }
+  .dots { display: flex; gap: 22px; margin: 34px 0 6px; }
+  .dots b { width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,.16); }
+  .taps { display: flex; flex-wrap: wrap; gap: 10px 22px; width: 780px; margin-top: 40px; font-size: 54px; font-weight: 800; letter-spacing: -.03em; color: rgba(255,255,255,.5); }
+  .tomb { position: absolute; right: 70px; bottom: -6px; width: 400px; height: 600px; border-radius: 200px 200px 0 0; background: #1C1C1E;
+    box-shadow: inset 0 0 0 4px rgba(255,255,255,.14); text-align: center; padding-top: 120px; }
+  .tomb h2 { font-size: 96px; font-weight: 900; letter-spacing: -.02em; }
+  .tomb p { font-size: 42px; font-weight: 700; color: var(--sub); margin-top: 18px; }
+  .tomb em { display: inline-block; font-style: normal; font-size: 42px; font-weight: 800; color: var(--ink); background: var(--lime); border-radius: 14px; padding: 6px 24px; margin-top: 44px; }
+  .src { position: absolute; left: 120px; bottom: 178px; font-size: 24px; color: rgba(255,255,255,.45); }
+  .rip { position: absolute; border-radius: 50%; border: 7px solid var(--lime); }
+  .endicon { width: 150px; height: 150px; border-radius: 34px; display: block; margin-bottom: 44px; }
+  .brand { position: absolute; left: 120px; top: 70px; display: flex; align-items: center; gap: 16px; font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
+  .brand img { width: 54px; height: 54px; border-radius: 13px; }
+  .cap { position: absolute; left: 120px; bottom: 80px; width: 1040px; font-size: 31px; line-height: 1.25; color: var(--sub); }
+  .bar { position: absolute; left: 120px; bottom: 48px; width: 1040px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.14); }
+  .bar i { display: block; height: 100%; border-radius: 3px; background: var(--lime); }
+  .wipe { position: absolute; top: -200px; left: 0; width: 2500px; height: 1500px; background: var(--lime); display: none; transform-origin: center; }
+  .wipe2 { background: #fff; }
+</style>
+<div id="root"></div>
+<div class="brand" id="brand"><img src="../../ThinkTwice/Assets.xcassets/AppIcon.appiconset/icon-1024.png" alt="">Think Twice</div>
+<div class="cap" id="cap"></div>
+<div class="bar"><i id="bar"></i></div>
+<div class="wipe wipe2" id="wipe2"></div>
+<div class="wipe" id="wipe"></div>
+<script src="timeline.js"></script>
+<script>
+  const clamp = x => Math.min(1, Math.max(0, x));
+  const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+  const back = x => { x = clamp(x); const c = 2.2; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };   // overshoots, then settles
+  const SIZE = { full: 150, side: 116, zoom: 104 }, BIG = { full: 380, side: 200, zoom: 190 }, TOP = { full: 190, side: 190, zoom: 190 };
+  const fmt = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const root = document.getElementById('root');
+  const segs = TIMELINE.map((s, n) => {
+    const el = document.createElement('div'); el.className = 'seg';
+    let hole = null;
+    if (s.hole) { hole = document.createElement('div'); hole.className = 'hole';
+      Object.assign(hole.style, { top: s.hole.y + 'px', width: s.hole.w + 'px', height: s.hole.h + 'px', borderRadius: s.hole.r + 'px' }); el.appendChild(hole);
+    } else el.innerHTML = '<div class="black"></div>';
+    const glow = document.createElement('div'); glow.className = 'glow'; el.appendChild(glow);
+    let ghost = null;
+    if (s.ghost) { const box = document.createElement('div'); box.className = 'ghostbox'; box.style.width = (s.hole ? s.hole.x - 40 : 1920) + 'px';
+      ghost = document.createElement('div'); ghost.className = 'ghost'; ghost.textContent = (s.ghost + '   ').repeat(6); box.appendChild(ghost); el.appendChild(box); }
+    let tomb = null;
+    if (s.tomb) { tomb = document.createElement('div'); tomb.className = 'tomb'; tomb.innerHTML = '<h2>R.I.P.</h2><p>Paycheck</p><em>aged 9 days</em>'; el.appendChild(tomb); }
+    const text = document.createElement('div'); text.className = 'text'; text.style.top = TOP[s.layout] + 'px';
+    if (s.icon) text.insertAdjacentHTML('beforeend', '<img class="endicon" src="../../ThinkTwice/Assets.xcassets/AppIcon.appiconset/icon-1024.png" alt="">');
+    const words = [], mkBig = top => { const b = document.createElement('div'); b.className = 'big'; b.style.fontSize = BIG[s.layout] + 'px'; if (top) b.style.marginTop = top; text.appendChild(b); return b; };
+    let big = s.big && s.big.first ? mkBig() : null, dots = [];
+    if (s.dots) { const d = document.createElement('div'); d.className = 'dots'; for (let k = 0; k < 10; k++) { const b = document.createElement('b'); d.appendChild(b); dots.push(b); } text.appendChild(d); }
+    s.lines.forEach(line => {
+      const d = document.createElement('div'); d.className = 'line'; d.style.fontSize = SIZE[s.layout] + 'px';
+      let lime = false;
+      line[0].split(' ').forEach((w, k) => {
+        if (w.startsWith('*')) lime = true;
+        const sp = document.createElement('span'); sp.className = 'w' + (lime ? ' l' : ''); sp.textContent = w.replace(/\*/g, '');
+        let hl = null; if (lime) { hl = document.createElement('i'); sp.appendChild(hl); }
+        if (w.endsWith('*')) lime = false;
+        d.appendChild(sp); words.push({ el: sp, hl, at: line[1] * s.dur + 0.06 * k + 0.1 });
+      });
+      text.appendChild(d);
+    });
+    if (s.big && !s.big.first) big = mkBig('26px');
+    const taps = [];
+    if (s.ripple) { const d = document.createElement('div'); d.className = 'taps'; for (let k = 0; k < 18; k++) { const b = document.createElement('span'); b.textContent = 'tap.'; d.appendChild(b); taps.push(b); } text.appendChild(d); }
+    el.appendChild(text);
+    if (s.source) el.insertAdjacentHTML('beforeend', '<div class="src">' + s.source + '</div>');
+    const rips = [];
+    if (s.ripple) for (let k = 0; k < 12; k++) { const r = document.createElement('div'); r.className = 'rip'; el.appendChild(r); rips.push(r); }
+    root.appendChild(el);
+    return { s, n, el, hole, glow, ghost, tomb, text, words, big, dots, taps, rips };
+  });
+  const cap = document.getElementById('cap'), bar = document.getElementById('bar'), brand = document.getElementById('brand');
+  const wipe = document.getElementById('wipe'), wipe2 = document.getElementById('wipe2');
+  const CUTS = TIMELINE.slice(1).filter(s => !s.nowipe).map(s => s.start);
+  // Where the phone is at local time u: slides in from the right, and shakes while the customer is tapping.
+  const phoneDX = (s, u) => (s.noslide ? 0 : 900 * Math.pow(1 - clamp(u / 0.45), 3)) + (s.ripple && u > 0.9 ? 9 * Math.sin(45 * u) : 0);
+  function setT(t) {
+    const total = TIMELINE[TIMELINE.length - 1].start + TIMELINE[TIMELINE.length - 1].dur;
+    bar.style.width = Math.min(100, t / total * 100) + '%';
+    segs.forEach(g => {
+      const s = g.s, u = t - s.start, on = u >= 0 && u < s.dur;
+      g.el.style.display = on ? 'block' : 'none';
+      if (!on) return;
+      const dx = s.hole ? phoneDX(s, u) : 0;
+      if (g.hole) g.hole.style.left = (s.hole.x + dx) + 'px';
+      Object.assign(g.glow.style, { left: (-420 + 160 * Math.sin(u * 0.7 + g.n)) + 'px', top: (-520 + 110 * Math.cos(u * 0.5 + g.n)) + 'px' });
+      if (g.ghost) g.ghost.style.transform = `translateX(${-220 * u - 100}px)`;
+      if (g.tomb) { const p = back((u - 0.12 * s.dur) / 0.7); g.tomb.style.transform = `translateY(${(1 - p) * 760}px) rotate(${(1 - p) * -6}deg)`; }
+      g.text.style.transform = `translateX(${(1 - ease(u / 0.35)) * -80}px)`;
+      g.words.forEach(w => {
+        const p = clamp((u - w.at) / 0.38), b = back(p);
+        w.el.style.opacity = ease(p * 2.2); w.el.style.transform = `translateY(${(1 - ease(p)) * 90}px) scale(${0.72 + 0.28 * b}) rotate(${(1 - ease(p)) * 4}deg)`;
+        if (w.hl) w.hl.style.transform = `scaleX(${ease((u - w.at - 0.05) / 0.3)})`;
+      });
+      if (g.big) {
+        const b = s.big, v = (u - b.at * s.dur), p = ease(v / 1.1);
+        g.big.style.opacity = ease(v / 0.2);
+        g.big.style.transform = `scale(${1 + 0.35 * (1 - ease(v / 0.5)) + (v > 1.1 ? 0.06 * Math.max(0, 1 - (v - 1.1) / 0.25) : 0)})`;
+        g.big.innerHTML = (b.prefix || '') + fmt(b.to * p) + (b.suffix || '') + (b.label ? '<small>' + b.label + '</small>' : '');
+      }
+      g.dots.forEach((d, k) => {
+        const p = back((u - 0.25 - k * 0.07) / 0.3); d.style.transform = `scale(${p})`;
+        d.style.background = k < 3 && u > 1.2 + k * 0.12 ? '#9BF05C' : 'rgba(255,255,255,.16)';
+      });
+      g.taps.forEach((b, k) => { const p = back((u - 0.9 - k * 0.17) / 0.16); b.style.opacity = clamp(p); b.style.transform = `scale(${0.4 + 0.6 * p})`; });
+      g.rips.forEach((r, k) => {
+        const v = (u - 0.9 - k * 0.3) / 0.55, show = v >= 0 && v <= 1, d = 150 + 330 * ease(v);
+        r.style.display = show ? 'block' : 'none';
+        Object.assign(r.style, { width: d + 'px', height: d + 'px', left: (s.ripple.x + dx - d / 2) + 'px', top: (s.ripple.y - d / 2) + 'px', opacity: 0.8 * (1 - v) });
+      });
+      cap.textContent = s.caption; cap.style.opacity = ease(u / 0.3); cap.style.width = (s.hole ? Math.min(1040, s.hole.x - 200) : 1500) + 'px';
+      brand.style.opacity = s.icon ? 0 : 1;
+    });
+    // A slanted lime panel (with a white one just ahead of it) sweeps across at every cut.
+    let v = null; CUTS.forEach(c => { const x = (t - c) / 0.2; if (Math.abs(x) < 1.25) v = x; });
+    [[wipe, 0], [wipe2, 0.22]].forEach(([w, lag]) => {
+      if (v === null) { w.style.display = 'none'; return; }
+      const x = v + lag; w.style.display = 'block';
+      const pos = x < 0 ? -2700 * (1 - ease(1 + x)) : 2700 * (1 - ease(1 - x));
+      w.style.transform = `translateX(${pos - 290}px) skewX(-14deg)`;
+    });
+  }
+  setT(0);
+</script>

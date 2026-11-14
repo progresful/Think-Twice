@@ -1,0 +1,8 @@
+server {
+    listen 80;
+    server_name thinktwice.pgf.lv;
+    root /var/www/thinktwice.pgf.lv;
+    index index.html;
+    location / { try_files $uri $uri/ =404; }
+    location ~* \.(png|mp4)$ { add_header Cache-Control "public, max-age=3600"; }
+}

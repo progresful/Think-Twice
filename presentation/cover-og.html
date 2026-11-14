@@ -1,0 +1,26 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Think Twice share image</title>
+<!-- Source of the landing page share image (og.png). Render at 1920x1080, then scale to 1200x675 and crop to 630 high: Chrome --headless --window-size=1920,1080 --screenshot=cover.png cover.html -->
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1920px; height: 1080px; background: #000; color: #fff; overflow: hidden;
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; }
+  .glow { position: absolute; right: -150px; top: -250px; width: 1400px; height: 1400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(155,240,92,.22), transparent 62%); }
+  .icon { position: absolute; left: 130px; top: 150px; width: 150px; height: 150px; border-radius: 34px; }
+  h1 { position: absolute; left: 130px; top: 360px; font-size: 190px; line-height: .95; font-weight: 800; letter-spacing: -.05em; }
+  p { position: absolute; left: 136px; top: 780px; font-size: 76px; line-height: 1.1; font-weight: 700; letter-spacing: -.03em; color: #9BF05C; width: 900px; }
+  img.shot { position: absolute; height: 1000px; border-radius: 56px; box-shadow: 0 0 0 3px rgba(255,255,255,.14), 0 50px 140px rgba(0,0,0,.7); }
+  .a { left: 1070px; top: 150px; transform: rotate(-5deg); }
+  .b { left: 1440px; top: 60px; transform: rotate(4deg); }
+  /* Share-image variant: the landing page title, the second line on the lime block */
+  p { top: 740px; color: #fff; }
+  p span { display: inline-block; margin-top: 10px; background: #9BF05C; color: #06140A; border-radius: 12px; padding: 0 16px; }
+</style>
+<div class="glow"></div>
+<img class="icon" src="../ThinkTwice/Assets.xcassets/AppIcon.appiconset/icon-1024.png" alt="">
+<h1>Think<br>Twice</h1>
+<p>Broke by Friday?<br><span>Not this month.</span></p>
+<img class="shot a" src="deck/assets/chat-whatif.png" alt="">
+<img class="shot b" src="deck/assets/dashboard-main.png" alt="">

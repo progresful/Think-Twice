@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>Think Twice: talk with your money, then keep it</title>
+<meta name="description" content="A personal economic trainer for your bank's app. Ask your own money anything, see where it goes, and lock the everyday spending that leaks.">
+<link rel="icon" href="icon.png">
+<style>
+:root{--bg:#000;--card:#1C1C1E;--text:#fff;--sub:rgba(255,255,255,.55);--line:rgba(255,255,255,.1);
+  --lime:#9BF05C;--limeink:#06140A;--track:rgba(255,255,255,.14);--game:#0B0B0D}
+*{box-sizing:border-box;margin:0}
+html{background:#000;scroll-behavior:smooth}
+body{font:17px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;color:var(--text);background:#000;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font-family:inherit;color:inherit}
+a{color:inherit}
+
+/* ================= page ================= */
+.page{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,44vw);max-width:1560px;margin:0 auto;padding:0 clamp(24px,5vw,88px)}
+.glow{position:fixed;right:-18vw;top:-30vh;width:90vw;height:90vw;max-width:1300px;max-height:1300px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(155,240,92,.16),transparent 62%)}
+.left{position:relative;padding-right:clamp(16px,4vw,72px);min-width:0}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:56px 0}
+.brand{display:flex;align-items:center;gap:14px;font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:clamp(28px,5vh,56px)}
+.brand img{width:56px;height:56px;border-radius:13px}
+h1{font-size:clamp(52px,7.2vw,124px);line-height:1.06;font-weight:800;letter-spacing:-.05em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--limeink);background:var(--lime);border-radius:.1em;padding:0 .1em;margin-left:-.1em;white-space:nowrap;display:inline-block;line-height:1.02;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.pitch{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,2.4vw,40px);margin-top:clamp(28px,5vh,52px);max-width:820px}
+.pitch h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
+.pitch p{font-size:clamp(17px,1.35vw,21px);line-height:1.4;color:rgba(255,255,255,.78);text-wrap:pretty}
+.play{display:inline-flex;align-items:center;gap:16px;margin-top:clamp(28px,5vh,52px);border:0;background:none;cursor:pointer;font-size:19px;font-weight:600;padding:0;text-align:left}
+.play span.b{width:72px;height:72px;border-radius:50%;background:var(--lime);display:grid;place-items:center;transition:transform .15s}
+.play:hover span.b{transform:scale(1.07)}
+.play svg{width:26px;height:26px;fill:var(--limeink);margin-left:4px}
+.play small{display:block;font-size:14px;font-weight:400;color:var(--sub);margin-top:2px}
+.narrow{display:none}
+.hint{margin-top:clamp(24px,5vh,56px);font-size:14px;color:var(--sub)}
+
+.tiles{display:grid;gap:22px;padding-bottom:16vh}
+.tile2{border-radius:36px;background:var(--card);padding:clamp(28px,3.2vw,52px);min-height:52vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+.tile2.lime{background:var(--lime);color:var(--limeink)}
+.tile2 .k{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);margin-bottom:auto}
+.tile2.lime .k{color:var(--limeink);opacity:.7}
+.tile2 .n{font-size:clamp(88px,12vw,220px);font-weight:800;letter-spacing:-.06em;line-height:.9;color:var(--lime);font-variant-numeric:tabular-nums;margin-top:28px}
+.tile2.lime .n{color:var(--limeink)}
+.tile2 .n small{font-size:.3em;letter-spacing:-.02em;margin-left:.15em}
+.tile2 h3{font-size:clamp(28px,3vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-top:14px;text-wrap:balance}
+.tile2 p{font-size:clamp(16px,1.25vw,20px);line-height:1.45;color:rgba(255,255,255,.7);margin-top:14px;max-width:46ch;text-wrap:pretty}
+.tile2.lime p{color:rgba(6,20,10,.78)}
+.tile2 .s{font-size:13px;color:rgba(255,255,255,.4);margin-top:18px}
+.tile2.lime .s{color:rgba(6,20,10,.55)}
+.dots{display:flex;gap:10px;margin-top:22px}.dots i{width:26px;height:26px;border-radius:50%;background:var(--track)}.dots i.on{background:var(--lime)}
+.steps{display:grid;gap:14px;margin-top:22px;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;font-size:clamp(17px,1.4vw,22px);line-height:1.35}
+.steps li::before{counter-increment:s;content:counter(s);width:44px;height:44px;border-radius:50%;background:var(--lime);color:var(--limeink);font-weight:800;display:grid;place-items:center}
+.steps b{display:block}.steps span{color:rgba(255,255,255,.65);font-size:.85em}
+.foot{padding:0 0 12vh;font-size:14px;line-height:1.6;color:var(--sub);max-width:70ch}
+.foot a{color:rgba(255,255,255,.8)}
+
+.right{position:sticky;top:0;height:100vh;display:grid;place-items:center}
+.stage{width:390px;height:844px;transform-origin:center;transform:scale(var(--k,1))}
+
+dialog{border:0;padding:0;background:#000;border-radius:24px;width:min(1200px,92vw);overflow:hidden;box-shadow:0 40px 140px rgba(0,0,0,.8)}
+dialog::backdrop{background:rgba(0,0,0,.82);backdrop-filter:blur(6px)}
+dialog video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+dialog button{position:absolute;right:14px;top:14px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.16);font-size:20px;cursor:pointer;z-index:2}
+
+@media (max-width:980px){
+  .page{grid-template-columns:1fr}.left{padding-right:0}.hero{min-height:auto;padding:40px 0 24px}
+  .right{position:relative;height:auto;padding:24px 0 48px}.pitch{grid-template-columns:minmax(0,1fr)}.hero,.tiles,.foot{min-width:0;max-width:100%}.wide{display:none}.narrow{display:inline}
+  .right{order:2}.tiles,.foot{order:3}.left{display:contents}.hero{order:1}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ================= the app, same sizes as the iPhone build ================= */
+.phone{position:relative;width:390px;height:844px;background:var(--bg);overflow:hidden;overflow:clip;contain:paint;border-radius:56px;color:#fff;font-size:17px;line-height:1.35;
+  box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 0 2px rgba(255,255,255,.14),0 0 0 11px #111,0 0 0 13px rgba(255,255,255,.1);user-select:none;-webkit-user-select:none}
+.phone *{-webkit-tap-highlight-color:transparent}
+.status{position:absolute;left:0;right:0;top:0;height:54px;z-index:20;pointer-events:none;display:flex;justify-content:space-between;align-items:center;padding:14px 34px 0 46px;font-size:16px;font-weight:600}
+.status::after{content:"";position:absolute;left:50%;top:12px;width:118px;height:34px;margin-left:-59px;border-radius:20px;background:#000}
+.status svg{height:12px;width:auto;fill:#fff}
+.num{font-family:ui-rounded,"SF Pro Rounded",-apple-system,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.03em;font-weight:700;line-height:1}
+.sub{color:var(--sub);font-size:15px}
+.btn{display:block;width:100%;border:0;border-radius:99px;padding:17px;font:600 17px/1 inherit;font-family:inherit;cursor:pointer;background:var(--lime);color:var(--limeink);transition:transform .12s,opacity .12s}
+.btn:active{transform:scale(.97);opacity:.85}
+.btn.white{background:#fff;color:#000}.btn.alt{background:var(--track);color:#fff;margin-bottom:10px}
+.btn[hidden]{display:none}
+.pill{display:inline-block;border-radius:99px;padding:6px 13px;font-size:13px;font-weight:600;background:var(--card)}
+.pill.lime{background:var(--lime);color:var(--limeink)}
+.pill.line{background:none;border:1.5px solid var(--sub);color:var(--sub);padding:4px 11px}
+.demo{font-size:12px;color:var(--sub);text-align:center;margin-top:10px}
+.home{position:absolute;inset:0;overflow-y:auto;padding:62px 16px 215px;scrollbar-width:none;display:flex;flex-direction:column;gap:10px}
+.home::-webkit-scrollbar{display:none}
+.top{display:flex;justify-content:space-between;align-items:center;padding:0 4px}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em}
+.ladder{background:var(--card);border-radius:24px;padding:16px;display:grid;grid-template-columns:22px 1fr;column-gap:14px}
+.lbar{grid-row:1/7;width:10px;margin:11px auto;border-radius:5px;background:linear-gradient(to top,var(--lime) var(--p),var(--track) 0)}
+.rung{display:flex;align-items:center;justify-content:space-between;height:44px;gap:8px}
+.rung.above{opacity:.45}.rung.cur{height:76px}.rung.cur>span:first-child{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--lime)}
+.rung .sub{font-size:13px}
+.savedtile{border-radius:24px;padding:16px;background:var(--lime);color:var(--limeink);display:flex;justify-content:space-between;align-items:flex-end;border:0;text-align:left;width:100%;font:inherit}
+.savedtile .lbl{font-size:13px;font-weight:600;opacity:.75}.savedtile .num{font-size:28px;margin-top:10px}
+.money{border-radius:24px;padding:16px;background:var(--card);display:grid;gap:12px;border:0;text-align:left;width:100%;font:inherit;color:#fff;cursor:pointer}
+.money .hd{display:flex;justify-content:space-between;align-items:flex-end}
+.money .lbl{font-size:13px;font-weight:600;color:var(--sub)}.money .num{font-size:28px;margin-top:4px}
+.money .over{font-size:13px;font-weight:600;color:var(--sub)}
+.money .bars{display:flex;gap:3px;height:8px}.money .bars i{border-radius:4px}
+.money .leg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.money .leg span{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--sub);white-space:nowrap}
+.money .leg span i{width:7px;height:7px;border-radius:50%;flex:none}
+.money .leg b{display:block;font-size:15px;font-weight:600;margin-top:2px}
+.sec{font-size:13px;color:var(--sub);text-transform:uppercase;letter-spacing:.03em;padding:12px 16px 0}
+.card{background:var(--card);border-radius:24px;padding:4px 18px}
+.row{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:.5px solid var(--line)}
+.row:first-child{border-top:0}
+.row .t{flex:1}.row small{display:block;font-size:13px;color:var(--sub)}
+.row .v{font-weight:600;text-align:right;font-size:17px}.row .v small{font-weight:400;font-family:-apple-system,sans-serif;letter-spacing:0;margin-top:3px}
+.row.skip .v,.row.skip .v small{color:var(--lime)}
+.row .chev{color:var(--sub);font-size:15px}
+.dock{position:absolute;left:0;right:0;bottom:0;padding:30px 16px 30px;text-align:center;background:linear-gradient(to top,var(--bg) 68%,transparent);z-index:2;pointer-events:none}
+.dock>*{pointer-events:auto}
+.ask{position:relative;display:flex;align-items:center;gap:10px;width:100%;height:48px;border:0;border-radius:24px;background:var(--card);padding:0 8px 0 16px;margin-bottom:12px;cursor:pointer;font-size:16px;color:var(--sub);text-align:left}
+.ask::before{content:"";position:absolute;inset:-1px;border-radius:25px;padding:1.5px;background:conic-gradient(from var(--a,0deg),rgba(155,240,92,.15),var(--lime) 20%,rgba(155,240,92,.15) 45%,rgba(155,240,92,.15));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 4s linear infinite}
+.ask::after{content:"";position:absolute;inset:-2px;border-radius:26px;box-shadow:0 0 14px rgba(155,240,92,.28);pointer-events:none}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes spin{to{--a:360deg}}
+.ask svg{width:18px;height:18px;fill:var(--lime);flex:none}
+.ask span{flex:1}
+.ask i{width:30px;height:30px;border-radius:50%;background:var(--lime);display:grid;place-items:center;flex:none}
+.ask i svg{width:13px;height:13px;fill:none;stroke:var(--limeink);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.layer{position:absolute;inset:0;display:flex;flex-direction:column;transform:translateY(100%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.9,.25,1),visibility 0s .45s;z-index:6}
+.layer.on{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.2,.9,.25,1)}
+#sent{background:var(--game);align-items:center;justify-content:center;text-align:center;padding:0 32px;gap:10px}
+#sent h2{font-size:34px;font-weight:800;letter-spacing:-.03em}
+.banner{position:absolute;left:8px;right:8px;top:56px;z-index:30;border:0;text-align:left;color:#000;font:inherit;cursor:pointer;background:rgba(235,235,235,.82);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  border-radius:24px;padding:13px 14px;display:flex;gap:12px;align-items:center;transform:translateY(-260%);transition:transform .5s cubic-bezier(.2,1.1,.3,1)}
+.banner{visibility:hidden}.banner.on{transform:none;visibility:visible}
+.banner img,.note img{width:40px;height:40px;border-radius:10px;flex:none}
+.banner .b,.note .b{flex:1;font-size:15px;line-height:1.3}
+.banner .h,.note .h{display:flex;justify-content:space-between;font-weight:600}
+.banner .h span,.note .h span{font-weight:400;opacity:.6;font-size:13px}
+#ls{background:radial-gradient(120% 80% at 50% 0%,#24463A 0%,#0C1512 60%,#050807 100%);padding:96px 12px 30px;align-items:center;text-align:center}
+#ls .d{font-size:20px;font-weight:600;opacity:.85}
+#ls .c{font-size:96px;font-weight:600;margin-top:2px}
+.note{margin-top:auto;margin-bottom:96px;width:100%;border:0;text-align:left;color:#fff;font:inherit;cursor:pointer;background:rgba(255,255,255,.16);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  border-radius:24px;padding:14px;display:flex;gap:12px;align-items:center;animation:drop .5s cubic-bezier(.2,1.2,.3,1) .35s both}
+@keyframes drop{from{opacity:0;transform:translateY(-24px) scale(.96)}to{opacity:1;transform:none}}
+#game{background:var(--game);padding:74px 24px 34px;align-items:center;text-align:center}
+.state{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
+.amt{font-size:56px;margin-top:8px}
+.what{font-size:17px;font-weight:600;margin-top:6px}
+.pad{flex:1;display:grid;place-items:center;width:100%}
+.tap{position:relative;width:224px;height:224px;border-radius:50%;border:0;background:none;color:inherit;cursor:pointer;touch-action:none}
+.tap svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.tap circle{fill:none;stroke-width:10}
+.tap .bg{stroke:var(--track)}.tap .fg{stroke:var(--lime);stroke-linecap:round}
+.tap .core{position:absolute;inset:22px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-content:center;transition:transform .08s,background .08s}
+.tap.down .core{transform:scale(.94);background:rgba(255,255,255,.16)}
+.tap .n{font-size:60px}.tap .u{font-size:15px;opacity:.6;margin-top:6px}
+.say{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.25;color:rgba(255,255,255,.35);text-align:left}.say b{color:var(--lime)}
+.sayin{width:100%;border:0;border-radius:16px;padding:16px;margin-top:18px;font:17px inherit;font-family:inherit;background:rgba(255,255,255,.1);color:#fff;outline:0;user-select:text;-webkit-user-select:text}
+.pick{font-size:15px;font-weight:600}
+.rule{font-size:13px;opacity:.55;margin:2px 0 18px}
+.done{flex:1;display:grid;place-content:center;gap:8px}
+.mark{width:84px;height:84px;border-radius:50%;background:var(--lime);color:var(--limeink);margin:0 auto 14px;display:grid;place-items:center;animation:pop .4s cubic-bezier(.2,1.4,.4,1)}
+.mark.grey{background:var(--track);color:#fff}
+.mark svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+.done h2{font-size:34px}
+.done p{font-size:17px;opacity:.65;max-width:26ch;margin:0 auto}
+.conf{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.conf i{position:absolute;top:-12px;width:7px;height:11px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(900px) rotate(720deg)}}
+/* chat */
+#chat{background:var(--game);z-index:8}
+.chd{display:flex;align-items:center;gap:12px;padding:58px 16px 10px;border-bottom:.5px solid var(--line)}
+.chd img{width:38px;height:38px;border-radius:50%}
+.chd b{display:block;font-size:17px;font-weight:600}.chd small{font-size:12px;color:var(--sub)}
+.chd button{margin-left:auto;width:34px;height:34px;border-radius:50%;border:0;background:var(--track);font-size:13px;font-weight:700;cursor:pointer}
+.msgs{flex:1;overflow-y:auto;padding:12px 14px 4px;display:flex;flex-direction:column;gap:8px;scrollbar-width:none}
+.msgs::-webkit-scrollbar{display:none}
+.bub{font-size:16px;line-height:1.36;padding:10px 14px;border-radius:20px;max-width:310px;background:var(--card);align-self:flex-start;animation:bub .3s cubic-bezier(.2,.9,.3,1.1);transform-origin:bottom left;user-select:text;-webkit-user-select:text}
+.bub.me{background:var(--lime);color:var(--limeink);align-self:flex-end;transform-origin:bottom right}
+@keyframes bub{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.typing{display:flex;gap:5px;padding:15px 16px;border-radius:20px;background:var(--card);align-self:flex-start}
+.typing i{width:8px;height:8px;border-radius:50%;background:#fff;animation:dot 1.1s ease-in-out infinite}.typing i:nth-child(2){animation-delay:.16s}.typing i:nth-child(3){animation-delay:.32s}
+@keyframes dot{0%,100%{opacity:.3;transform:none}50%{opacity:.9;transform:translateY(-3px)}}
+.chips{display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-top:6px}
+.chips button{border:1px solid rgba(155,240,92,.5);background:none;color:var(--lime);border-radius:99px;padding:9px 14px;font-size:15px;font-weight:500;cursor:pointer}
+.wi{align-self:flex-start;width:310px;background:var(--card);border-radius:20px;border:1px solid rgba(155,240,92,.35);padding:14px;display:grid;gap:10px}
+.wi .hd{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--sub)}.wi .hd b{font-size:15px;font-weight:800;color:var(--lime)}
+.wi input{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:none;cursor:pointer;margin:0}
+.wi input::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(to right,var(--lime) var(--p,20%),var(--track) 0)}
+.wi input::-webkit-slider-thumb{-webkit-appearance:none;width:38px;height:24px;border-radius:12px;background:#fff;margin-top:-10px;box-shadow:0 1px 6px rgba(0,0,0,.4)}
+.wi input::-moz-range-track{height:4px;border-radius:2px;background:var(--track)}.wi input::-moz-range-thumb{width:38px;height:24px;border:0;border-radius:12px;background:#fff}
+.wi .r{display:flex;justify-content:space-between;align-items:flex-end}
+.wi small{display:block;font-size:12px;color:var(--sub);margin-bottom:2px}
+.wi .m{font-size:24px;font-weight:800}.wi .y{font-size:17px;font-weight:700;text-align:right}
+.wi .ok{font-size:13px;font-weight:600;color:var(--lime)}.wi .ok.no{color:var(--sub)}
+.cin{padding:8px 12px 22px}
+.cin form{display:flex;gap:8px;align-items:flex-end}
+.cin input{flex:1;border:0;outline:0;border-radius:21px;background:var(--card);color:#fff;font:16px inherit;font-family:inherit;padding:11px 14px;user-select:text;-webkit-user-select:text}
+.cin input::placeholder{color:var(--sub)}
+.cin button{width:40px;height:40px;border-radius:50%;border:0;background:var(--lime);display:grid;place-items:center;cursor:pointer;flex:none}
+.cin button:disabled{opacity:.35}
+.cin button svg{width:16px;height:16px;fill:none;stroke:var(--limeink);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.cin p{font-size:11px;color:var(--sub);text-align:center;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="page">
+  <div class="left">
+    <section class="hero">
+      <div class="brand"><img src="icon.png" alt="">Think Twice</div>
+      <h1>Talk with your money. <em>Then keep it.</em></h1>
+      <div class="pitch">
+        <div><h2>Why this matters</h2><p>Almost one in three Europeans cannot cover a single unexpected bill. It is rarely the rent. It is ten small payments nobody stopped.</p></div>
+        <div><h2>How we solve it</h2><p>A coach inside your bank's app that answers from your own transactions, and a lock that makes you pause before the payment that leaks.</p></div>
+      </div>
+      <button class="play" id="play" aria-haspopup="dialog"><span class="b"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l15-8.5z"/></svg></span><span>Watch the film<small>59 seconds</small></span></button>
+      <p class="hint">The phone <span class="wide">on the right</span><span class="narrow">below</span> is the app. Try it: tap "Next payment", or ask the coach a question.</p>
+    </section>
+
+    <section class="tiles">
+      <article class="tile2">
+        <div class="k">Europe</div>
+        <div class="n">30<small>%</small></div>
+        <div class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <h3>of people in the EU cannot face an unexpected expense.</h3>
+        <p>In Bulgaria, Latvia and Greece it was more than four in ten. A broken phone or a dentist bill goes straight onto credit.</p>
+        <div class="s">Eurostat, EU-SILC 2024 (ilc_mdes04). The 2025 figure is 29.2 %.</div>
+      </article>
+      <article class="tile2">
+        <div class="k">Finland</div>
+        <div class="n">1<small>in</small> 4</div>
+        <h3>Finnish households could not cover a large surprise bill without borrowing.</h3>
+        <p>The benchmark is about 1 200 €. Young people living alone and single-parent households were the least prepared.</p>
+        <div class="s">Statistics Finland, statistics on living conditions, 2021.</div>
+      </article>
+      <article class="tile2">
+        <div class="k">How easy it is to get there</div>
+        <div class="n">2 866<small>€ a year</small></div>
+        <h3>Not the rent. Ten small payments a month.</h3>
+        <p>One 25-year-old in the bank's dataset paid restaurants ten times in August: 238,84 €. Everyday spending takes 999 € of a 2 082 € income, and the month ends 19,93 € over.</p>
+        <div class="s">One customer in S-Bank's synthetic challenge dataset. 238,84 € times twelve.</div>
+      </article>
+      <article class="tile2">
+        <div class="k">How it works</div>
+        <h3>Ask. Understand. Act.</h3>
+        <ol class="steps">
+          <li><div><b>Ask your own money anything.</b><span>"How much did I spend on taxis last month?" Every figure is computed by code from your transactions; the AI only puts it into words.</span></div></li>
+          <li><div><b>See three baskets and one number.</b><span>Fixed costs, irregular costs, everyday spending, and what is safe to spend this week.</span></div></li>
+          <li><div><b>Lock what leaks.</b><span>Past your own limit the payment locks. Earn it back with a short game, or skip and keep the money.</span></div></li>
+        </ol>
+      </article>
+      <article class="tile2 lime">
+        <div class="k">Built for S-mobiili</div>
+        <div class="n">3,5<small>million</small></div>
+        <h3>S-Bank customers, one app away.</h3>
+        <p>S-mobiili is used weekly by one in three Finnish adults. Think Twice is designed as a feature inside it: it runs on the structure of the bank's own transaction data, and no Finnish bank yet lets customers talk with their own money.</p>
+        <div class="s">Figures from S-Bank's challenge brief, Junction 2026. Think Twice is a hackathon prototype and is not part of S-mobiili.</div>
+      </article>
+    </section>
+
+    <footer class="foot">
+      <p><b style="color:#fff">What is real here.</b> The app on this page is a working copy of the iPhone prototype: the figures, the lock, the games and the coach's answers are computed in your browser from one synthetic customer. The bank connection, the card and the declined payment are simulated, and no money moves. The live AI model is used only in the iPhone build. Nothing has been tested with users yet.</p>
+      <p style="margin-top:12px">Sources: <a href="https://ec.europa.eu/eurostat/databrowser/view/ilc_mdes04/default/table">Eurostat ilc_mdes04</a>, <a href="https://www.stat.fi/til/eot/2021/01/eot_2021_01_2022-04-01_tie_001_en.html">Statistics Finland 2021</a>, <a href="https://github.com/hackjunction/Junction-2026-S-pankki">S-Bank challenge dataset</a>.</p>
+    </footer>
+  </div>
+
+  <aside class="right" aria-label="Think Twice app, interactive demo">
+    <div class="stage" id="stage">
+      <div class="phone">
+        <div class="status"><span>9:41</span><svg viewBox="0 0 70 12"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M26 4.2a8 8 0 0 1 11 0l-1.3 1.4a6 6 0 0 0-8.4 0zM28.3 6.8a4.6 4.6 0 0 1 6.4 0l-1.4 1.4a2.6 2.6 0 0 0-3.6 0zM31.5 9a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z"/><rect x="45" y=".5" width="21" height="11" rx="3.4" fill="none" stroke="#fff" stroke-opacity=".45"/><rect x="46.6" y="2.1" width="17.8" height="7.8" rx="2"/><rect x="67.2" y="4" width="1.6" height="4" rx=".8" fill-opacity=".5"/></svg></div>
+        <main class="home" id="home"></main>
+        <div class="dock" id="dock"></div>
+        <section class="layer" id="sent"><h2>Payment sent</h2><p class="sub">The alert arrives in 4 seconds. Lock the phone to see it on the Lock Screen.</p></section>
+        <button class="banner" id="banner" data-act="lock"></button>
+        <section class="layer" id="ls"></section>
+        <section class="layer" id="game"></section>
+        <section class="layer" id="chat">
+          <div class="chd"><img src="icon.png" alt=""><div><b>Savings coach</b><small>Answers use your payment data</small></div><button data-act="closechat" aria-label="Close chat">✕</button></div>
+          <div class="msgs" id="msgs"></div>
+          <div class="cin"><form id="cform"><input id="cinput" placeholder="Ask about your spending" autocomplete="off" aria-label="Ask about your spending"><button id="csend" aria-label="Send" disabled><svg viewBox="0 0 24 24"><path d="M12 20V5M5 11l7-7 7 7"/></svg></button></form>
+            <p>Figures are computed from your transactions. Not financial advice.</p></div>
+        </section>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<dialog id="film" aria-label="Think Twice film"><button aria-label="Close" id="filmx">✕</button><video src="video.mp4" poster="poster.png" controls playsinline preload="none"></video></dialog>
+
+<script>
+/* The same synthetic customer and rules as the iPhone build (ThinkTwice/Logic.swift, Money.swift, Coach.swift). */
+const D={month:'September',beforeMonth:'August',type:'Restaurants',usual:10,
+ before:{count:10,total:238.84,weekend:6},
+ payments:[['Fast food','Thursday, Sep 3','16:18',33.18,'16:28','Sep 3'],['Restaurant','Friday, Sep 4','17:41',20.45,'17:51','Sep 4'],['Restaurant','Sunday, Sep 6','13:26',68.48,'13:36','Sep 6'],['Restaurant','Monday, Sep 14','21:54',27.27,'22:04','Sep 14'],['Restaurant','Saturday, Sep 19','15:50',28.2,'16:00','Sep 19'],['Restaurant','Saturday, Sep 19','18:03',19.7,'18:13','Sep 19'],['Fast food','Thursday, Sep 24','16:23',15.06,'16:33','Sep 24'],['Fast food','Friday, Sep 25','18:39',40.29,'18:49','Sep 25'],['Restaurant','Saturday, Sep 26','19:43',21.66,'19:53','Sep 26'],['Restaurant','Tuesday, Sep 29','20:33',40.94,'20:43','Sep 29']]};
+const M={income:2082.48,regular:687.22,irregular:416.19,everyday:999.00,balance:1950.51,
+ avg:{Groceries:335.67,Entertainment:305.45,Restaurants:224.94,Transportation:132.95},
+ lookups:[[['taxi','cab'],'taxis',31.98,1],[['restaurant','dining','eating out','eat out'],'eating out',238.84,10]]};
+M.room=M.income-M.regular-M.irregular; M.week=M.room*12/52; M.left=M.room-M.everyday; M.buffer=M.balance/M.regular;
+const $=s=>document.querySelector(s);
+const eur=n=>new Intl.NumberFormat('fi-FI',{minimumFractionDigits:Math.abs(n%1)>1e-9?2:0,maximumFractionDigits:2}).format(n).replace(/ /g,' ')+' €';
+const eur2=n=>new Intl.NumberFormat('fi-FI',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n).replace(/\u00a0/g,' ')+' €';
+const one=n=>n.toFixed(1).replace('.',',');
+const nth=n=>n+(n%100>10&&n%100<14?'th':['th','st','nd','rd'][n%10]||'th');
+const sumA=a=>a.reduce((t,p)=>t+p[3],0);
+const TIERS=['Broke by Friday','Treats Myself Daily','Says No Sometimes','Thinks Twice','Boring but Rich','Financially Free'];
+const LEVELS=[0,1,2,3,5,8], LIMIT=5, LEN=1;                    // the default setting: "Thinks Twice", lock after 5 payments
+const CHECK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+let S;
+function start(){S={saved:0,skipped:0,log:D.payments.slice(0,LIMIT).map(p=>[p,'Paid']),queue:D.payments.slice(LIMIT),i:0};home()}
+const paid=()=>S.log.filter(l=>l[1]==='Paid').map(l=>l[0]);
+const level=()=>LEVELS.filter(n=>S.skipped>=n).length-1;
+
+function home(){
+  const end=S.i>=S.queue.length, cur=level(), need=cur<5?LEVELS[cur+1]-S.skipped:0, all=M.regular+M.irregular+M.everyday;
+  const tones=['rgba(255,255,255,.85)','rgba(255,255,255,.45)','#9BF05C'], parts=[['Fixed costs',M.regular],['Irregular costs',M.irregular],['Everyday spending',M.everyday]];
+  $('#home').innerHTML=`<div class="top"><span class="logo">Think Twice</span><span class="pill">${D.month}</span></div>
+  <div class="sub" style="padding:8px 4px 0">${cur<5?`${need} more ${need==1?'skip':'skips'} to move up.`:'Top level reached.'}</div>
+  <div class="ladder"><div class="lbar" style="--p:${(cur*44+27)/274*100}%"></div>${[5,4,3,2,1,0].map(i=>`<div class="rung ${i>cur?'above':i==cur?'cur':''}"><span>${TIERS[i]}</span>
+    <span style="display:flex;gap:8px;align-items:center">${i==cur?'':`<span class="sub">${LEVELS[i]} ${LEVELS[i]==1?'skip':'skips'}</span>`}${i==5?'<span class="pill line">Goal</span>':''}${i==cur?'<span class="pill lime">You</span>':''}</span></div>`).join('')}</div>
+  ${S.skipped?`<div class="savedtile"><div><div class="lbl">Saved by skipping</div><div class="num">${eur(S.saved)}</div></div><div class="lbl">${S.skipped} ${S.skipped==1?'purchase':'purchases'} skipped</div></div>`:''}
+  <button class="money" data-act="chat"><div class="hd"><div><div class="lbl">Safe to spend a week</div><div class="num">${eur(M.week)}</div></div><div class="over">${M.left>=0?eur(M.left)+' a month safe to save':eur(-M.left)+' a month over'}</div></div>
+    <div class="bars">${parts.map((p,i)=>`<i style="background:${tones[i]};flex:${p[1]/all}"></i>`).join('')}</div>
+    <div class="leg">${parts.map((p,i)=>`<div><span><i style="background:${tones[i]}"></i>${p[0]}</span><b>${eur2(p[1])}</b></div>`).join('')}</div></button>
+  <div class="sec">Locked</div>
+  <div class="card"><div class="row"><div class="t">${D.type}<small>After ${LIMIT} payments a month.</small></div><div class="v num">${paid().length} paid<small>${eur(sumA(paid()))}</small></div><span class="chev">›</span></div></div>
+  <div class="sec">${D.month}</div><div class="card">${[...S.log].reverse().map(([p,s])=>`<div class="row ${s==='Skipped'?'skip':''}"><div class="t">${p[0]}<small>${p[5]}, ${p[2]}</small></div>
+    <div class="v num">${eur(p[3])}<small>${s==='Skipped'?'Saved':s}</small></div></div>`).join('')}</div>`;
+  $('#dock').innerHTML=`<button class="ask" data-act="chat" aria-label="Ask the savings coach how to grow your savings"><svg viewBox="0 0 24 24"><path d="M10 2l1.8 5.2L17 9l-5.2 1.8L10 16l-1.8-5.2L3 9l5.2-1.8zM18.5 13l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z"/></svg><span>Ask how to grow your savings</span><i><svg viewBox="0 0 24 24"><path d="M12 20V5M5 11l7-7 7 7"/></svg></i></button>`
+   +(end?`<button class="btn white" data-act="restart">Start over</button><div class="demo">${D.month} complete. ${eur(S.saved)} saved.</div>`
+        :`<button class="btn white" data-act="pay-next">Next payment</button><div class="demo">Replays this customer's real card payments.</div>`);
+}
+
+/* ---------- lock, game, result ---------- */
+const noteText=p=>`${p[0]}, ${eur(p[3])}. ${nth(paid().length+1)} this month, ${eur(sumA(paid()))} so far.`;
+function payNext(){
+  const p=S.queue[S.i]; $('#sent').classList.add('on');
+  $('#banner').innerHTML=`<img src="icon.png" alt=""><span class="b"><span class="h">Card locked<span>now</span></span><span>${noteText(p)}</span></span>`;
+  setTimeout(()=>$('#banner').classList.add('on'),1400);
+}
+function lockScreen(){
+  const p=S.queue[S.i]; $('#banner').classList.remove('on');
+  $('#ls').innerHTML=`<div class="d">${p[1]}</div><div class="c num">${p[2]}</div>
+   <button class="note" data-act="open"><img src="icon.png" alt=""><span class="b"><span class="h">Card locked<span>now</span></span><span>${noteText(p)}</span></span></button>`;
+  $('#ls').classList.add('on'); $('#sent').classList.remove('on');
+}
+const GAMES={tap:{name:'Tap it out',rule:'1 tap for every 10 cents, 50 at most',unit:'taps to unlock'},
+  hold:{name:'Hold on',rule:'1 second for every 2 €, at least 20. Letting go restarts.',unit:'seconds to unlock'},
+  type:{name:'Say it',rule:'Big payment. Type the sentence exactly.'}};
+const pick=a=>a<20?'tap':a<40?'hold':'type';
+function game(){
+  const p=S.queue[S.i], k=pick(p[3]), g=GAMES[k], R=102, L=2*Math.PI*R;
+  const line=`This is my ${nth(paid().length+1)} ${p[0].toLowerCase()} payment this month.`;
+  const goal=k==='type'?line.length:k==='tap'?Math.min(50,Math.max(1,Math.round(p[3]*10*LEN))):Math.round(Math.max(20,p[3]/2*LEN));
+  const pad=k==='type'
+   ?`<div style="width:100%"><div class="say" id="say"></div><input class="sayin" id="sayin" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type here" aria-label="${g.name}"></div>`
+   :`<button class="tap" id="tap" aria-label="${g.name}"><svg viewBox="0 0 224 224"><circle class="bg" cx="112" cy="112" r="${R}"/><circle class="fg" id="ring" cx="112" cy="112" r="${R}" stroke-dasharray="${L}" stroke-dashoffset="${L}"/></svg>
+     <span class="core"><span class="n num" id="n">${goal}</span><span class="u" id="u">${g.unit}</span></span></button>`;
+  $('#game').innerHTML=`<div class="state">Card locked</div><div class="amt num">${eur(p[3])}</div><div class="what">${p[0]}</div>
+   <div class="sub">${nth(paid().length+1)} this month, ${eur(sumA(paid()))} so far.</div><div class="pad">${pad}</div>
+   <div class="pick">${g.name}</div><div class="rule" id="rule">${g.rule}</div>
+   <button class="btn" data-act="skip">Skip and save ${eur(p[3])}</button><button class="btn alt" style="margin:10px 0 0" data-act="pay" id="pay" hidden>Pay ${eur(p[3])}</button>`;
+  S.effort={k,goal}; $('#ls').classList.remove('on'); $('#game').classList.add('on');
+  let left=goal, done=false, t0=0, timer=0;
+  const unlocked=()=>{done=true;$('#rule').textContent=`Tap your card again. Open until ${p[4]}.`;$('#pay').hidden=false};
+  if(k==='type'){
+    const inp=$('#sayin'), draw=n=>$('#say').innerHTML=`<b>${line.slice(0,n)}</b>${line.slice(n)}`;
+    draw(0); inp.addEventListener('paste',e=>e.preventDefault());
+    inp.addEventListener('input',()=>{const v=inp.value; let n=0;
+      while(n<v.length&&n<line.length&&v[n].toLowerCase()===line[n].toLowerCase())n++;
+      draw(n); if(n===line.length&&v.length===line.length){inp.disabled=true;unlocked()}});
+    return;
+  }
+  const tap=$('#tap'), show=v=>{$('#n').textContent=Math.ceil(v);$('#ring').style.strokeDashoffset=L*v/goal};
+  const win=()=>{show(0);$('#u').textContent='Unlocked';tap.classList.remove('down');unlocked()};
+  const up=f=>['pointerup','pointerleave','pointercancel'].forEach(e=>tap.addEventListener(e,f));
+  if(k==='tap'){
+    tap.addEventListener('pointerdown',()=>{if(done)return;tap.classList.add('down');left--;show(left);if(left<=0)win()});
+    up(()=>tap.classList.remove('down'));
+  }else{
+    const tick=()=>{const v=goal-(performance.now()-t0)/1000;if(v<=0){clearInterval(timer);return win()}show(v)};
+    tap.addEventListener('pointerdown',()=>{if(done)return;tap.classList.add('down');t0=performance.now();clearInterval(timer);timer=setInterval(tick,40)});
+    up(()=>{if(done)return;clearInterval(timer);tap.classList.remove('down');show(goal)});
+  }
+}
+const DISS=[(n,t,e)=>`${nth(n)} this month. The food at home sends its regards.`,
+ (n,t,e)=>`${eur(t)} on restaurants in ${D.month}. A chef somewhere thanks you.`,
+ (n,t,e)=>`You ${e.k==='tap'?`tapped ${e.goal} times`:e.k==='hold'?`held on for ${e.goal} seconds`:`typed ${e.goal} letters`} for this. Dedication, wrongly aimed.`,
+ (n,t,e)=>`Your card was locked for a reason. You were the reason.`,
+ (n,t,e)=>`${TIERS[5]} just moved one rung further away.`];
+function result(skip){
+  const p=S.queue[S.i], a=p[3], before=level();
+  if(skip){S.saved+=a;S.skipped++;S.lastSkip=a}
+  S.log.push([p,skip?'Skipped':'Paid']); S.i++;
+  const after=level(), colors=['#9BF05C','#FFE03A','#5AC8FA','#fff','#34C759'];
+  $('#game').innerHTML=`${skip?`<div class="conf">${Array.from({length:70},(_,i)=>`<i style="left:${Math.random()*100}%;background:${colors[i%5]};animation-duration:${1.6+Math.random()*1.8}s;animation-delay:${Math.random()*.5}s;transform:rotate(${Math.random()*360}deg)"></i>`).join('')}</div>`:''}
+    <div class="done"><div class="mark ${skip?'':'grey'}">${CHECK}</div><h2 class="num">${skip?eur(a)+' saved':'Paid '+eur(a)}</h2>
+    <p>${skip?'Stays in your account. No action needed.':DISS[(S.i-1)%DISS.length](paid().length,sumA(paid()),S.effort)}</p>
+    ${skip?'':'<p class="sub" style="margin-top:2px">Card locked again.</p>'}
+    ${after>before?`<div style="margin-top:6px"><span class="pill lime">New level: ${TIERS[after]}</span></div>`:''}</div>
+    ${skip?'<button class="btn alt" data-act="chat-skip">How to save even more</button>':''}<button class="btn" data-act="close">${skip?"Thanks, I'm the best":'Done'}</button>`;
+  home();
+}
+
+/* ---------- the coach: on-device answers, the same wording the app uses without the model ---------- */
+const C={open:false,msgs:[],busy:false};
+const HABIT=`In ${D.beforeMonth} you made ${D.before.count} restaurant payments, ${eur(D.before.total)} in total, and ${D.before.weekend} of them fell on a weekend.`;
+const whatIf=(c,p)=>{const m=M.avg[c]*p/100;return{m,y:m*12,left:M.left+m}};
+const TIP=['decide how many restaurant meals you want in a month and pick the dates in advance. The planned ones taste better than the accidental ones.',
+ 'decide dinner before four in the afternoon. Most takeaway orders are made by a tired person with no plan.',
+ 'remove your saved card from delivery apps. Typing the number again is often enough of a pause.'];
+let tip=0;
+function answer(q){
+  const t=q.toLowerCase(), has=w=>t.split(/[^a-zäö]+/).some(x=>x.startsWith(w));
+  if(/stock|crypto|bitcoin|invest|etf|loan|mortgage|gambl|casino|betting/.test(t)||(/\btax/.test(t)&&!/\btaxi/.test(t)))
+    return {text:'That is outside what I can help with. I do not give advice on investments, loans, taxes or betting; an adviser at your bank can. I can help with everyday spending, your payments here, and building a buffer.'};
+  const pc=t.match(/(\d{1,3})\s?(%|percent)/), cat=has('grocer')?'Groceries':has('entertain')?'Entertainment':has('transport')?'Transportation':'Restaurants';
+  if(pc||has('cut')||has('reduc')||t.includes('spend less')){
+    const p=Math.min(100,Math.max(1,pc?+pc[1]:20)), w=whatIf(cat,p);
+    return {text:`You spend about ${eur(M.avg[cat])} a month on ${cat.toLowerCase()}, averaged over the last six months. Cutting it by ${p} % keeps ${eur(w.m)} a month, ${eur(w.y)} a year. ${w.left>=0?`With that cut you would end a typical month ${eur(w.left)} ahead, which is your safe-to-save amount.`:`You would still be ${eur(-w.left)} over in a typical month.`}${cat==='Restaurants'?' One way to do it: '+TIP[tip++%3]:''}`,wi:{cat,p}};
+  }
+  if(t.includes('safe to spend')||t.includes('safe for me to spend')||t.includes('can i spend')||has('afford'))
+    return {text:`About ${eur(M.week)} a week is safe for everyday spending. That is your income of ${eur(M.income)} a month, minus ${eur(M.regular)} of fixed costs and a ${eur(M.irregular)} reserve for irregular costs, spread over the weeks. Your everyday spending has averaged ${eur(M.everyday*12/52)} a week, so you are ${eur(-M.left)} a month over.`};
+  if(has('basket')||t.includes('where does')||t.includes('money go'))
+    return {text:`Of your ${eur(M.income)} monthly income, ${eur(M.regular)} goes to fixed costs like rent and bills, about ${eur(M.irregular)} to irregular costs such as home & tech and lifestyle, and ${eur2(M.everyday)} to everyday spending. The everyday basket is the one you can steer, and groceries is the largest part of it.`};
+  if(t.includes('spender'))
+    return {text:`You are an everyday spender: ${Math.round(M.everyday/M.income*100)} % of your income goes to small frequent payments, led by groceries ${eur(M.avg.Groceries)} and entertainment ${eur(M.avg.Entertainment)} a month. Your fixed costs are modest at ${eur(M.regular)}, so the room to save is in the everyday basket.`};
+  const look=M.lookups.find(l=>l[0].some(k=>t.includes(k)));
+  if(look&&(t.includes('how much')||t.includes('last month')||t.includes('spend on')||t.includes('spent on')||t.includes('august')))
+    return {text:`You spent ${eur(look[2])} on ${look[1]} in August 2026, across ${look[3]} ${look[3]==1?'payment':'payments'}. That sits in your everyday spending basket.`};
+  if(has('sav')||has('buffer')||t.includes('emergency fund')){
+    if(t.includes('how much')) return {text:`A common target is three months of fixed costs, which for you is ${eur(M.regular*3)}. Your balance of ${eur(M.balance)} covers ${one(M.buffer)} months. Everyday spending runs ${eur(-M.left)} a month over right now, so start by freeing ${eur(whatIf('Restaurants',20).m)} a month from eating out.`};
+    if(has('how')||has('start')||has('build')) return {text:`Start in the everyday basket, because fixed costs barely move. Yours takes ${eur2(M.everyday)} a month, and eating out is the easiest part to steer at ${eur(M.avg.Restaurants)}. Cutting it by 20 % frees ${eur(whatIf('Restaurants',20).m)} a month. Move that amount to savings on payday, before the month can spend it.`};
+    return {text:`Because some costs cannot be planned. Over the last twelve months your irregular costs averaged ${eur(M.irregular)} a month, and the largest was car rental at ${eur(826.06)}. Your balance of ${eur(M.balance)} covers ${one(M.buffer)} months of fixed costs. Savings are what pay for the next surprise, so it does not come out of rent or food money.`};
+  }
+  if(t.includes('how am i doing')||t.includes('my finances')||t.includes('am i ok'))
+    return {text:`You earn ${eur(M.income)} a month and a typical month takes ${eur(M.regular)} in fixed costs, ${eur(M.irregular)} in irregular costs and ${eur2(M.everyday)} in everyday spending. That leaves you ${eur(-M.left)} over, with a balance covering ${one(M.buffer)} months of fixed costs. That buffer is solid; the everyday basket is where a small cut changes the result.`};
+  if(['sad','stress','worr','anxi','scared','overwhelm'].some(has))
+    return {text:`I am sorry it feels that way. I can only speak for the money side: your balance covers ${one(M.buffer)} months of fixed costs, so nothing in your numbers is an emergency. If money is part of the worry, ask me how you are doing and we can look at it together. If it is more than that, please talk to someone close to you or a professional.`};
+  if(['thank','thx'].some(has)) return {text:'You are welcome. Ask me anything else about your money.'};
+  if(['hi','hello','hey','moi','terve'].some(w=>t.trim().split(/\W+/).includes(w))) return {text:'Hello. Ask me what is safe to spend this week, where your money goes, or what a cut would keep.'};
+  return {text:'I did not catch that. I can tell you what is safe to spend this week, where your money goes, why and how to save, or what a cut would keep. Ask me one of those.'};
+}
+const CHIPS=['Where does my money go','What is safe to spend this week','What if I cut eating out by 20%'];
+function drawChat(){
+  const el=$('#msgs'), asked=C.msgs.some(m=>m.me);
+  el.innerHTML=C.msgs.map((m,i)=>`<div class="bub ${m.me?'me':''}"></div>${m.wi?`<div class="wi" data-i="${i}"></div>`:''}`).join('')
+    +(C.busy?'<div class="typing" aria-label="The coach is writing"><i></i><i></i><i></i></div>':'')
+    +(!C.busy&&C.msgs.length&&!asked?`<div class="chips">${CHIPS.map(c=>`<button data-chip="${c}">${c}</button>`).join('')}</div>`:'');
+  el.querySelectorAll('.bub').forEach((b,i)=>b.textContent=C.msgs[i].text);
+  el.querySelectorAll('.wi').forEach(w=>drawWI(w,C.msgs[+w.dataset.i].wi));
+  el.scrollTop=el.scrollHeight; $('#csend').disabled=C.busy||!$('#cinput').value.trim();
+}
+function drawWI(w,wi){
+  const r=whatIf(wi.cat,wi.p);
+  w.innerHTML=`<div class="hd"><span>${wi.cat}, cut by</span><b>${wi.p} %</b></div><input type="range" min="0" max="100" step="5" value="${wi.p}" style="--p:${wi.p}%" aria-label="Cut ${wi.cat} by">
+   <div class="r"><div><small>Kept a month</small><div class="m num">${eur(r.m)}</div></div><div><small style="text-align:right">A year</small><div class="y num">${eur(r.y)}</div></div></div>
+   <div class="ok ${r.left>=0?'':'no'}">${r.left>=0?`Safe to save: ${eur(r.left)} a month`:`Still ${eur(-r.left)} a month over`}</div>`;
+  w.querySelector('input').oninput=e=>{wi.p=+e.target.value;const k=whatIf(wi.cat,wi.p);
+    w.querySelector('.hd b').textContent=wi.p+' %';e.target.style.setProperty('--p',wi.p+'%');w.querySelector('.m').textContent=eur(k.m);w.querySelector('.y').textContent=eur(k.y);
+    const ok=w.querySelector('.ok');ok.className='ok '+(k.left>=0?'':'no');ok.textContent=k.left>=0?`Safe to save: ${eur(k.left)} a month`:`Still ${eur(-k.left)} a month over`};
+}
+function say(make,delay){C.busy=true;drawChat();setTimeout(()=>{C.busy=false;C.msgs.push(make());drawChat()},delay)}
+function openChat(afterSkip){
+  $('#chat').classList.add('on');
+  if(!C.msgs.length&&!C.busy) say(()=>({text:afterSkip?`Good call on the ${eur(afterSkip)}. ${HABIT} You have kept ${eur(S.saved)} in ${D.month} so far. Ask me how to keep more of it.`
+    :`${HABIT} That is where your lock is aimed. Ask me how to keep more of it, or how to turn it into a buffer.`}),1300);
+  else drawChat();
+}
+function ask(q){q=q.trim().slice(0,500);if(!q||C.busy)return;C.msgs.push({me:true,text:q});say(()=>answer(q),900+Math.random()*700)}
+
+document.addEventListener('click',e=>{
+  const chip=e.target.closest('[data-chip]'); if(chip)return ask(chip.dataset.chip);
+  const t=e.target.closest('[data-act]'); if(!t)return; const a=t.dataset.act;
+  if(a==='pay-next')payNext();
+  if(a==='lock')lockScreen();
+  if(a==='open')game();
+  if(a==='skip')result(true);
+  if(a==='pay')result(false);
+  if(a==='close')$('#game').classList.remove('on');
+  if(a==='chat')openChat();
+  if(a==='chat-skip'){$('#game').classList.remove('on');openChat(S.lastSkip)}
+  if(a==='closechat')$('#chat').classList.remove('on');
+  if(a==='restart'){C.msgs=[];start()}
+});
+$('#cform').addEventListener('submit',e=>{e.preventDefault();const i=$('#cinput');ask(i.value);i.value='';drawChat()});
+$('#cinput').addEventListener('input',()=>{$('#csend').disabled=C.busy||!$('#cinput').value.trim()});
+start();
+
+/* ---------- page: fit the phone to the window, the film ---------- */
+const fit=()=>{const wide=innerWidth>980, h=wide?innerHeight-56:Math.min(innerHeight-40,900), w=wide?innerWidth*.44-48:innerWidth-48;
+  const k=Math.min(1,h/870,w/416); const st=$('#stage'); st.style.setProperty('--k',k);
+  st.parentElement.style.minHeight=wide?'':(870*k)+'px'; st.style.margin=wide?'':`${-(844-844*k)/2}px 0`};
+addEventListener('resize',fit); fit();
+const film=$('#film'), vid=film.querySelector('video');
+$('#play').onclick=()=>{film.showModal();vid.play().catch(()=>{})};
+$('#filmx').onclick=()=>film.close();
+film.addEventListener('close',()=>vid.pause());
+film.addEventListener('click',e=>{if(e.target===film)film.close()});
+</script>
+</body>
+</html>

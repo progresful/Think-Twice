@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D245214293ACF43A324E98E /* history.json in Resources */ = {isa = PBXBuildFile; fileRef = 629C8DCDD462F8DFFD686655 /* history.json */; };
+		21DEFFC14D23F18B5CBDB3D1 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF48681EA1D562A1E8A5B94D /* Onboarding.swift */; };
+		2687AD3E6DE1D48BD24B64DC /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1248897A5E85594782B5FDF /* ChatView.swift */; };
+		284466C396B842871C624384 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AA6D0B92A626A297F59824 /* AppModel.swift */; };
+		2EE935364B19B8ECE4D4264B /* demo-data.json in Resources */ = {isa = PBXBuildFile; fileRef = 333F443E2106D24E92D9AF0C /* demo-data.json */; };
+		386A612C0F277DC2248013FB /* claude-key.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2DC075C6C787C290DD897142 /* claude-key.txt */; };
+		3CDE940742F52853056B8513 /* ThinkTwiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5FDFE6C0CFA16309A96BEE /* ThinkTwiceApp.swift */; };
+		85CFA9A4B6BF54C10EF25738 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AFE90CAA862B25D1E05B7E /* Money.swift */; };
+		8E78CE0EF2126ED99DA99787 /* Lists.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E196D9A51920336916B69B /* Lists.swift */; };
+		AC0D0B26F061FDAD61F0A739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C82832FF896CB5CAE145696 /* Assets.xcassets */; };
+		BF0FD39B13728B7414091ABF /* LockGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FF75032FB73C615742360 /* LockGame.swift */; };
+		DADFCE9D4B9B279C82973699 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D4D98C36B64B4DE563A331 /* Dashboard.swift */; };
+		E1482F75B1719E5888BF5849 /* Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9259AB94FAC2204810CB3E /* Coach.swift */; };
+		EAAEE8525C6D2F603E4213C1 /* Logic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DBE375CE850370DD5209B8 /* Logic.swift */; };
+		F700643FE8928EF9A8616445 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DBDC10B1CEF5DC48B80FE7 /* Theme.swift */; };
+		F72A62DC3592558D628DFB96 /* LogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EC0CBCB3C25F13C9F96F8 /* LogicTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6D0975CE245F12D27D0FA2EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB8D7E74886804521F5DA241 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 640E49947B9B89C13B87B1E2;
+			remoteInfo = ThinkTwice;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03AC1CB3CAF43FA20310A7D6 /* ThinkTwiceTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ThinkTwiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A9EC0CBCB3C25F13C9F96F8 /* LogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicTests.swift; sourceTree = "<group>"; };
+		14AA6D0B92A626A297F59824 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		2DC075C6C787C290DD897142 /* claude-key.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "claude-key.txt"; sourceTree = "<group>"; };
+		333F443E2106D24E92D9AF0C /* demo-data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "demo-data.json"; sourceTree = "<group>"; };
+		439FF75032FB73C615742360 /* LockGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockGame.swift; sourceTree = "<group>"; };
+		5A9259AB94FAC2204810CB3E /* Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coach.swift; sourceTree = "<group>"; };
+		61DBDC10B1CEF5DC48B80FE7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		629C8DCDD462F8DFFD686655 /* history.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = history.json; sourceTree = "<group>"; };
+		6C82832FF896CB5CAE145696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		76DBE375CE850370DD5209B8 /* Logic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logic.swift; sourceTree = "<group>"; };
+		8C5FDFE6C0CFA16309A96BEE /* ThinkTwiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkTwiceApp.swift; sourceTree = "<group>"; };
+		B9EA0231F8C076C4F34068C8 /* ThinkTwice.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ThinkTwice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF48681EA1D562A1E8A5B94D /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		D0D4D98C36B64B4DE563A331 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		D5E196D9A51920336916B69B /* Lists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lists.swift; sourceTree = "<group>"; };
+		D6AFE90CAA862B25D1E05B7E /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
+		F1248897A5E85594782B5FDF /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		4176D0B400FB1CCA74C16528 /* ThinkTwice */ = {
+			isa = PBXGroup;
+			children = (
+				14AA6D0B92A626A297F59824 /* AppModel.swift */,
+				6C82832FF896CB5CAE145696 /* Assets.xcassets */,
+				F1248897A5E85594782B5FDF /* ChatView.swift */,
+				5A9259AB94FAC2204810CB3E /* Coach.swift */,
+				D0D4D98C36B64B4DE563A331 /* Dashboard.swift */,
+				D5E196D9A51920336916B69B /* Lists.swift */,
+				439FF75032FB73C615742360 /* LockGame.swift */,
+				76DBE375CE850370DD5209B8 /* Logic.swift */,
+				D6AFE90CAA862B25D1E05B7E /* Money.swift */,
+				CF48681EA1D562A1E8A5B94D /* Onboarding.swift */,
+				61DBDC10B1CEF5DC48B80FE7 /* Theme.swift */,
+				8C5FDFE6C0CFA16309A96BEE /* ThinkTwiceApp.swift */,
+				E7A0FB7F7809AE171F429009 /* Resources */,
+			);
+			path = ThinkTwice;
+			sourceTree = "<group>";
+		};
+		5D5A2E48D5C09642826B44DD = {
+			isa = PBXGroup;
+			children = (
+				4176D0B400FB1CCA74C16528 /* ThinkTwice */,
+				F85D1A6B775C0542FA08565F /* ThinkTwiceTests */,
+				8E59F821F8798559AE20CDC2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8E59F821F8798559AE20CDC2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9EA0231F8C076C4F34068C8 /* ThinkTwice.app */,
+				03AC1CB3CAF43FA20310A7D6 /* ThinkTwiceTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7A0FB7F7809AE171F429009 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2DC075C6C787C290DD897142 /* claude-key.txt */,
+				333F443E2106D24E92D9AF0C /* demo-data.json */,
+				629C8DCDD462F8DFFD686655 /* history.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F85D1A6B775C0542FA08565F /* ThinkTwiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A9EC0CBCB3C25F13C9F96F8 /* LogicTests.swift */,
+			);
+			path = ThinkTwiceTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		640E49947B9B89C13B87B1E2 /* ThinkTwice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0860E1DD8FACADBEF49E291 /* Build configuration list for PBXNativeTarget "ThinkTwice" */;
+			buildPhases = (
+				9E32D3C9CD4875215C234931 /* Sources */,
+				5B5E9AF5B025AEE435AF175A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ThinkTwice;
+			packageProductDependencies = (
+			);
+			productName = ThinkTwice;
+			productReference = B9EA0231F8C076C4F34068C8 /* ThinkTwice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C4AD2AED6E7F2EFA99CFFFD7 /* ThinkTwiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC961FA3A5B6AAB15BE3DC08 /* Build configuration list for PBXNativeTarget "ThinkTwiceTests" */;
+			buildPhases = (
+				DCEFB0C3A74A4D093B16DDB2 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED2E74B69B404606DBAAF145 /* PBXTargetDependency */,
+			);
+			name = ThinkTwiceTests;
+			packageProductDependencies = (
+			);
+			productName = ThinkTwiceTests;
+			productReference = 03AC1CB3CAF43FA20310A7D6 /* ThinkTwiceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB8D7E74886804521F5DA241 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 75D085E04605EBE9F355E178 /* Build configuration list for PBXProject "ThinkTwice" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 5D5A2E48D5C09642826B44DD;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8E59F821F8798559AE20CDC2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				640E49947B9B89C13B87B1E2 /* ThinkTwice */,
+				C4AD2AED6E7F2EFA99CFFFD7 /* ThinkTwiceTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5B5E9AF5B025AEE435AF175A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC0D0B26F061FDAD61F0A739 /* Assets.xcassets in Resources */,
+				386A612C0F277DC2248013FB /* claude-key.txt in Resources */,
+				2EE935364B19B8ECE4D4264B /* demo-data.json in Resources */,
+				1D245214293ACF43A324E98E /* history.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E32D3C9CD4875215C234931 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				284466C396B842871C624384 /* AppModel.swift in Sources */,
+				2687AD3E6DE1D48BD24B64DC /* ChatView.swift in Sources */,
+				E1482F75B1719E5888BF5849 /* Coach.swift in Sources */,
+				DADFCE9D4B9B279C82973699 /* Dashboard.swift in Sources */,
+				8E78CE0EF2126ED99DA99787 /* Lists.swift in Sources */,
+				BF0FD39B13728B7414091ABF /* LockGame.swift in Sources */,
+				EAAEE8525C6D2F603E4213C1 /* Logic.swift in Sources */,
+				85CFA9A4B6BF54C10EF25738 /* Money.swift in Sources */,
+				21DEFFC14D23F18B5CBDB3D1 /* Onboarding.swift in Sources */,
+				F700643FE8928EF9A8616445 /* Theme.swift in Sources */,
+				3CDE940742F52853056B8513 /* ThinkTwiceApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCEFB0C3A74A4D093B16DDB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F72A62DC3592558D628DFB96 /* LogicTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED2E74B69B404606DBAAF145 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 640E49947B9B89C13B87B1E2 /* ThinkTwice */;
+			targetProxy = 6D0975CE245F12D27D0FA2EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E9236EC7F18F1125914ACAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.thinktwice.demo.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThinkTwice.app/ThinkTwice";
+			};
+			name = Debug;
+		};
+		124C1FA3439E120BB9CAC398 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		38D0D2FEE1D2FF4208CE0BDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		6B3B5B5F5BAB250BA8273DC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.thinktwice.demo.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThinkTwice.app/ThinkTwice";
+			};
+			name = Release;
+		};
+		8FF677831413ECA52CAF3EFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Think Twice";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.thinktwice.demo;
+				PRODUCT_NAME = ThinkTwice;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		FF6B8F0B58A1DDAD013A6789 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Think Twice";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.thinktwice.demo;
+				PRODUCT_NAME = ThinkTwice;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		75D085E04605EBE9F355E178 /* Build configuration list for PBXProject "ThinkTwice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				124C1FA3439E120BB9CAC398 /* Debug */,
+				38D0D2FEE1D2FF4208CE0BDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CC961FA3A5B6AAB15BE3DC08 /* Build configuration list for PBXNativeTarget "ThinkTwiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E9236EC7F18F1125914ACAB /* Debug */,
+				6B3B5B5F5BAB250BA8273DC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D0860E1DD8FACADBEF49E291 /* Build configuration list for PBXNativeTarget "ThinkTwice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF6B8F0B58A1DDAD013A6789 /* Debug */,
+				8FF677831413ECA52CAF3EFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB8D7E74886804521F5DA241 /* Project object */;
+}

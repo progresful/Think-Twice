@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>Think Twice: Broke by Friday? Not this month.</title>
+<meta name="description" content="A personal economic trainer for your bank's app. Ask your own money anything, see where it goes, and lock the everyday spending that leaks.">
+<link rel="canonical" href="https://thinktwice.pgf.lv/">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<!-- Link previews. The image address must be the full URL of the hosted page. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Think Twice">
+<meta property="og:title" content="Think Twice: Broke by Friday? Not this month.">
+<meta property="og:description" content="A coach in your bank's app that answers from your own transactions, and a lock that makes you pause before you pay.">
+<meta property="og:url" content="https://thinktwice.pgf.lv/">
+<meta property="og:image" content="https://thinktwice.pgf.lv/og.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Think Twice: the app's main screen and savings coach, with the line Broke by Friday? Not this month.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Think Twice: Broke by Friday? Not this month.">
+<meta name="twitter:description" content="A coach in your bank's app, and a lock that makes you pause before you pay.">
+<meta name="twitter:image" content="https://thinktwice.pgf.lv/og.png?v=2">
+<script>document.documentElement.classList.add('pre');setTimeout(function(){document.documentElement.classList.remove('pre')},2500)</script>
+<style>
+.pre .hero>*,.pre .float,.pre .modes{opacity:0}
+:root{--bg:#000;--card:#1C1C1E;--text:#fff;--sub:rgba(255,255,255,.55);--line:rgba(255,255,255,.1);
+  --lime:#9BF05C;--limeink:#06140A;--track:rgba(255,255,255,.14);--game:#0B0B0D}
+*{box-sizing:border-box;margin:0}
+html{background:#000;scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip;max-width:100%}
+body{font:17px/1.35 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;color:var(--text);background:#000;-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;max-width:100%;position:relative}
+button{font-family:inherit;color:inherit}
+a{color:inherit}
+
+/* ================= page ================= */
+.page{overflow-x:clip;display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,44vw);max-width:1560px;margin:0 auto;padding:0 clamp(24px,5vw,88px)}
+.glow{position:fixed;right:-18vw;top:-30vh;width:90vw;height:90vw;max-width:1300px;max-height:1300px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(155,240,92,.16),transparent 62%)}
+.left{position:relative;padding-right:clamp(16px,4vw,72px);min-width:0}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:56px 0}
+.brand{display:flex;align-items:center;gap:14px;font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:clamp(40px,7.5vh,84px)}
+.brand img{width:56px;height:56px;border-radius:13px}
+.plat{margin-left:auto;display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:8px 14px 8px 12px;font-size:13px;font-weight:600;letter-spacing:0;color:var(--sub)}
+.plat svg{width:18px;height:18px;fill:#fff;flex:none}
+.plat em{font-style:normal;margin-left:2px}
+@media (max-width:520px){.plat em{display:none}}
+h1{font-size:clamp(46px,6.3vw,112px);line-height:1.06;font-weight:800;letter-spacing:-.05em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--limeink);background:var(--lime);border-radius:.1em;padding:0 .1em;margin-left:0;white-space:nowrap;display:inline-block;line-height:1.02;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.pitch{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3.4vw,56px);margin-top:clamp(40px,7.5vh,84px);max-width:820px}
+.pitch h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}
+.pitch p{font-size:clamp(17px,1.35vw,21px);line-height:1.4;color:rgba(255,255,255,.78);text-wrap:pretty}
+.play{display:inline-flex;align-items:center;gap:16px;margin-top:clamp(40px,7.5vh,84px);border:0;background:none;cursor:pointer;font-size:19px;font-weight:600;padding:0;text-align:left}
+.play span.b{width:72px;height:72px;border-radius:50%;background:var(--lime);display:grid;place-items:center;transition:transform .15s}
+.play:hover span.b{transform:scale(1.07)}
+.play svg{width:26px;height:26px;fill:var(--limeink);margin-left:4px}
+.play small{display:block;font-size:14px;font-weight:400;color:var(--sub);margin-top:2px}
+.narrow{display:none}
+.setup{display:none}
+.setup button{border:1px solid rgba(255,255,255,.22);background:none;border-radius:99px;padding:10px 18px;font-size:15px;font-weight:600;cursor:pointer;display:inline-flex;gap:10px;align-items:center;transition:background .15s,border-color .15s,color .15s}
+.setup button b{width:22px;height:22px;border-radius:50%;background:var(--track);display:grid;place-items:center;font-size:12px}
+.setup button:hover{border-color:var(--lime)}
+.setup button.on{background:var(--lime);border-color:var(--lime);color:var(--limeink)}.setup button.on b{background:rgba(6,20,10,.18)}
+.setup span{font-size:14px;color:var(--sub);margin-right:4px}
+.tile2 .go{align-self:flex-start;margin-top:22px;border:0;border-radius:99px;background:var(--lime);color:var(--limeink);font-size:16px;font-weight:700;padding:14px 22px;cursor:pointer}
+.hint{margin-top:clamp(32px,6vh,64px);font-size:14px;color:var(--sub)}
+
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;padding-bottom:14vh}
+.tile2.wide2{grid-column:1/-1;min-height:0}
+.tile2{border-radius:28px;background:var(--card);padding:clamp(20px,2vw,30px);min-height:0;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+.tile2.lime{background:var(--lime);color:var(--limeink)}
+.tile2 .k{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);margin-bottom:auto}
+.tile2.lime .k{color:var(--limeink);opacity:.7}
+.tile2 .n{font-size:clamp(56px,6vw,104px);white-space:nowrap;font-weight:800;letter-spacing:-.06em;line-height:.9;color:var(--lime);font-variant-numeric:tabular-nums;margin-top:22px}
+.tile2.lime .n{color:var(--limeink)}
+.tile2 .n small{font-size:.3em;letter-spacing:-.02em;margin-left:.15em}
+.tile2 h3{font-size:clamp(19px,1.55vw,25px);font-weight:800;letter-spacing:-.025em;line-height:1.12;margin-top:12px;text-wrap:balance}
+.tile2.wide2 h3{font-size:clamp(28px,3vw,48px);letter-spacing:-.035em;line-height:1.05}
+.tile2 p{font-size:15px;line-height:1.4;color:rgba(255,255,255,.7);margin-top:10px;max-width:46ch;text-wrap:pretty}
+.tile2.lime p{color:rgba(6,20,10,.78)}
+.tile2 .s{font-size:12px;line-height:1.35;color:rgba(255,255,255,.4);margin-top:12px}
+.tile2.lime .s{color:rgba(6,20,10,.55)}
+.dots{display:flex;gap:6px;margin-top:14px}.dots i{width:14px;height:14px;border-radius:50%;background:var(--track)}.dots i.on{background:var(--lime)}
+.steps{display:grid;gap:14px;margin-top:22px;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;font-size:clamp(17px,1.4vw,22px);line-height:1.35}
+.steps li::before{counter-increment:s;content:counter(s);width:44px;height:44px;border-radius:50%;background:var(--lime);color:var(--limeink);font-weight:800;display:grid;place-items:center}
+.steps b{display:block}.steps span{color:rgba(255,255,255,.65);font-size:.85em}
+.foot{padding:4vh 0 12vh;font-size:14px;line-height:1.6;color:var(--sub);max-width:70ch}
+.foot a{color:rgba(255,255,255,.8)}
+
+.right{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.modes{display:flex;align-items:center;gap:8px;flex:none;max-width:100%}
+.modes .arrow{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.4);display:grid;place-items:center;cursor:pointer;flex:none;transition:background .15s,border-color .15s}
+.modes .arrow:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4)}
+.modes .arrow svg{width:16px;height:16px;fill:none;stroke:rgba(255,255,255,.7);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.modes .mchips{display:flex;gap:5px;overflow:hidden}
+.modes .mchips button{border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.4);border-radius:99px;padding:8px 11px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;gap:6px;align-items:center;white-space:nowrap;transition:background .15s,border-color .15s,color .15s}
+.modes .mchips button b{width:18px;height:18px;border-radius:50%;background:var(--track);display:grid;place-items:center;font-size:11px}
+.modes .mchips button:hover{border-color:var(--lime)}
+.modes .mchips button{color:var(--sub)}
+.modes .mchips button.on{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#fff}.modes .mchips button.on b{background:var(--lime);color:var(--limeink)}
+.modes.compact .mchips button:not(.on){display:none}.modes.compact .mchips button{padding:8px 16px;font-size:14px;font-weight:500;min-width:180px;justify-content:center}
+.stage{position:relative;width:390px;height:844px;transform-origin:center;transform:scale(var(--k,1))}
+.float{position:relative;width:390px;height:844px;will-change:transform}
+.orbit{position:absolute;left:195px;top:422px;width:0;height:0;pointer-events:none}
+.orbit i{position:absolute;left:0;top:0;border-radius:50%;background:var(--lime);will-change:transform}
+.h1l{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}.h1l>span{display:inline-block}
+
+dialog{border:0;padding:0;background:#000;border-radius:24px;width:min(1200px,92vw);max-width:92vw;margin:auto;position:fixed;inset:0;height:fit-content;max-height:92vh;overflow:hidden;box-shadow:0 40px 140px rgba(0,0,0,.8)}
+dialog::backdrop{background:rgba(0,0,0,.82);backdrop-filter:blur(6px)}
+dialog video{display:block;width:100%;height:auto;max-height:92vh;aspect-ratio:16/9;background:#000}
+dialog button{position:absolute;right:14px;top:14px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.16);font-size:20px;cursor:pointer;z-index:2}
+
+@media (max-width:980px){
+  .page{grid-template-columns:1fr}.left{padding-right:0}.hero{min-height:auto;padding:40px 0 24px}
+  .right{position:relative;height:auto;padding:24px 0 48px}.pitch{grid-template-columns:minmax(0,1fr)}.hero,.tiles,.foot{min-width:0;max-width:100%}.hero>*{max-width:100%}.hint,.pitch p{overflow-wrap:anywhere}.phone .home{overflow:hidden!important;touch-action:pan-y}.orbit{display:none!important}.right{overflow:hidden;width:100%}.glow{display:none}dialog{border-radius:14px;width:96vw;max-width:96vw}.wide{display:none}.narrow{display:inline}
+  .right{order:2}.tiles,.foot{order:3}.tiles{grid-template-columns:minmax(0,1fr)}.left{display:contents}.hero{order:1}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ================= the app, same sizes as the iPhone build ================= */
+.phone{position:relative;width:390px;height:844px;background:var(--bg);overflow:hidden;overflow:clip;contain:paint;border-radius:56px;color:#fff;font-size:17px;line-height:1.35;
+  box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 0 2px rgba(255,255,255,.14),0 0 0 11px #111,0 0 0 13px rgba(255,255,255,.1);user-select:none;-webkit-user-select:none}
+.phone *{-webkit-tap-highlight-color:transparent}
+.status{position:absolute;left:0;right:0;top:0;height:54px;z-index:20;pointer-events:none;display:flex;justify-content:space-between;align-items:center;padding:14px 34px 0 46px;font-size:16px;font-weight:600}
+.status::after{content:"";position:absolute;left:50%;top:12px;width:118px;height:34px;margin-left:-59px;border-radius:20px;background:#000}
+.status svg{height:12px;width:auto;fill:#fff}
+.num{font-family:ui-rounded,"SF Pro Rounded",-apple-system,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.03em;font-weight:700;line-height:1}
+.sub{color:var(--sub);font-size:15px}
+.btn{display:block;width:100%;border:0;border-radius:99px;padding:17px;font:600 17px/1 inherit;font-family:inherit;cursor:pointer;background:var(--lime);color:var(--limeink);transition:transform .12s,opacity .12s}
+.btn:active{transform:scale(.97);opacity:.85}
+.btn.white{background:#fff;color:#000}.btn.alt{background:var(--track);color:#fff;margin-bottom:10px}
+.btn[hidden]{display:none}
+.pill{display:inline-block;border-radius:99px;padding:6px 13px;font-size:13px;font-weight:600;background:var(--card)}
+.pill.lime{background:var(--lime);color:var(--limeink)}
+.pill.line{background:none;border:1.5px solid var(--sub);color:var(--sub);padding:4px 11px}
+.demo{font-size:12px;color:var(--sub);text-align:center;margin-top:10px}
+.home{position:absolute;inset:0;overflow-y:auto;padding:62px 16px 300px;scrollbar-width:none;display:flex;flex-direction:column;gap:10px}
+.home::-webkit-scrollbar{display:none}
+.top{display:flex;justify-content:space-between;align-items:center;padding:0 4px}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em}
+.ladder{background:var(--card);border-radius:24px;padding:16px;display:grid;grid-template-columns:22px 1fr;column-gap:14px}
+.lbar{grid-row:1/7;width:10px;margin:11px auto;border-radius:5px;background:linear-gradient(to top,var(--lime) var(--p),var(--track) 0)}
+.rung{display:flex;align-items:center;justify-content:space-between;height:44px;gap:8px}
+.rung.above{opacity:.45}.rung.cur{height:76px}.rung.cur>span:first-child{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--lime)}
+.rung .sub{font-size:13px}
+.savedtile{border-radius:24px;padding:16px;background:var(--lime);color:var(--limeink);display:flex;justify-content:space-between;align-items:flex-end;border:0;text-align:left;width:100%;font:inherit}
+.savedtile .lbl{font-size:13px;font-weight:600;opacity:.75}.savedtile .num{font-size:28px;margin-top:10px}
+.money{border-radius:24px;padding:16px;background:var(--card);display:grid;gap:12px;border:0;text-align:left;width:100%;font:inherit;color:#fff;cursor:pointer}
+.money .hd{display:flex;justify-content:space-between;align-items:flex-end}
+.money .lbl{font-size:13px;font-weight:600;color:var(--sub)}.money .num{font-size:28px;margin-top:4px}
+.money .over{font-size:13px;font-weight:600;color:var(--sub)}
+.money .bars{display:flex;gap:3px;height:8px}.money .bars i{border-radius:4px}
+.money .leg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.money .leg span{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--sub);white-space:nowrap}
+.money .leg span i{width:7px;height:7px;border-radius:50%;flex:none}
+.money .leg b{display:block;font-size:15px;font-weight:600;margin-top:2px}
+.sec{font-size:13px;color:var(--sub);text-transform:uppercase;letter-spacing:.03em;padding:12px 16px 0}
+.card{background:var(--card);border-radius:24px;padding:4px 18px}
+.row{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:.5px solid var(--line)}
+.row:first-child{border-top:0}
+.row .t{flex:1}.row small{display:block;font-size:13px;color:var(--sub)}
+.row .v{font-weight:600;text-align:right;font-size:17px}.row .v small{font-weight:400;font-family:-apple-system,sans-serif;letter-spacing:0;margin-top:3px}
+.row.skip .v,.row.skip .v small{color:var(--lime)}
+.row .chev{color:var(--sub);font-size:15px}
+.dock{position:absolute;left:0;right:0;bottom:0;padding:120px 16px 30px;text-align:center;background:linear-gradient(to top,#000 0,#000 50%,rgba(0,0,0,.9) 60%,rgba(0,0,0,.72) 70%,rgba(0,0,0,.45) 81%,rgba(0,0,0,.18) 91%,transparent);z-index:2;pointer-events:none}
+.dock>*{pointer-events:auto}
+.ask{position:relative;display:flex;align-items:center;gap:10px;width:100%;height:56px;border:0;border-radius:28px;background:var(--card);padding:0 10px 0 18px;margin-bottom:12px;cursor:pointer;font-size:16px;color:var(--sub);text-align:left}
+.ask::before{content:"";position:absolute;inset:-1px;border-radius:29px;padding:1.5px;background:conic-gradient(from var(--a,0deg),rgba(155,240,92,.15),var(--lime) 20%,rgba(155,240,92,.15) 45%,rgba(155,240,92,.15));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 4s linear infinite}
+.ask::after{content:"";position:absolute;inset:-2px;border-radius:30px;box-shadow:0 0 14px rgba(155,240,92,.28);pointer-events:none}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes spin{to{--a:360deg}}
+.ask svg{width:18px;height:18px;fill:var(--lime);flex:none}
+.ask span{flex:1}
+.ask i{width:36px;height:36px;border-radius:50%;background:var(--lime);display:grid;place-items:center;flex:none}
+.ask i svg{width:13px;height:13px;fill:none;stroke:var(--limeink);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.layer{position:absolute;inset:0;display:flex;flex-direction:column;transform:translateY(100%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.9,.25,1),visibility 0s .45s;z-index:6}
+.layer.on{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.2,.9,.25,1)}
+.banner{position:absolute;left:8px;right:8px;top:56px;z-index:30;border:0;text-align:left;color:#000;font:inherit;cursor:pointer;background:rgba(235,235,235,.82);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  border-radius:24px;padding:13px 14px;display:flex;gap:12px;align-items:center;transform:translateY(-260%);transition:transform .5s cubic-bezier(.2,1.1,.3,1)}
+.banner{visibility:hidden}.banner.on{transform:none;visibility:visible}
+.banner img,.note img{width:40px;height:40px;border-radius:10px;flex:none}
+.banner .b,.note .b{flex:1;font-size:15px;line-height:1.3}
+.banner .h,.note .h{display:flex;justify-content:space-between;font-weight:600}
+.banner .h span,.note .h span{font-weight:400;opacity:.6;font-size:13px}
+#ls{background:radial-gradient(120% 80% at 50% 0%,#24463A 0%,#0C1512 60%,#050807 100%);padding:96px 12px 30px;align-items:center;text-align:center}
+#ls .d{font-size:20px;font-weight:600;opacity:.85}
+#ls .c{font-size:96px;font-weight:600;margin-top:2px}
+.note{margin-top:auto;margin-bottom:96px;width:100%;border:0;text-align:left;color:#fff;font:inherit;cursor:pointer;background:rgba(255,255,255,.16);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  border-radius:24px;padding:14px;display:flex;gap:12px;align-items:center;animation:drop .5s cubic-bezier(.2,1.2,.3,1) .35s both}
+@keyframes drop{from{opacity:0;transform:translateY(-24px) scale(.96)}to{opacity:1;transform:none}}
+#game{background:var(--game);padding:74px 24px 34px;align-items:center;text-align:center}
+.state{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
+.amt{font-size:56px;margin-top:8px}
+.what{font-size:17px;font-weight:600;margin-top:6px}
+.pad{flex:1;display:grid;place-items:center;width:100%}
+.tap{position:relative;width:224px;height:224px;border-radius:50%;border:0;background:none;color:inherit;cursor:pointer;touch-action:none}
+.tap svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.tap circle{fill:none;stroke-width:10}
+.tap .bg{stroke:var(--track)}.tap .fg{stroke:var(--lime);stroke-linecap:round}
+.tap .core{position:absolute;inset:22px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-content:center;transition:transform .08s,background .08s}
+.tap.down .core{transform:scale(.94);background:rgba(255,255,255,.16)}
+.tap .n{font-size:60px}.tap .u{font-size:15px;opacity:.6;margin-top:6px}
+.say{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.25;color:rgba(255,255,255,.35);text-align:left}.say b{color:var(--lime)}
+.sayin{width:100%;border:0;border-radius:16px;padding:16px;margin-top:18px;font:17px inherit;font-family:inherit;background:rgba(255,255,255,.1);color:#fff;outline:0;user-select:text;-webkit-user-select:text}
+.pick{font-size:15px;font-weight:600}
+.rule{font-size:13px;opacity:.55;margin:2px 0 18px}
+.done{flex:1;display:grid;place-content:center;gap:8px}
+.mark{width:84px;height:84px;border-radius:50%;background:var(--lime);color:var(--limeink);margin:0 auto 14px;display:grid;place-items:center;animation:pop .4s cubic-bezier(.2,1.4,.4,1)}
+.mark.grey{background:var(--track);color:#fff}
+.mark svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+.done h2{font-size:34px}
+.done p{font-size:17px;opacity:.65;max-width:26ch;margin:0 auto}
+.conf{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.conf i{position:absolute;top:-12px;width:7px;height:11px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(900px) rotate(720deg)}}
+/* onboarding */
+.ob{position:absolute;inset:0;background:var(--bg);z-index:9;display:flex;flex-direction:column;padding:62px 20px 34px;transition:opacity .35s,visibility .35s}
+.ob.off{opacity:0;visibility:hidden}
+.ob .nav{display:flex;align-items:center;height:34px;margin-bottom:14px}
+.back{width:34px;height:34px;border-radius:50%;border:0;background:var(--card);color:#fff;display:grid;place-items:center;cursor:pointer}
+.back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.back[hidden]{visibility:hidden;display:grid}
+.prog{flex:1;display:flex;gap:5px;justify-content:center;margin-right:34px}
+.prog i{width:22px;height:4px;border-radius:2px;background:var(--track)}.prog i.d{background:var(--lime)}
+.step{flex:1;display:flex;flex-direction:column;min-height:0;animation:stepin .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes stepin{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.step h1{font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1.08;text-wrap:initial}
+.step h1+.sub{margin-top:8px}
+.fill{flex:1;min-height:0}
+.center{display:grid;place-content:center;justify-items:center;text-align:center;gap:10px}
+.badge{width:96px;height:96px;border-radius:50%;margin-bottom:14px}
+.hello{font-size:52px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.facts{background:var(--card);border-radius:24px;padding:6px 18px;margin-top:22px}
+.fact{display:flex;gap:12px;align-items:center;padding:14px 0;border-top:.5px solid var(--line)}
+.fact:first-child{border-top:0}.fact svg{width:22px;height:22px;flex:none;fill:none;stroke:var(--lime);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.spin{width:120px;height:120px;border-radius:50%;border:8px solid var(--track);border-top-color:var(--lime);animation:rot 1s linear infinite;margin-bottom:22px}
+@keyframes rot{to{transform:rotate(360deg)}}
+.huge{font-size:76px;color:var(--lime)}
+.tier{font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1.05;color:var(--lime);min-height:82px;margin-top:6px}
+.ob input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:none;margin:8px 0 2px;cursor:pointer}
+.ob input[type=range]::-webkit-slider-runnable-track{height:10px;border-radius:5px;background:linear-gradient(to right,var(--lime) var(--p,60%),var(--track) 0)}
+.ob input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:34px;height:34px;border-radius:50%;background:#fff;margin-top:-12px;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+.ob input[type=range]::-moz-range-track{height:10px;border-radius:5px;background:var(--track)}
+.ob input[type=range]::-moz-range-thumb{width:34px;height:34px;border:0;border-radius:50%;background:#fff}
+.ends{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:18px}
+.paycard{width:100%;aspect-ratio:1.586;border-radius:22px;background:var(--lime);color:var(--limeink);padding:20px;display:flex;flex-direction:column;justify-content:space-between;margin-top:24px;box-shadow:0 20px 50px rgba(155,240,92,.18);animation:cardpop .5s cubic-bezier(.2,1.2,.3,1)}
+.paycard .n{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.paycard .d{font-family:ui-monospace,Menlo,monospace;font-size:15px;letter-spacing:.12em;opacity:.7}
+.paycard svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@keyframes cardpop{from{transform:scale(.9) translateY(14px);opacity:0}to{transform:none;opacity:1}}
+#bank{background:#F2F2F7;color:#0B0B0F;padding:70px 20px 34px;z-index:10}
+#bank .hd{font-size:13px;font-weight:600;color:#6C6C74;text-transform:uppercase;letter-spacing:.03em}
+#bank h2{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:4px 0 6px}
+#bank p{color:#6C6C74;font-size:15px}
+#bank .facts{background:#fff}#bank .fact{border-color:rgba(0,0,0,.1)}#bank .fact svg{stroke:#0A7F52}
+#bank .demo{color:#6C6C74}
+.btn.dark{background:#111;color:#fff}.btn.plain{background:none;color:inherit;opacity:.6;padding:13px}
+/* wallet: double-press the side button, hold near the reader, declined */
+.side{position:absolute;right:-15px;top:232px;width:9px;height:104px;border-radius:0 5px 5px 0;background:#2a2a2e;border:0;cursor:pointer;padding:0;z-index:40;box-shadow:inset -1px 0 0 rgba(255,255,255,.18)}
+.side::before{content:"";position:absolute;inset:-18px -26px -18px -14px}
+.side.pulse{animation:sidep 1.1s ease-in-out infinite}
+@keyframes sidep{50%{background:var(--lime);box-shadow:0 0 18px rgba(155,240,92,.7)}}
+.side:active{transform:translateX(-3px)}
+#wallet{background:#000;padding:74px 20px 34px;align-items:center;text-align:center;z-index:7}
+#wallet .dbl{position:absolute;right:14px;top:210px;display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;text-align:right;line-height:1.15;border:0;background:none;color:#fff;cursor:pointer;padding:0}
+#wallet .dbl i{width:5px;height:64px;border-radius:3px;background:#fff;animation:dbl 1.2s ease-in-out infinite}
+@keyframes dbl{0%,30%,60%,100%{transform:none;opacity:1}15%,45%{transform:translateX(5px);opacity:.5}}
+#wallet .paycard{margin-top:150px;animation:none;text-align:left;width:300px;transition:transform .5s cubic-bezier(.2,.9,.25,1)}
+#wallet.hold .paycard,#wallet.declined .paycard{transform:translateY(-110px) scale(.86)}
+#wallet .wst{flex:1;display:grid;place-content:center;justify-items:center;gap:8px;margin-top:-60px}
+#wallet .ring{width:86px;height:86px;border-radius:50%;border:3px solid #0A84FF;display:grid;place-items:center;position:relative}
+#wallet .ring::before,#wallet .ring::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:3px solid #0A84FF;animation:wring 1.2s ease-out infinite}
+#wallet .ring::after{animation-delay:.6s}
+@keyframes wring{to{transform:scale(1.9);opacity:0}}
+#wallet .ring svg{width:38px;height:38px;fill:none;stroke:#0A84FF;stroke-width:2;stroke-linecap:round}
+#wallet .no{width:86px;height:86px;border-radius:50%;background:#FF453A;display:grid;place-items:center;animation:pop .4s cubic-bezier(.2,1.4,.4,1),shake .5s .1s}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+#wallet .no svg{width:40px;height:40px;fill:none;stroke:#fff;stroke-width:3.2;stroke-linecap:round}
+#wallet h2{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-top:10px}
+#wallet .merchant{font-size:17px;color:var(--sub)}
+#wallet .demo{position:absolute;left:0;right:0;bottom:34px}
+/* chat */
+#chat{background:var(--game);z-index:8}
+.chd{display:flex;align-items:center;gap:12px;padding:58px 16px 10px;border-bottom:.5px solid var(--line)}
+.chd img{width:38px;height:38px;border-radius:50%}
+.chd b{display:block;font-size:17px;font-weight:600}.chd small{font-size:12px;color:var(--sub)}
+.chd button{margin-left:auto;width:34px;height:34px;border-radius:50%;border:0;background:var(--track);font-size:13px;font-weight:700;cursor:pointer}
+.msgs{flex:1;overflow-y:auto;padding:12px 14px 4px;display:flex;flex-direction:column;gap:8px;scrollbar-width:none}
+.msgs::-webkit-scrollbar{display:none}
+.bub{font-size:16px;line-height:1.36;padding:10px 14px;border-radius:20px;max-width:310px;background:var(--card);align-self:flex-start;animation:bub .3s cubic-bezier(.2,.9,.3,1.1);transform-origin:bottom left;user-select:text;-webkit-user-select:text}
+.bub.me{background:var(--lime);color:var(--limeink);align-self:flex-end;transform-origin:bottom right}
+@keyframes bub{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.typing{display:flex;gap:5px;padding:15px 16px;border-radius:20px;background:var(--card);align-self:flex-start}
+.typing i{width:8px;height:8px;border-radius:50%;background:#fff;animation:dot 1.1s ease-in-out infinite}.typing i:nth-child(2){animation-delay:.16s}.typing i:nth-child(3){animation-delay:.32s}
+@keyframes dot{0%,100%{opacity:.3;transform:none}50%{opacity:.9;transform:translateY(-3px)}}
+.chips{display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-top:6px}
+.chips button{border:1px solid rgba(155,240,92,.5);background:none;color:var(--lime);border-radius:99px;padding:9px 14px;font-size:15px;font-weight:500;cursor:pointer}
+.wi{align-self:flex-start;width:310px;background:var(--card);border-radius:20px;border:1px solid rgba(155,240,92,.35);padding:14px;display:grid;gap:10px}
+.wi .hd{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--sub)}.wi .hd b{font-size:15px;font-weight:800;color:var(--lime)}
+.wi input{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:none;cursor:pointer;margin:0}
+.wi input::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(to right,var(--lime) var(--p,20%),var(--track) 0)}
+.wi input::-webkit-slider-thumb{-webkit-appearance:none;width:38px;height:24px;border-radius:12px;background:#fff;margin-top:-10px;box-shadow:0 1px 6px rgba(0,0,0,.4)}
+.wi input::-moz-range-track{height:4px;border-radius:2px;background:var(--track)}.wi input::-moz-range-thumb{width:38px;height:24px;border:0;border-radius:12px;background:#fff}
+.wi .r{display:flex;justify-content:space-between;align-items:flex-end}
+.wi small{display:block;font-size:12px;color:var(--sub);margin-bottom:2px}
+.wi .m{font-size:24px;font-weight:800}.wi .y{font-size:17px;font-weight:700;text-align:right}
+.wi .ok{font-size:13px;font-weight:600;color:var(--lime)}.wi .ok.no{color:var(--sub)}
+.cin{padding:8px 12px 22px}
+.cin form{display:flex;gap:8px;align-items:flex-end}
+.cin input{flex:1;border:0;outline:0;border-radius:21px;background:var(--card);color:#fff;font:16px inherit;font-family:inherit;padding:11px 14px;user-select:text;-webkit-user-select:text}
+.cin input::placeholder{color:var(--sub)}
+.cin button{width:40px;height:40px;border-radius:50%;border:0;background:var(--lime);display:grid;place-items:center;cursor:pointer;flex:none}
+.cin button:disabled{opacity:.35}
+.cin button svg{width:16px;height:16px;fill:none;stroke:var(--limeink);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.cin p{font-size:11px;color:var(--sub);text-align:center;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="page">
+  <div class="left">
+    <section class="hero">
+      <div class="brand"><img src="icon.png" alt="">Think Twice
+        <span class="plat" title="Designed for iPhone and Android">
+          <svg viewBox="0 0 24 24" role="img" aria-label="iPhone"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.75 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.88.69 1.19-.02 1.94-1.08 2.67-2.15.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.32-.89-2.35-3.54zM14.2 6.13c.6-.74 1.01-1.76.9-2.78-.87.04-1.93.58-2.56 1.31-.56.65-1.05 1.69-.92 2.69.97.07 1.97-.5 2.58-1.22z"/></svg>
+          <svg viewBox="0 0 24 24" role="img" aria-label="Android"><path d="M17.5 9.2l1.6-2.77a.34.34 0 0 0-.59-.34l-1.62 2.8A10.1 10.1 0 0 0 12 7.86c-1.76 0-3.4.44-4.89 1.03l-1.62-2.8a.34.34 0 0 0-.59.34L6.5 9.2A9.5 9.5 0 0 0 1.6 16.9h20.8a9.5 9.5 0 0 0-4.9-7.7zM7.2 14.3a.95.95 0 1 1 0-1.9.95.95 0 0 1 0 1.9zm9.6 0a.95.95 0 1 1 0-1.9.95.95 0 0 1 0 1.9z"/></svg>
+          <em>iPhone and Android</em>
+        </span></div>
+      <h1><span class="h1l"><span>Broke by</span></span> <span class="h1l"><span>Friday?</span></span> <span class="h1l"><span><em>Not this month.</em></span></span></h1>
+      <div class="pitch">
+        <div><h2>Why this matters</h2><p>One in three Europeans cannot cover a surprise bill. Small payments are why.</p></div>
+        <div><h2>How we solve it</h2><p>A coach in your bank's app, and a lock that makes you pause before you pay.</p></div>
+      </div>
+      <button class="play" id="play" aria-haspopup="dialog"><span class="b"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l15-8.5z"/></svg></span><span>Watch the film<small>59 seconds</small></span></button>
+      <p class="hint">The phone <span class="wide">on the right</span><span class="narrow">below</span> is the app. Try it: tap "Next payment" and double-press the side button to pay, or ask the coach a question.</p>
+    </section>
+
+    <section class="tiles">
+      <article class="tile2">
+        <div class="k">Europe</div>
+        <div class="n">30<small>%</small></div>
+        <div class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <h3>of people in the EU cannot face an unexpected expense.</h3>
+        <div class="s">Eurostat, EU-SILC 2024. 29.2 % in 2025.</div>
+      </article>
+      <article class="tile2">
+        <div class="k">Finland</div>
+        <div class="n">1<small>in</small> 4</div>
+        <h3>Finnish households could not cover a surprise bill of about 1 200 € without borrowing.</h3>
+        <div class="s">Statistics Finland, 2021.</div>
+      </article>
+      <article class="tile2">
+        <div class="k">How it adds up</div>
+        <div class="n">2 866<small>€</small></div>
+        <h3>a year. Not the rent: ten restaurant payments a month.</h3>
+        <div class="s">One customer in S-Bank's synthetic dataset: 238,84 € × 12.</div>
+      </article>
+      <article class="tile2 lime">
+        <div class="k">Built for S-mobiili</div>
+        <div class="n">3,5<small>M</small></div>
+        <h3>S-Bank customers. Built to run inside S-mobiili.</h3>
+        <div class="s">S-Bank's challenge brief, Junction 2026. A prototype, not yet part of S-mobiili.</div>
+      </article>
+      <article class="tile2 wide2">
+        <div class="k">Set up in a minute</div>
+        <h3>Three steps. Your bank does the sign-in.</h3>
+        <ol class="steps">
+          <li><div><b>Connect your bank.</b><span>You approve on the bank's own page. Think Twice can read payments and cannot move money.</span></div></li>
+          <li><div><b>Choose how strict.</b><span>One slider, from "Broke by Friday" to "Financially Free". It shows what the lock would have saved you last month.</span></div></li>
+          <li><div><b>Add the card.</b><span>Payments on this card can be locked. Your bank card stays as it is.</span></div></li>
+        </ol>
+        <button class="go" data-go="0">Walk through the setup</button>
+      </article>
+    </section>
+
+    <footer class="foot">
+      <p><b style="color:#fff">Made for the S-Pankki app.</b> Think Twice is designed to work inside S-mobiili, S-Pankki's mobile app, on iPhone and Android: it runs on the structure of the bank's own transaction data, and the bank handles sign-in and approval. It is a Junction 2026 prototype and is not in S-mobiili today; the prototype itself runs on iPhone, and there is no Android build yet.</p>
+      <p style="margin-top:12px"><b style="color:#fff">What is real here.</b> The app on this page is a working copy of the iPhone prototype: the figures, the lock, the games and the coach's answers are computed in your browser from one synthetic customer. The bank connection, the card and the declined payment are simulated, and no money moves. The live AI model is used only in the iPhone build. Nothing has been tested with users yet.</p>
+      <p style="margin-top:12px">Sources: <a href="https://ec.europa.eu/eurostat/databrowser/view/ilc_mdes04/default/table">Eurostat ilc_mdes04</a>, <a href="https://www.stat.fi/til/eot/2021/01/eot_2021_01_2022-04-01_tie_001_en.html">Statistics Finland 2021</a>, <a href="https://github.com/hackjunction/Junction-2026-S-pankki">S-Bank challenge dataset</a>.</p>
+    </footer>
+  </div>
+
+  <aside class="right" aria-label="Think Twice app, interactive demo">
+    <div class="stage" id="stage"><div class="float" id="float">
+      <div class="orbit" id="orbit" aria-hidden="true"></div>
+      <div class="phone">
+        <div class="status"><span>9:41</span><svg viewBox="0 0 70 12"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M26 4.2a8 8 0 0 1 11 0l-1.3 1.4a6 6 0 0 0-8.4 0zM28.3 6.8a4.6 4.6 0 0 1 6.4 0l-1.4 1.4a2.6 2.6 0 0 0-3.6 0zM31.5 9a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z"/><rect x="45" y=".5" width="21" height="11" rx="3.4" fill="none" stroke="#fff" stroke-opacity=".45"/><rect x="46.6" y="2.1" width="17.8" height="7.8" rx="2"/><rect x="67.2" y="4" width="1.6" height="4" rx=".8" fill-opacity=".5"/></svg></div>
+        <main class="home" id="home"></main>
+        <div class="dock" id="dock"></div>
+        <section class="layer" id="wallet"></section>
+        <button class="banner" id="banner" data-act="lock"></button>
+        <section class="layer" id="ls"></section>
+        <section class="layer" id="game"></section>
+        <section class="ob off" id="ob"></section>
+        <section class="layer" id="bank"></section>
+        <section class="layer" id="chat">
+          <div class="chd"><img src="icon.png" alt=""><div><b>Savings coach</b><small>Answers use your payment data</small></div><button data-act="closechat" aria-label="Close chat">✕</button></div>
+          <div class="msgs" id="msgs"></div>
+          <div class="cin"><form id="cform"><input id="cinput" placeholder="Ask about your spending" autocomplete="off" aria-label="Ask about your spending"><button id="csend" aria-label="Send" disabled><svg viewBox="0 0 24 24"><path d="M12 20V5M5 11l7-7 7 7"/></svg></button></form>
+            <p>Figures are computed from your transactions. Not financial advice.</p></div>
+        </section>
+      </div>
+      <button class="side" id="side" aria-label="Side button: double-press to pay"></button>
+    </div></div>
+    <div class="modes" id="modes" role="group" aria-label="Switch what the phone shows">
+      <button class="arrow" data-mode="-1" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="mchips"><button data-m="0">The app</button><button data-m="1"><b>1</b>Connect your bank</button><button data-m="2"><b>2</b>Choose how strict</button><button data-m="3"><b>3</b>Add the card</button></div>
+      <button class="arrow" data-mode="1" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </aside>
+</div>
+
+<dialog id="film" aria-label="Think Twice film"><button aria-label="Close" id="filmx">✕</button><video src="video.mp4" poster="poster.png" controls playsinline preload="none"></video></dialog>
+
+<script src="gsap.min.js"></script>
+<script>
+/* The same synthetic customer and rules as the iPhone build (ThinkTwice/Logic.swift, Money.swift, Coach.swift). */
+const D={month:'September',beforeMonth:'August',type:'Restaurants',usual:10,
+ before:{count:10,total:238.84,weekend:6,amounts:[31.72,18.38,36.38,15.26,30.66,8.64,27.46,15.73,35.57,19.04]},read:80,
+ payments:[['Fast food','Thursday, Sep 3','16:18',33.18,'16:28','Sep 3'],['Restaurant','Friday, Sep 4','17:41',20.45,'17:51','Sep 4'],['Restaurant','Sunday, Sep 6','13:26',68.48,'13:36','Sep 6'],['Restaurant','Monday, Sep 14','21:54',27.27,'22:04','Sep 14'],['Restaurant','Saturday, Sep 19','15:50',28.2,'16:00','Sep 19'],['Restaurant','Saturday, Sep 19','18:03',19.7,'18:13','Sep 19'],['Fast food','Thursday, Sep 24','16:23',15.06,'16:33','Sep 24'],['Fast food','Friday, Sep 25','18:39',40.29,'18:49','Sep 25'],['Restaurant','Saturday, Sep 26','19:43',21.66,'19:53','Sep 26'],['Restaurant','Tuesday, Sep 29','20:33',40.94,'20:43','Sep 29']]};
+const M={income:2082.48,regular:687.22,irregular:416.19,everyday:999.00,balance:1950.51,
+ avg:{Groceries:335.67,Entertainment:305.45,Restaurants:224.94,Transportation:132.95},
+ lookups:[[['taxi','cab'],'taxis',31.98,1],[['restaurant','dining','eating out','eat out'],'eating out',238.84,10]]};
+M.room=M.income-M.regular-M.irregular; M.week=M.room*12/52; M.left=M.room-M.everyday; M.buffer=M.balance/M.regular;
+const $=s=>document.querySelector(s);
+const eur=n=>new Intl.NumberFormat('fi-FI',{minimumFractionDigits:Math.abs(n%1)>1e-9?2:0,maximumFractionDigits:2}).format(n).replace(/ /g,' ')+' €';
+const eur2=n=>new Intl.NumberFormat('fi-FI',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n).replace(/\u00a0/g,' ')+' €';
+const one=n=>n.toFixed(1).replace('.',',');
+const nth=n=>n+(n%100>10&&n%100<14?'th':['th','st','nd','rd'][n%10]||'th');
+const sumA=a=>a.reduce((t,p)=>t+p[3],0);
+const TIERS=['Broke by Friday','Treats Myself Daily','Says No Sometimes','Thinks Twice','Boring but Rich','Financially Free'];
+const PCT=[.9,.8,.7,.5,.25,0], LENS=[.5,.5,.5,1,1.5,1.5], GAMELEN=['short','short','short','standard','long','long'];   // one stop per strictness level
+const LEVELS=[0,1,2,3,5,8];
+let TIER=3, LIMIT=5, LEN=1;                                    // the default setting: "Thinks Twice", lock after 5 payments
+const limitOf=t=>Math.floor(D.usual*PCT[t]+.5);
+const limitText=t=>limitOf(t)===0?'Every payment locked.':`After ${limitOf(t)} payments a month.`;
+const couldSave=t=>D.before.amounts.slice(limitOf(t)).reduce((a,b)=>a+b,0);   // what the lock would have caught in August
+const CHECK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+let S;
+function start(){LIMIT=limitOf(TIER);LEN=LENS[TIER];$('#ob').classList.add('off');mark(6);S={saved:0,skipped:0,log:D.payments.slice(0,LIMIT).map(p=>[p,'Paid']),queue:D.payments.slice(LIMIT),i:0};home()}
+const paid=()=>S.log.filter(l=>l[1]==='Paid').map(l=>l[0]);
+const level=()=>LEVELS.filter(n=>S.skipped>=n).length-1;
+
+function home(){
+  const end=S.i>=S.queue.length, cur=level(), need=cur<5?LEVELS[cur+1]-S.skipped:0, all=M.regular+M.irregular+M.everyday;
+  const tones=['rgba(255,255,255,.85)','rgba(255,255,255,.45)','#9BF05C'], parts=[['Fixed costs',M.regular],['Irregular costs',M.irregular],['Everyday spending',M.everyday]];
+  $('#home').innerHTML=`<div class="top"><span class="logo">Think Twice</span><span class="pill">${D.month}</span></div>
+  <div class="sub" style="padding:8px 4px 0">${cur<5?`${need} more ${need==1?'skip':'skips'} to move up.`:'Top level reached.'}</div>
+  <div class="ladder"><div class="lbar" style="--p:${(cur*44+27)/274*100}%"></div>${[5,4,3,2,1,0].map(i=>`<div class="rung ${i>cur?'above':i==cur?'cur':''}"><span>${TIERS[i]}</span>
+    <span style="display:flex;gap:8px;align-items:center">${i==cur?'':`<span class="sub">${LEVELS[i]} ${LEVELS[i]==1?'skip':'skips'}</span>`}${i==5?'<span class="pill line">Goal</span>':''}${i==cur?'<span class="pill lime">You</span>':''}</span></div>`).join('')}</div>
+  ${S.skipped?`<div class="savedtile"><div><div class="lbl">Saved by skipping</div><div class="num">${eur(S.saved)}</div></div><div class="lbl">${S.skipped} ${S.skipped==1?'purchase':'purchases'} skipped</div></div>`:''}
+  <button class="money" data-act="chat"><div class="hd"><div><div class="lbl">Safe to spend a week</div><div class="num">${eur(M.week)}</div></div><div class="over">${M.left>=0?eur(M.left)+' a month safe to save':eur(-M.left)+' a month over'}</div></div>
+    <div class="bars">${parts.map((p,i)=>`<i style="background:${tones[i]};flex:${p[1]/all}"></i>`).join('')}</div>
+    <div class="leg">${parts.map((p,i)=>`<div><span><i style="background:${tones[i]}"></i>${p[0]}</span><b>${eur2(p[1])}</b></div>`).join('')}</div></button>
+  <div class="sec">Locked</div>
+  <div class="card"><div class="row"><div class="t">${D.type}<small>${limitText(TIER)}</small></div><div class="v num">${paid().length} paid<small>${eur(sumA(paid()))}</small></div><span class="chev">›</span></div></div>
+  <div class="sec">${D.month}</div><div class="card">${[...S.log].reverse().map(([p,s])=>`<div class="row ${s==='Skipped'?'skip':''}"><div class="t">${p[0]}<small>${p[5]}, ${p[2]}</small></div>
+    <div class="v num">${eur(p[3])}<small>${s==='Skipped'?'Saved':s}</small></div></div>`).join('')}</div>`;
+  $('#dock').innerHTML=`<button class="ask" data-act="chat" aria-label="Ask the savings coach how to grow your savings"><svg viewBox="0 0 24 24"><path d="M10 2l1.8 5.2L17 9l-5.2 1.8L10 16l-1.8-5.2L3 9l5.2-1.8zM18.5 13l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z"/></svg><span>Ask how to grow your savings</span><i><svg viewBox="0 0 24 24"><path d="M12 20V5M5 11l7-7 7 7"/></svg></i></button>`
+   +(end?`<button class="btn white" data-act="restart">Start over</button><div class="demo">${D.month} complete. ${eur(S.saved)} saved.</div>`
+        :`<button class="btn white" data-act="pay-next">Next payment</button><div class="demo">Replays this customer's real card payments. Or double-press the side button.</div>`);
+}
+
+/* ---------- lock, game, result ---------- */
+const noteText=p=>`${p[0]}, ${eur(p[3])}. ${nth(paid().length+1)} this month, ${eur(sumA(paid()))} so far.`;
+const LOCK='<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+const PAYCARD=`<div class="paycard"><div style="display:flex;justify-content:space-between;align-items:center"><span class="n">Think Twice</span>${LOCK}</div><div class="d">•••• •••• •••• 0849</div></div>`;
+let W=null, wt=[];                                             // wallet state: null, 'ready', 'hold', 'declined'
+function wallet(state){
+  const p=S.queue[S.i], el=$('#wallet'); W=state; el.className='layer on '+state; $('#side').classList.toggle('pulse',state==='ready');
+  el.innerHTML=(state==='ready'?'<button class="dbl" data-act="dbl">Double-Click<br>to Pay<i></i></button>':'')+PAYCARD+`<div class="wst">${
+    state==='ready'?`<div class="merchant">${p[0]}</div><h2 class="num">${eur(p[3])}</h2>`
+   :state==='hold'?`<div class="ring"><svg viewBox="0 0 24 24"><path d="M8 8a6 6 0 0 1 0 8M12 5.5a10 10 0 0 1 0 13M16 3a14 14 0 0 1 0 18"/></svg></div><h2>Hold Near Reader</h2><div class="merchant">${p[0]}, ${eur(p[3])}</div>`
+   :`<div class="no"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div><h2>Declined</h2><div class="merchant">${p[0]}, ${eur(p[3])}. Card locked by Think Twice.</div>`}</div>
+   <div class="demo">Demo: no card, no terminal, no payment.</div>`;
+}
+function payNext(){ if(S.i>=S.queue.length)return; wt.forEach(clearTimeout); $('#banner').classList.remove('on'); wallet('ready'); }
+/* The side button, pressed twice: the card goes to the reader, the bank declines it, and the alert follows 2 seconds later. */
+function doublePress(){
+  if(!$('#ob').classList.contains('off')||$('#chat').classList.contains('on')||$('#game').classList.contains('on')||$('#ls').classList.contains('on'))return;
+  if(W===null)return payNext();
+  if(W!=='ready')return;
+  wallet('hold'); const p=S.queue[S.i];
+  $('#banner').innerHTML=`<img src="icon.png" alt=""><span class="b"><span class="h">Card locked<span>now</span></span><span>${noteText(p)}</span></span>`;
+  wt=[setTimeout(()=>wallet('declined'),1500), setTimeout(()=>$('#banner').classList.add('on'),3500)];
+}
+function lockScreen(){
+  const p=S.queue[S.i]; $('#banner').classList.remove('on'); W=null; $('#side').classList.remove('pulse');
+  $('#ls').innerHTML=`<div class="d">${p[1]}</div><div class="c num">${p[2]}</div>
+   <button class="note" data-act="open"><img src="icon.png" alt=""><span class="b"><span class="h">Card locked<span>now</span></span><span>${noteText(p)}</span></span></button>`;
+  $('#ls').classList.add('on'); $('#wallet').classList.remove('on');
+}
+
+/* ---------- onboarding: connect the bank, choose how strict, add the card ---------- */
+const OB=['welcome','approve','sheet','reading','strict','card'], BACK='<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>';
+let obStep=-1, obT=0;
+const modeOf=step=>step>=6?0:step<=3?1:step===4?2:3;
+let MODE=0;
+const mark=step=>{MODE=modeOf(step);document.querySelectorAll('#modes .mchips button').forEach(b=>b.classList.toggle('on',+b.dataset.m===MODE))};
+function setMode(m){m=(m+4)%4; if(m===0){C.msgs=[];clearTimeout(obT);obStep=-1;$('#bank').classList.remove('on');start()} else ob([0,1,4,5][m])}
+function ob(step){
+  clearTimeout(obT); obStep=step; mark(step); const s=OB[step];
+  ['#wallet','#ls','#game','#chat'].forEach(q=>$(q).classList.remove('on')); $('#banner').classList.remove('on'); W=null; wt.forEach(clearTimeout); $('#side').classList.remove('pulse');
+  $('#bank').classList.toggle('on',s==='sheet');
+  if(s==='sheet'){
+    $('#bank').innerHTML=`<div class="hd">S-Pankki</div><h2>Share payment data</h2><p>Think Twice asks to read your account.</p>
+     <div class="facts"><div class="fact">${CHECK}<span>Accounts, balances and payments</span></div><div class="fact">${CHECK}<span>Read only</span></div><div class="fact">${CHECK}<span>Until May 13, 2027</span></div></div>
+     <div style="flex:1"></div><button class="btn dark" data-ob="3">Approve</button><button class="btn plain" data-ob="1">Decline</button><div class="demo">Demo: no bank is contacted.</div>`;
+    return;
+  }
+  const nav=step===0?'':`<div class="nav"><button class="back" data-ob="${step===4?1:step===5?4:0}" ${step===3?'hidden':''} aria-label="Back">${BACK}</button>
+    <div class="prog">${[1,2,3,4].map(i=>`<i class="${i<=[0,1,1,2,3,4][step]?'d':''}"></i>`).join('')}</div></div>`;
+  const body={
+   welcome:()=>`<div class="fill center"><img class="badge" src="icon.png" alt=""><div class="hello">Think Twice</div><div class="sub" style="font-size:19px">A moment before you pay.</div></div>
+     <p class="sub" style="text-align:center;margin-bottom:22px">Lock the spending that stacks up. Unlock with a short game, or skip and save.</p><button class="btn" data-ob="1">Start</button>`,
+   approve:()=>`<h1>Approve at S-Pankki</h1><p class="sub">You sign in on their page, not here.</p>
+     <div class="facts"><div class="fact">${CHECK}<span>Reads accounts, balances and payments</span></div><div class="fact">${CHECK}<span>Cannot move money</span></div><div class="fact">${CHECK}<span>Access ends after 180 days</span></div></div>
+     <div class="fill"></div><button class="btn" data-ob="2">Continue to bank</button>`,
+   reading:()=>`<div class="fill center"><div class="spin"></div><div class="num" style="font-size:56px" id="cnt">0</div><div class="sub" id="cntl">payments read</div></div>`,
+   strict:()=>`<div class="sub">You could save up to</div><div class="num huge" id="tsave" style="margin:8px 0 6px"></div>
+     <div class="sub">a month on ${D.type.toLowerCase()}. ${D.before.count} payments in ${D.beforeMonth}: ${eur(D.before.total)}.</div>
+     <div class="sub" style="margin-top:36px">How hard to pay?</div><div class="tier" id="tname"></div>
+     <input type="range" id="range" min="0" max="5" step="1" value="${TIER}" aria-label="How hard to pay">
+     <div class="ends"><span>${TIERS[0]}</span><span>${TIERS[5]}</span></div><p class="sub" id="tlimit"></p>
+     <div class="fill"></div><button class="btn" data-ob="5">Save</button>`,
+   card:()=>`<h1>Add your card</h1><p class="sub">Payments on this card can be locked. Your bank card stays as it is.</p>${PAYCARD}
+     <div class="fill"></div><button class="btn white" data-act="wallet-add">Add to Wallet</button><div class="demo">Demo: no card is issued.</div>`
+  }[s]();
+  $('#ob').innerHTML=nav+`<div class="step">${body}</div>`; $('#ob').classList.remove('off');
+  if(s==='reading'){const t0=performance.now(),tick=()=>{if(obStep!==3)return;const k=Math.min(1,(performance.now()-t0)/1800);$('#cnt').textContent=Math.round(D.read*k);
+      if(k<1)return obT=setTimeout(tick,30);$('#cntl').textContent='payments sorted';obT=setTimeout(()=>obStep===3&&ob(4),700)};tick()}
+  if(s==='strict'){const set=()=>{$('#tname').textContent=TIERS[TIER];$('#tsave').textContent=eur(couldSave(TIER));
+      $('#tlimit').textContent=`${limitText(TIER)} Games: ${GAMELEN[TIER]}.`;$('#range').style.setProperty('--p',TIER*20+'%')};
+    set();$('#range').oninput=e=>{TIER=+e.target.value;set()}}
+}
+const GAMES={tap:{name:'Tap it out',rule:'1 tap for every 10 cents, 50 at most',unit:'taps to unlock'},
+  hold:{name:'Hold on',rule:'1 second for every 2 €, at least 20. Letting go restarts.',unit:'seconds to unlock'},
+  type:{name:'Say it',rule:'Big payment. Type the sentence exactly.'}};
+const pick=a=>a<20?'tap':a<40?'hold':'type';
+function game(){
+  const p=S.queue[S.i], k=pick(p[3]), g=GAMES[k], R=102, L=2*Math.PI*R;
+  const line=`This is my ${nth(paid().length+1)} ${p[0].toLowerCase()} payment this month${LEN>1?' and I still want it':''}.`;
+  const goal=k==='type'?line.length:k==='tap'?Math.min(50,Math.max(1,Math.round(p[3]*10*LEN))):Math.round(Math.max(20,p[3]/2*LEN));
+  const pad=k==='type'
+   ?`<div style="width:100%"><div class="say" id="say"></div><input class="sayin" id="sayin" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type here" aria-label="${g.name}"></div>`
+   :`<button class="tap" id="tap" aria-label="${g.name}"><svg viewBox="0 0 224 224"><circle class="bg" cx="112" cy="112" r="${R}"/><circle class="fg" id="ring" cx="112" cy="112" r="${R}" stroke-dasharray="${L}" stroke-dashoffset="${L}"/></svg>
+     <span class="core"><span class="n num" id="n">${goal}</span><span class="u" id="u">${g.unit}</span></span></button>`;
+  $('#game').innerHTML=`<div class="state">Card locked</div><div class="amt num">${eur(p[3])}</div><div class="what">${p[0]}</div>
+   <div class="sub">${nth(paid().length+1)} this month, ${eur(sumA(paid()))} so far.</div><div class="pad">${pad}</div>
+   <div class="pick">${g.name}</div><div class="rule" id="rule">${g.rule}</div>
+   <button class="btn" data-act="skip">Skip and save ${eur(p[3])}</button><button class="btn alt" style="margin:10px 0 0" data-act="pay" id="pay" hidden>Pay ${eur(p[3])}</button>`;
+  S.effort={k,goal}; $('#ls').classList.remove('on'); $('#game').classList.add('on');
+  let left=goal, done=false, t0=0, timer=0;
+  const unlocked=()=>{done=true;$('#rule').textContent=`Tap your card again. Open until ${p[4]}.`;$('#pay').hidden=false};
+  if(k==='type'){
+    const inp=$('#sayin'), draw=n=>$('#say').innerHTML=`<b>${line.slice(0,n)}</b>${line.slice(n)}`;
+    draw(0); inp.addEventListener('paste',e=>e.preventDefault());
+    inp.addEventListener('input',()=>{const v=inp.value; let n=0;
+      while(n<v.length&&n<line.length&&v[n].toLowerCase()===line[n].toLowerCase())n++;
+      draw(n); if(n===line.length&&v.length===line.length){inp.disabled=true;unlocked()}});
+    return;
+  }
+  const tap=$('#tap'), show=v=>{$('#n').textContent=Math.ceil(v);$('#ring').style.strokeDashoffset=L*v/goal};
+  const win=()=>{show(0);$('#u').textContent='Unlocked';tap.classList.remove('down');unlocked()};
+  const up=f=>['pointerup','pointerleave','pointercancel'].forEach(e=>tap.addEventListener(e,f));
+  if(k==='tap'){
+    tap.addEventListener('pointerdown',()=>{if(done)return;tap.classList.add('down');left--;show(left);if(left<=0)win()});
+    up(()=>tap.classList.remove('down'));
+  }else{
+    const tick=()=>{const v=goal-(performance.now()-t0)/1000;if(v<=0){clearInterval(timer);return win()}show(v)};
+    tap.addEventListener('pointerdown',()=>{if(done)return;tap.classList.add('down');t0=performance.now();clearInterval(timer);timer=setInterval(tick,40)});
+    up(()=>{if(done)return;clearInterval(timer);tap.classList.remove('down');show(goal)});
+  }
+}
+const DISS=[(n,t,e)=>`${nth(n)} this month. The food at home sends its regards.`,
+ (n,t,e)=>`${eur(t)} on restaurants in ${D.month}. A chef somewhere thanks you.`,
+ (n,t,e)=>`You ${e.k==='tap'?`tapped ${e.goal} times`:e.k==='hold'?`held on for ${e.goal} seconds`:`typed ${e.goal} letters`} for this. Dedication, wrongly aimed.`,
+ (n,t,e)=>`Your card was locked for a reason. You were the reason.`,
+ (n,t,e)=>`${TIERS[5]} just moved one rung further away.`];
+function result(skip){
+  const p=S.queue[S.i], a=p[3], before=level();
+  if(skip){S.saved+=a;S.skipped++;S.lastSkip=a}
+  S.log.push([p,skip?'Skipped':'Paid']); S.i++;
+  const after=level(), colors=['#9BF05C','#FFE03A','#5AC8FA','#fff','#34C759'];
+  $('#game').innerHTML=`${skip?`<div class="conf">${Array.from({length:70},(_,i)=>`<i style="left:${Math.random()*100}%;background:${colors[i%5]};animation-duration:${1.6+Math.random()*1.8}s;animation-delay:${Math.random()*.5}s;transform:rotate(${Math.random()*360}deg)"></i>`).join('')}</div>`:''}
+    <div class="done"><div class="mark ${skip?'':'grey'}">${CHECK}</div><h2 class="num">${skip?eur(a)+' saved':'Paid '+eur(a)}</h2>
+    <p>${skip?'Stays in your account. No action needed.':DISS[(S.i-1)%DISS.length](paid().length,sumA(paid()),S.effort)}</p>
+    ${skip?'':'<p class="sub" style="margin-top:2px">Card locked again.</p>'}
+    ${after>before?`<div style="margin-top:6px"><span class="pill lime">New level: ${TIERS[after]}</span></div>`:''}</div>
+    ${skip?'<button class="btn alt" data-act="chat-skip">How to save even more</button>':''}<button class="btn" data-act="close">${skip?"Thanks, I'm the best":'Done'}</button>`;
+  home();
+}
+
+/* ---------- the coach: on-device answers, the same wording the app uses without the model ---------- */
+const C={open:false,msgs:[],busy:false};
+const HABIT=`In ${D.beforeMonth} you made ${D.before.count} restaurant payments, ${eur(D.before.total)} in total, and ${D.before.weekend} of them fell on a weekend.`;
+const whatIf=(c,p)=>{const m=M.avg[c]*p/100;return{m,y:m*12,left:M.left+m}};
+const TIP=['decide how many restaurant meals you want in a month and pick the dates in advance. The planned ones taste better than the accidental ones.',
+ 'decide dinner before four in the afternoon. Most takeaway orders are made by a tired person with no plan.',
+ 'remove your saved card from delivery apps. Typing the number again is often enough of a pause.'];
+let tip=0;
+function answer(q){
+  const t=q.toLowerCase(), has=w=>t.split(/[^a-zäö]+/).some(x=>x.startsWith(w));
+  if(/stock|crypto|bitcoin|invest|etf|loan|mortgage|gambl|casino|betting/.test(t)||(/\btax/.test(t)&&!/\btaxi/.test(t)))
+    return {text:'That is outside what I can help with. I do not give advice on investments, loans, taxes or betting; an adviser at your bank can. I can help with everyday spending, your payments here, and building a buffer.'};
+  const pc=t.match(/(\d{1,3})\s?(%|percent)/), cat=has('grocer')?'Groceries':has('entertain')?'Entertainment':has('transport')?'Transportation':'Restaurants';
+  if(pc||has('cut')||has('reduc')||t.includes('spend less')){
+    const p=Math.min(100,Math.max(1,pc?+pc[1]:20)), w=whatIf(cat,p);
+    return {text:`You spend about ${eur(M.avg[cat])} a month on ${cat.toLowerCase()}, averaged over the last six months. Cutting it by ${p} % keeps ${eur(w.m)} a month, ${eur(w.y)} a year. ${w.left>=0?`With that cut you would end a typical month ${eur(w.left)} ahead, which is your safe-to-save amount.`:`You would still be ${eur(-w.left)} over in a typical month.`}${cat==='Restaurants'?' One way to do it: '+TIP[tip++%3]:''}`,wi:{cat,p}};
+  }
+  if(t.includes('safe to spend')||t.includes('safe for me to spend')||t.includes('can i spend')||has('afford'))
+    return {text:`About ${eur(M.week)} a week is safe for everyday spending. That is your income of ${eur(M.income)} a month, minus ${eur(M.regular)} of fixed costs and a ${eur(M.irregular)} reserve for irregular costs, spread over the weeks. Your everyday spending has averaged ${eur(M.everyday*12/52)} a week, so you are ${eur(-M.left)} a month over.`};
+  if(has('basket')||t.includes('where does')||t.includes('money go'))
+    return {text:`Of your ${eur(M.income)} monthly income, ${eur(M.regular)} goes to fixed costs like rent and bills, about ${eur(M.irregular)} to irregular costs such as home & tech and lifestyle, and ${eur2(M.everyday)} to everyday spending. The everyday basket is the one you can steer, and groceries is the largest part of it.`};
+  if(t.includes('spender'))
+    return {text:`You are an everyday spender: ${Math.round(M.everyday/M.income*100)} % of your income goes to small frequent payments, led by groceries ${eur(M.avg.Groceries)} and entertainment ${eur(M.avg.Entertainment)} a month. Your fixed costs are modest at ${eur(M.regular)}, so the room to save is in the everyday basket.`};
+  const look=M.lookups.find(l=>l[0].some(k=>t.includes(k)));
+  if(look&&(t.includes('how much')||t.includes('last month')||t.includes('spend on')||t.includes('spent on')||t.includes('august')))
+    return {text:`You spent ${eur(look[2])} on ${look[1]} in August 2026, across ${look[3]} ${look[3]==1?'payment':'payments'}. That sits in your everyday spending basket.`};
+  if(has('sav')||has('buffer')||t.includes('emergency fund')){
+    if(t.includes('how much')) return {text:`A common target is three months of fixed costs, which for you is ${eur(M.regular*3)}. Your balance of ${eur(M.balance)} covers ${one(M.buffer)} months. Everyday spending runs ${eur(-M.left)} a month over right now, so start by freeing ${eur(whatIf('Restaurants',20).m)} a month from eating out.`};
+    if(has('how')||has('start')||has('build')) return {text:`Start in the everyday basket, because fixed costs barely move. Yours takes ${eur2(M.everyday)} a month, and eating out is the easiest part to steer at ${eur(M.avg.Restaurants)}. Cutting it by 20 % frees ${eur(whatIf('Restaurants',20).m)} a month. Move that amount to savings on payday, before the month can spend it.`};
+    return {text:`Because some costs cannot be planned. Over the last twelve months your irregular costs averaged ${eur(M.irregular)} a month, and the largest was car rental at ${eur(826.06)}. Your balance of ${eur(M.balance)} covers ${one(M.buffer)} months of fixed costs. Savings are what pay for the next surprise, so it does not come out of rent or food money.`};
+  }
+  if(t.includes('how am i doing')||t.includes('my finances')||t.includes('am i ok'))
+    return {text:`You earn ${eur(M.income)} a month and a typical month takes ${eur(M.regular)} in fixed costs, ${eur(M.irregular)} in irregular costs and ${eur2(M.everyday)} in everyday spending. That leaves you ${eur(-M.left)} over, with a balance covering ${one(M.buffer)} months of fixed costs. That buffer is solid; the everyday basket is where a small cut changes the result.`};
+  if(['sad','stress','worr','anxi','scared','overwhelm'].some(has))
+    return {text:`I am sorry it feels that way. I can only speak for the money side: your balance covers ${one(M.buffer)} months of fixed costs, so nothing in your numbers is an emergency. If money is part of the worry, ask me how you are doing and we can look at it together. If it is more than that, please talk to someone close to you or a professional.`};
+  if(['thank','thx'].some(has)) return {text:'You are welcome. Ask me anything else about your money.'};
+  if(['hi','hello','hey','moi','terve'].some(w=>t.trim().split(/\W+/).includes(w))) return {text:'Hello. Ask me what is safe to spend this week, where your money goes, or what a cut would keep.'};
+  return {text:'I did not catch that. I can tell you what is safe to spend this week, where your money goes, why and how to save, or what a cut would keep. Ask me one of those.'};
+}
+const CHIPS=['Where does my money go','What is safe to spend this week','What if I cut eating out by 20%'];
+function drawChat(){
+  const el=$('#msgs'), asked=C.msgs.some(m=>m.me);
+  el.innerHTML=C.msgs.map((m,i)=>`<div class="bub ${m.me?'me':''}"></div>${m.wi?`<div class="wi" data-i="${i}"></div>`:''}`).join('')
+    +(C.busy?'<div class="typing" aria-label="The coach is writing"><i></i><i></i><i></i></div>':'')
+    +(!C.busy&&C.msgs.length&&!asked?`<div class="chips">${CHIPS.map(c=>`<button data-chip="${c}">${c}</button>`).join('')}</div>`:'');
+  el.querySelectorAll('.bub').forEach((b,i)=>b.textContent=C.msgs[i].text);
+  el.querySelectorAll('.wi').forEach(w=>drawWI(w,C.msgs[+w.dataset.i].wi));
+  el.scrollTop=el.scrollHeight; $('#csend').disabled=C.busy||!$('#cinput').value.trim();
+}
+function drawWI(w,wi){
+  const r=whatIf(wi.cat,wi.p);
+  w.innerHTML=`<div class="hd"><span>${wi.cat}, cut by</span><b>${wi.p} %</b></div><input type="range" min="0" max="100" step="5" value="${wi.p}" style="--p:${wi.p}%" aria-label="Cut ${wi.cat} by">
+   <div class="r"><div><small>Kept a month</small><div class="m num">${eur(r.m)}</div></div><div><small style="text-align:right">A year</small><div class="y num">${eur(r.y)}</div></div></div>
+   <div class="ok ${r.left>=0?'':'no'}">${r.left>=0?`Safe to save: ${eur(r.left)} a month`:`Still ${eur(-r.left)} a month over`}</div>`;
+  w.querySelector('input').oninput=e=>{wi.p=+e.target.value;const k=whatIf(wi.cat,wi.p);
+    w.querySelector('.hd b').textContent=wi.p+' %';e.target.style.setProperty('--p',wi.p+'%');w.querySelector('.m').textContent=eur(k.m);w.querySelector('.y').textContent=eur(k.y);
+    const ok=w.querySelector('.ok');ok.className='ok '+(k.left>=0?'':'no');ok.textContent=k.left>=0?`Safe to save: ${eur(k.left)} a month`:`Still ${eur(-k.left)} a month over`};
+}
+function say(make,delay){C.busy=true;drawChat();setTimeout(()=>{C.busy=false;C.msgs.push(make());drawChat()},delay)}
+function openChat(afterSkip){
+  $('#chat').classList.add('on');
+  if(!C.msgs.length&&!C.busy) say(()=>({text:afterSkip?`Good call on the ${eur(afterSkip)}. ${HABIT} You have kept ${eur(S.saved)} in ${D.month} so far. Ask me how to keep more of it.`
+    :`${HABIT} That is where your lock is aimed. Ask me how to keep more of it, or how to turn it into a buffer.`}),1300);
+  else drawChat();
+}
+function ask(q){q=q.trim().slice(0,500);if(!q||C.busy)return;C.msgs.push({me:true,text:q});say(()=>answer(q),900+Math.random()*700)}
+
+document.addEventListener('click',e=>{
+  const o=e.target.closest('[data-ob]'); if(o)return ob(+o.dataset.ob);
+  const mm=e.target.closest('[data-m]'); if(mm)return setMode(+mm.dataset.m);
+  const ar=e.target.closest('[data-mode]'); if(ar)return setMode(MODE+ +ar.dataset.mode);
+  const g=e.target.closest('[data-go]'); if(g&&g.dataset.go!==''){ob(+g.dataset.go);if(innerWidth<=980)$('#stage').scrollIntoView({behavior:'smooth',block:'center'});return}
+  const chip=e.target.closest('[data-chip]'); if(chip)return ask(chip.dataset.chip);
+  const t=e.target.closest('[data-act]'); if(!t)return; const a=t.dataset.act;
+  if(a==='pay-next')payNext();
+  if(a==='dbl')doublePress();
+  if(a==='wallet-add'){C.msgs=[];clearTimeout(obT);obStep=-1;$('#bank').classList.remove('on');start()}
+  if(a==='lock'){$('#banner').classList.remove('on');W=null;$('#side').classList.remove('pulse');game();$('#wallet').classList.remove('on')}   // the alert opens the game straight away
+  if(a==='open')game();
+  if(a==='skip')result(true);
+  if(a==='pay')result(false);
+  if(a==='close')$('#game').classList.remove('on');
+  if(a==='chat')openChat();
+  if(a==='chat-skip'){$('#game').classList.remove('on');openChat(S.lastSkip)}
+  if(a==='closechat')$('#chat').classList.remove('on');
+  if(a==='restart'){C.msgs=[];TIER=3;ob(0)}
+});
+$('#cform').addEventListener('submit',e=>{e.preventDefault();const i=$('#cinput');ask(i.value);i.value='';drawChat()});
+$('#cinput').addEventListener('input',()=>{$('#csend').disabled=C.busy||!$('#cinput').value.trim()});
+/* Two presses within 450 ms count as a double press; a real double-click works too. */
+let lastPress=0;
+$('#side').addEventListener('click',()=>{const n=performance.now();if(n-lastPress<450){lastPress=0;doublePress()}else lastPress=n});
+start();
+
+/* ---------- page: fit the phone to the window, the film ---------- */
+const fit=()=>{const wide=innerWidth>980, h=wide?innerHeight-118:Math.min(innerHeight-40,900), w=wide?innerWidth*.44-48:innerWidth-48;
+  const k=Math.min(1,h/870,w/416); const st=$('#stage'); st.style.setProperty('--k',k);
+  st.parentElement.style.minHeight=wide?'':(870*k+70)+'px'; st.style.margin=`${-(844-844*k)/2}px 0`};
+/* Show all four chips when they fit beside the arrows; otherwise only the current one. */
+const fitModes=()=>{const m=$('#modes'), c=m.querySelector('.mchips'); m.classList.remove('compact'); if(c.scrollWidth>c.clientWidth+1||m.scrollWidth>m.parentElement.clientWidth-16)m.classList.add('compact')};
+addEventListener('resize',()=>{fit();fitModes()}); fit(); fitModes(); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitModes);
+/* ---------- motion (GSAP): entrance, dots circling the phone, a gentle float, tiles rising in on scroll ---------- */
+(function(){
+  const root=document.documentElement, calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!window.gsap||calm){root.classList.remove('pre');return}
+  const hero=[...document.querySelectorAll('.hero > *')].filter(e=>e.tagName!=='H1');
+  gsap.set(hero,{opacity:0,y:26}); gsap.set('.h1l>span',{yPercent:110}); gsap.set('h1',{opacity:1});
+  gsap.set('#float',{opacity:0,y:90,scale:.9,rotation:5,transformOrigin:'50% 60%'}); gsap.set('#modes',{opacity:0,y:14});
+  root.classList.remove('pre');
+  const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+  tl.to(hero[0],{opacity:1,y:0,duration:.6},.1)
+    .to('.h1l>span',{yPercent:0,duration:.9,stagger:.11,ease:'power4.out'},.2)
+    .to(hero.slice(1),{opacity:1,y:0,duration:.7,stagger:.09},.75)
+    .to('#float',{opacity:1,duration:.5,ease:'power1.out'},.35)
+    .to('#float',{y:0,scale:1,rotation:0,duration:1.5,ease:'expo.out'},.35)
+    .to('#modes',{opacity:1,y:0,duration:.6},1.3)
+    .add(()=>gsap.to('#float',{y:-7,duration:3.2,ease:'sine.inOut',yoyo:true,repeat:-1}),1.9);
+  // Dots on three tilted rings. They sit behind the phone, so they slip out of sight at its corners.
+  const orbit=$('#orbit'), rings=[{n:5,rx:262,ry:468,tilt:-10,time:30,size:7},{n:6,rx:296,ry:486,tilt:14,time:44,size:5},{n:4,rx:236,ry:452,tilt:4,time:23,size:9}];
+  rings.forEach((r,ri)=>{const c=Math.cos(r.tilt*Math.PI/180), sn=Math.sin(r.tilt*Math.PI/180);
+    for(let k=0;k<r.n;k++){
+      const d=document.createElement('i'); d.style.width=d.style.height=r.size+'px'; d.style.margin=(-r.size/2)+'px'; orbit.appendChild(d);
+      const st={a:(k/r.n)*Math.PI*2+ri};
+      gsap.to(st,{a:st.a+(ri%2?-1:1)*Math.PI*2,duration:r.time,ease:'none',repeat:-1,onUpdate(){const x=r.rx*Math.cos(st.a),y=r.ry*Math.sin(st.a);gsap.set(d,{x:x*c-y*sn,y:x*sn+y*c})}});
+      gsap.fromTo(d,{opacity:0,scale:0},{opacity:.2+.6*Math.random(),scale:1,duration:.8,delay:1.1+.06*(k+ri*3),ease:'back.out(2)'});
+      gsap.to(d,{opacity:'+=.25',duration:1.4+Math.random()*2,yoyo:true,repeat:-1,ease:'sine.inOut',delay:2.4+Math.random()*2});
+    }});
+  // Tiles and footer rise in the first time they enter the window.
+  const late=[...document.querySelectorAll('.tile2,.foot')]; gsap.set(late,{opacity:0,y:44});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.unobserve(e.target);gsap.to(e.target,{opacity:1,y:0,duration:.8,ease:'power3.out',delay:(late.indexOf(e.target)%2)*.08})}}),{rootMargin:'0px 0px -8% 0px'});
+  late.forEach(e=>io.observe(e));
+})();
+const film=$('#film'), vid=film.querySelector('video');
+$('#play').onclick=()=>{film.showModal();vid.play().catch(()=>{})};
+$('#filmx').onclick=()=>film.close();
+film.addEventListener('close',()=>vid.pause());
+film.addEventListener('click',e=>{if(e.target===film)film.close()});
+</script>
+</body>
+</html>

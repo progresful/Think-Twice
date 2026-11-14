@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Think Twice: film storyboard</title>
+<style>
+*{box-sizing:border-box;margin:0}
+:root{--lime:#9BF05C;--card:#1C1C1E;--ink:#06140A;--sub:#9a9a9f}
+body{background:#000;color:#fff;font-family:-apple-system,"SF Pro Display","Helvetica Neue",Arial,sans-serif;padding:48px 40px 80px;-webkit-font-smoothing:antialiased}
+header{max-width:1500px;margin:0 auto 36px}
+header h1{font-size:44px;font-weight:800;letter-spacing:-1.6px}
+header h1 b{color:var(--lime)}
+header p{color:var(--sub);font-size:16px;margin-top:10px;max-width:820px;line-height:1.45}
+.key{display:flex;gap:18px;margin-top:16px;font-size:13px;color:var(--sub);flex-wrap:wrap}
+.key i{display:inline-block;width:22px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:6px;border:1.5px solid #333}
+.key i.t{border:1.5px dashed var(--lime)}
+.key i.z{background:var(--lime);border-color:var(--lime)}
+h2{max-width:1500px;margin:44px auto 14px;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--sub);font-weight:700;display:flex;gap:12px;align-items:baseline}
+h2 b{color:#fff;font-size:22px;letter-spacing:-.5px;text-transform:none}
+h2 span{margin-left:auto;color:var(--lime);font-variant-numeric:tabular-nums}
+.row{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.row.six{grid-template-columns:repeat(6,1fr);gap:12px}
+.f{min-width:0}
+.stage{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:radial-gradient(120% 90% at 70% 110%,#12300f 0%,#050805 55%,#000 100%);border:1.5px solid #222;container-type:inline-size}
+.f.tr .stage{border:1.5px dashed var(--lime);background:#000}
+.no{position:absolute;left:3cqw;top:2.6cqw;font-size:3cqw;font-weight:700;color:var(--sub);z-index:5;font-variant-numeric:tabular-nums}
+.tag{position:absolute;right:3cqw;top:2.6cqw;font-size:2.5cqw;font-weight:800;letter-spacing:.2cqw;color:var(--ink);background:var(--lime);padding:.5cqw 1.6cqw;border-radius:9cqw;z-index:5}
+.f.tr .tag{background:none;color:var(--lime);border:1px solid var(--lime)}
+.meta{padding:10px 2px 0}
+.meta h3{font-size:15px;font-weight:700;letter-spacing:-.2px}
+.meta .vo{font-size:13px;color:#d6d6da;margin-top:5px;line-height:1.4}
+.meta .vo:before{content:"VO  ";color:var(--lime);font-weight:700;font-size:11px;letter-spacing:.8px}
+.meta .mo{font-size:12.5px;color:var(--sub);margin-top:5px;line-height:1.4}
+.row.six .c{padding:3cqw 3cqw 3cqw 9cqw}.row.six .tag{display:none}.row.six .meta h3{font-size:13px}.row.six .meta .mo{font-size:11.5px}
+/* stage content */
+.c{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:4cqw;padding:7cqw 5cqw 4cqw}
+.big{font-weight:800;letter-spacing:-.25cqw;line-height:.98;font-size:8.6cqw}
+.big em{font-style:normal;color:var(--lime)}
+.big small{display:block;font-size:3cqw;letter-spacing:0;font-weight:500;color:var(--sub);margin-top:2cqw;line-height:1.3}
+.left{flex:1;min-width:0}
+.phone{height:100%;aspect-ratio:1260/2736;border-radius:4.4cqw;overflow:hidden;border:.5cqw solid #2c2c2e;flex:none;position:relative;background:#000}
+.phone img{width:100%;height:100%;object-fit:cover;display:block}
+.phone.tilt{transform:rotate(-6deg) translateY(4%)}
+.phone .box{position:absolute;border:.5cqw solid var(--lime);border-radius:1.2cqw;box-shadow:0 0 0 100cqw rgba(0,0,0,.55)}
+.zoom{position:relative;overflow:hidden;border-radius:3cqw;border:.5cqw solid var(--lime);box-shadow:0 0 9cqw rgba(155,240,92,.28);flex:none;background:#000}
+.zoom img{position:absolute;display:block;max-width:none}
+.stat{flex:1;background:var(--card);border-radius:3cqw;padding:3.4cqw;align-self:center}
+.stat b{display:block;font-size:10cqw;font-weight:800;letter-spacing:-.4cqw;color:var(--lime);line-height:1}
+.stat span{display:block;font-size:2.6cqw;color:#d6d6da;margin-top:1.6cqw;line-height:1.3}
+.stone{width:30cqw;aspect-ratio:3/4;background:linear-gradient(#2a2a2d,#161618);border-radius:15cqw 15cqw 1.5cqw 1.5cqw;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:800;flex:none}
+.stone i{font-style:normal;font-size:3cqw;letter-spacing:.5cqw;color:var(--sub)}
+.stone b{font-size:5cqw;margin:1cqw 0;letter-spacing:-.1cqw}
+.stone u{text-decoration:none;font-size:3cqw;color:var(--lime)}
+/* transition glyphs */
+.wipe{position:absolute;inset:0;background:linear-gradient(100deg,var(--lime) 0 46%,transparent 46%)}
+.wipe:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(100deg,transparent 0 47%,rgba(155,240,92,.5) 47% 49%,transparent 49% 53%,rgba(155,240,92,.22) 53% 54.5%,transparent 54.5%)}
+.arrow{font-size:9cqw;font-weight:800;color:var(--lime)}
+.tl{font-size:3.2cqw;font-weight:700;text-align:center;line-height:1.3;max-width:70cqw}
+.tl small{display:block;color:var(--sub);font-weight:500;font-size:2.6cqw;margin-top:1cqw}
+.ghost{opacity:.28;filter:blur(.5cqw)}
+.shake{transform:rotate(3deg) translateX(2cqw)}
+.speed{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 6cqw,rgba(155,240,92,.16) 6cqw 6.4cqw)}
+.bar{width:3cqw;height:76%;background:#2c2c2e;border-radius:3cqw;position:relative;flex:none;overflow:hidden}
+.bar i{position:absolute;left:0;right:0;bottom:0;background:var(--lime);border-radius:3cqw}
+.count{font-size:13cqw;font-weight:800;letter-spacing:-.5cqw;color:var(--lime);font-variant-numeric:tabular-nums}
+footer{max-width:1500px;margin:48px auto 0;color:var(--sub);font-size:13px;line-height:1.5;border-top:1px solid #222;padding-top:18px}
+@media(max-width:1100px){.row{grid-template-columns:repeat(2,1fr)}.row.six{grid-template-columns:repeat(3,1fr)}}
+@media print{body{padding:20px}.row{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Think Twice <b>film storyboard</b></h1>
+  <p>60 seconds, built on the seven deck slides. Every phone frame is a real screenshot of the running app in the iPhone simulator. Dashed frames are transitions between slides; lime-bordered panes are zooms into the part of the screen that matters.</p>
+  <div class="key"><span><i></i>Shot</span><span><i class="t"></i>Transition</span><span><i class="z"></i>Zoom into the app</span></div>
+</header>
+<main id="m"></main>
+<footer>
+  Level frames 6a to 6f were captured with a screenshot switch (<code>-skips N</code>) that starts the app with N purchases already skipped; the film crops to the level ladder only. Reaching "Financially Free" takes 8 skips, so scene 6 is a time-lapse and should carry the caption "over time". Bank, card and decline are simulated; one synthetic customer from S-Bank's challenge dataset.
+</footer>
+<script>
+const A='../deck/assets/', L='shots/level-';
+// crop = [x, y, w, h] as fractions of the screenshot
+const Z=(img,c,ar,h)=>{const [x,y,w,hh]=c;const W=img.includes('level')||/chat|baskets|main/.test(img)?1260:1206,H=W==1260?2736:2622;
+  const a=(w*W)/(hh*H);return `<div class="zoom" style="${typeof h=='string'?`width:${h}`:`height:${h||78}%`};aspect-ratio:${a}"><img src="${img}" style="width:${100/w}%;left:${-x/w*100}%;top:${-y/hh*100}%"></div>`};
+const P=(img,c,cls)=>`<div class="phone ${cls||''}"><img src="${img}">${c?`<div class="box" style="left:${c[0]*100}%;top:${c[1]*100}%;width:${c[2]*100}%;height:${c[3]*100}%"></div>`:''}</div>`;
+const B=(t,s)=>`<div class="big left">${t}${s?`<small>${s}</small>`:''}</div>`;
+const LAD=[.02,.158,.96,.372];
+const names=['Broke by Friday','Treats Myself Daily','Says No Sometimes','Thinks Twice','Boring but Rich','Financially Free'];
+const S=[
+ {h:'Hook',slide:'Slide 1',time:'0:00–0:08',f:[
+  {n:'1a',t:'Tombstone',s:`<div class="stone"><i>R.I.P.</i><b>Paycheck</b><u>9 days</u></div>${B('Rest in peace,<br>paycheck.','You were so young.')}`,vo:'Rest in peace, paycheck. You were so young. Nine days.',mo:'Stone drops in with a thud; "9 days" stamps on the last word.'},
+  {n:'→',tr:1,t:'Crack and wipe',s:`<div class="wipe"></div><div class="tl" style="position:relative;margin-left:54%;max-width:40cqw">Stone cracks.<small>Lime wipe sweeps left to right, 8 frames.</small></div>`,mo:'Hard cut on the beat. The wipe colour becomes the title colour.'},
+  {n:'1b',t:'Title',s:`${B('Broke by Friday?<br><em>Not this month.</em>')}${P(L+'0.png',null,'tilt')}`,vo:'Broke by Friday? Not this month.',mo:'Words slam in one by one; phone slides up from below, tilted.'},
+  {n:'1c',zoom:1,t:'Zoom: where you start',s:`${P(L+'0.png',[.02,.42,.96,.11])}${Z(L+'0.png',[.02,.425,.96,.1],0,'62cqw')}`,vo:'This is where most of us start.',mo:'Push in to the lowest rung, "Broke by Friday · You". Hold 1 s.'},
+ ]},
+ {h:'Problem',slide:'Slide 2',time:'0:08–0:17',f:[
+  {n:'→',tr:1,t:'Pull back to black',s:`<div class="speed"></div>${P(L+'0.png',null,'ghost')}<div class="arrow">↓</div><div class="count">30 %</div>`,mo:'Phone drops out of frame; the first number rises through the same motion.'},
+  {n:'2a',t:'Europe',s:`<div class="stat"><b>30 %</b><span>of people in the EU cannot face an unexpected expense.<br>Eurostat, EU-SILC 2024</span></div><div class="stat" style="opacity:.25"><b>1 in 4</b><span>Finland</span></div>`,vo:"Almost one in three Europeans can't cover a single unexpected bill.",mo:'Counter runs 0 to 30. Tile scales up, then settles.'},
+  {n:'2b',t:'Finland',s:`<div class="stat" style="opacity:.25"><b>30 %</b><span>EU</span></div><div class="stat"><b>1 in 4</b><span>Finnish households could not cover a surprise bill of about 1 200 €.<br>Statistics Finland, 2021</span></div>`,vo:'In Finland, one household in four.',mo:'Focus slides right; first tile dims.'},
+  {n:'2c',zoom:1,t:'Zoom: not the rent',s:`${P(A+'dashboard-baskets.png',[.02,.33,.96,.47])}${B('Not the rent.<br><em>10 small payments.</em>','238,84 € a month. 2 866 € a year.')}`,vo:"And it's rarely the rent. It's ten small payments. Almost twenty-nine hundred euros a year.",mo:'Payments tick in one by one with a till sound; the yearly sum counts up.'},
+ ]},
+ {h:'Ask. Understand. Act.',slide:'Slide 3',time:'0:17–0:30',f:[
+  {n:'→',tr:1,t:'Whip pan',s:`<div class="speed" style="transform:rotate(90deg) scale(2)"></div>${P(A+'dashboard-baskets.png',null,'ghost')}<div class="arrow">→</div>${P(A+'chat-lookup.png',null,'ghost')}`,mo:'Fast horizontal blur from dashboard to chat, 6 frames.'},
+  {n:'3a',zoom:1,t:'Zoom: ask your own data',s:`${P(A+'chat-lookup.png',[.34,.355,.64,.075])}${Z(A+'chat-lookup.png',[.02,.36,.96,.29],0,88)}`,vo:'Ask your own money anything, in plain words.',mo:'Question types in; answer fades up; "31,98 €" gets a lime underline.'},
+  {n:'3b',zoom:1,t:'Zoom: three baskets',s:`${P(A+'dashboard-baskets.png',[.02,.13,.96,.18])}${Z(A+'dashboard-baskets.png',[.02,.135,.96,.17],0,'62cqw')}`,vo:"Three baskets show where it really goes. One number says what's safe this week.",mo:'Bar fills in three segments; "225,94 €" counts up.'},
+  {n:'3c',zoom:1,t:'Zoom: drag a what-if',s:`${P(A+'chat-whatif.png',[.02,.655,.96,.185])}${Z(A+'chat-whatif.png',[.02,.655,.96,.185],0,'62cqw')}`,vo:'And every what-if is a slider.',mo:'Thumb drags 0 to 20 %; "44,99 €" and "539,86 €" roll with it.'},
+ ]},
+ {h:'A locked card',slide:'Slide 4',time:'0:30–0:42',f:[
+  {n:'→',tr:1,t:'Screen goes dark',s:`<div class="tl">Cut to black. One beat of silence.<small>Then the notification sound.</small></div>`,mo:'The only quiet moment in the film. Sets up the lock.'},
+  {n:'4a',zoom:1,t:'Zoom: card locked',s:`${P(A+'lock-screen.png',[.02,.065,.96,.085])}${Z(A+'lock-screen.png',[.02,.065,.96,.085],0,'64cqw')}`,vo:'So Think Twice does something rude. Past your own limit, it locks your card.',mo:'Banner drops from the top; push in until it fills the frame.'},
+  {n:'4b',zoom:1,t:'Zoom: frustration',s:`${P(A+'hold.png',[.1,.33,.8,.36],'shake')}${Z(A+'hold.png',[.1,.33,.8,.36],0,80)}`,vo:"Want it back? Fifty taps. Go on. We'll wait.",mo:'Phone shakes on each tap; ring fills slowly; "This is a poor choice" flashes.'},
+  {n:'4c',zoom:1,t:'Zoom: skip, keep the money',s:`${Z(A+'skip-confetti.png',[.05,.33,.9,.33],0,80)}${B('Or skip.<br><em>Keep the money.</em>')}`,vo:'Or skip. And keep the money.',mo:'Confetti bursts out of the phone into the full frame.'},
+ ]},
+ {h:'The climb',slide:'Slide 4, last line',time:'0:42–0:50',six:1,f:names.map((nm,i)=>({n:'6'+'abcdef'[i],zoom:1,t:nm,
+   s:`${Z(L+[0,1,2,3,5,8][i]+'.png',LAD,0,100)}`,
+   vo:i==0?'Every skip is a step up.':i==3?'From Broke by Friday…':i==5?'…to Financially Free.':'',
+   mo:['Start on the bottom rung.','Rung snaps up, lime bar grows.','Faster. Camera drifts up with the bar.','Halfway. Beat lands here.','Speed ramp.','Top rung. Flash, hold, "Goal · You".'][i]}))},
+ {h:'Code and fit',slide:'Slides 5 and 6',time:'0:50–0:57',f:[
+  {n:'→',tr:1,t:'Ladder becomes a chart',s:`${Z(L+'8.png',LAD,0,60).replace('class="zoom"','class="zoom ghost"')}<div class="arrow">→</div><div class="count">593</div>`,mo:'Ladder shrinks into the corner; digits scramble and lock on 593.'},
+  {n:'5',t:'Code does the maths',s:`<div class="stat"><b>593</b><span>transactions. Every figure computed by code.</span></div><div class="stat"><b>22</b><span>unit tests pass on the money logic. The model only talks.</span></div>`,vo:'Every figure is computed by code, on S-Bank’s data.',mo:'Two counters land a beat apart.'},
+  {n:'6',zoom:1,t:'Zoom: set up in a minute',s:`${P(A+'strictness.png',[.02,.38,.96,.2])}${Z(A+'strictness.png',[.02,.12,.96,.47],0,80)}`,vo:"Set up in a minute. Built for the bank's own app.",mo:'Slider drags from "Broke by Friday" to "Financially Free"; saving counts to 238,84 €.'},
+  {n:'6b',t:'S-mobiili',s:`${B('<em>3,5 million</em><br>S-Bank customers.','Prototype on iPhone. Bank, card and decline are simulated. Not part of S-mobiili today.')}`,vo:'In this demo, the bank and the card are simulated.',mo:'Number scales in; honesty line fades in under it.'},
+ ]},
+ {h:'Close',slide:'Slide 7',time:'0:57–1:00',f:[
+  {n:'→',tr:1,t:'Lime wipe back',s:`<div class="wipe" style="transform:scaleX(-1)"></div><div class="tl" style="position:relative;margin-right:54%;max-width:40cqw">Same wipe as the open, reversed.</div>`,mo:'Bookends the film.'},
+  {n:'7',t:'End card',s:`<img src="${A}icon.png" style="height:44%;border-radius:5cqw">${B('Talk with your money.<br><em>Then keep it.</em>','thinktwice.pgf.lv')}`,vo:'Think Twice. Talk with your money. Then keep it.',mo:'Icon pops, title lands, link holds for 2 s.'},
+ ]},
+];
+document.getElementById('m').innerHTML=S.map(s=>`<h2><b>${s.h}</b>${s.slide}<span>${s.time}</span></h2><div class="row ${s.six?'six':''}">${s.f.map(f=>`
+ <div class="f ${f.tr?'tr':''}"><div class="stage"><div class="no">${f.n}</div>${f.tr?'<div class="tag">TRANSITION</div>':f.zoom?'<div class="tag">ZOOM</div>':''}<div class="c">${f.s}</div></div>
+ <div class="meta"><h3>${f.t}</h3>${f.vo?`<div class="vo">${f.vo}</div>`:''}<div class="mo">${f.mo}</div></div></div>`).join('')}</div>`).join('');
+</script>
+</body>
+</html>

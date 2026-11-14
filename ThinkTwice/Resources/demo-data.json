@@ -1,0 +1,271 @@
+{
+ "customer": "CUST00849",
+ "age": 25,
+ "month": "September",
+ "beforeMonth": "August",
+ "type": "Restaurants",
+ "usual": 10,
+ "buffer": 222,
+ "read": 80,
+ "before": [
+  [
+   "Restaurant",
+   "Saturday, Aug 1",
+   "18:49",
+   31.72,
+   "18:59",
+   "Aug 1"
+  ],
+  [
+   "Fast food",
+   "Saturday, Aug 8",
+   "18:02",
+   18.38,
+   "18:12",
+   "Aug 8"
+  ],
+  [
+   "Restaurant",
+   "Saturday, Aug 8",
+   "18:22",
+   36.38,
+   "18:32",
+   "Aug 8"
+  ],
+  [
+   "Restaurant",
+   "Sunday, Aug 9",
+   "20:49",
+   15.26,
+   "20:59",
+   "Aug 9"
+  ],
+  [
+   "Restaurant",
+   "Tuesday, Aug 11",
+   "15:15",
+   30.66,
+   "15:25",
+   "Aug 11"
+  ],
+  [
+   "Restaurant",
+   "Tuesday, Aug 11",
+   "23:55",
+   8.64,
+   "00:05",
+   "Aug 11"
+  ],
+  [
+   "Bar",
+   "Saturday, Aug 15",
+   "14:18",
+   27.46,
+   "14:28",
+   "Aug 15"
+  ],
+  [
+   "Fast food",
+   "Thursday, Aug 20",
+   "16:56",
+   15.73,
+   "17:06",
+   "Aug 20"
+  ],
+  [
+   "Restaurant",
+   "Friday, Aug 21",
+   "19:05",
+   35.57,
+   "19:15",
+   "Aug 21"
+  ],
+  [
+   "Fast food",
+   "Saturday, Aug 22",
+   "19:27",
+   19.04,
+   "19:37",
+   "Aug 22"
+  ]
+ ],
+ "payments": [
+  [
+   "Fast food",
+   "Thursday, Sep 3",
+   "16:18",
+   33.18,
+   "16:28",
+   "Sep 3"
+  ],
+  [
+   "Restaurant",
+   "Friday, Sep 4",
+   "17:41",
+   20.45,
+   "17:51",
+   "Sep 4"
+  ],
+  [
+   "Restaurant",
+   "Sunday, Sep 6",
+   "13:26",
+   68.48,
+   "13:36",
+   "Sep 6"
+  ],
+  [
+   "Restaurant",
+   "Monday, Sep 14",
+   "21:54",
+   27.27,
+   "22:04",
+   "Sep 14"
+  ],
+  [
+   "Restaurant",
+   "Saturday, Sep 19",
+   "15:50",
+   28.2,
+   "16:00",
+   "Sep 19"
+  ],
+  [
+   "Restaurant",
+   "Saturday, Sep 19",
+   "18:03",
+   19.7,
+   "18:13",
+   "Sep 19"
+  ],
+  [
+   "Fast food",
+   "Thursday, Sep 24",
+   "16:23",
+   15.06,
+   "16:33",
+   "Sep 24"
+  ],
+  [
+   "Fast food",
+   "Friday, Sep 25",
+   "18:39",
+   40.29,
+   "18:49",
+   "Sep 25"
+  ],
+  [
+   "Restaurant",
+   "Saturday, Sep 26",
+   "19:43",
+   21.66,
+   "19:53",
+   "Sep 26"
+  ],
+  [
+   "Restaurant",
+   "Tuesday, Sep 29",
+   "20:33",
+   40.94,
+   "20:43",
+   "Sep 29"
+  ]
+ ],
+ "categories": [
+  {
+   "name": "Restaurants",
+   "items": [
+    {
+     "label": "Restaurant",
+     "count": 6,
+     "total": 158.23
+    },
+    {
+     "label": "Fast food",
+     "count": 3,
+     "total": 53.15
+    },
+    {
+     "label": "Bar",
+     "count": 1,
+     "total": 27.46
+    }
+   ]
+  },
+  {
+   "name": "Transportation",
+   "items": [
+    {
+     "label": "Fuel pump",
+     "count": 2,
+     "total": 108.93
+    },
+    {
+     "label": "Parking",
+     "count": 1,
+     "total": 66.84
+    },
+    {
+     "label": "Other",
+     "count": 1,
+     "total": 43.49
+    },
+    {
+     "label": "Fuel station",
+     "count": 1,
+     "total": 39.35
+    },
+    {
+     "label": "Taxi",
+     "count": 1,
+     "total": 31.98
+    }
+   ]
+  },
+  {
+   "name": "Entertainment",
+   "items": [
+    {
+     "label": "Amusement park",
+     "count": 2,
+     "total": 93.79
+    },
+    {
+     "label": "Recreation",
+     "count": 1,
+     "total": 60.44
+    },
+    {
+     "label": "Theatre",
+     "count": 1,
+     "total": 49.35
+    },
+    {
+     "label": "Cinema",
+     "count": 1,
+     "total": 27.81
+    }
+   ]
+  },
+  {
+   "name": "Groceries",
+   "items": [
+    {
+     "label": "Supermarket",
+     "count": 3,
+     "total": 210.64
+    }
+   ]
+  },
+  {
+   "name": "Health",
+   "items": [
+    {
+     "label": "Pharmacy",
+     "count": 3,
+     "total": 72.19
+    }
+   ]
+  }
+ ]
+}

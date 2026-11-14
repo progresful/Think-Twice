@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Think Twice</title>
+<style>
+  :root { --bg: #000; --card: #1C1C1E; --lime: #9BF05C; --ink: #06140A; --sub: rgba(255,255,255,.6); --line: rgba(255,255,255,.14); }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; background: #111; color: #fff; overflow: hidden;
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  /* A fixed 1920×1080 stage, scaled to fit the window */
+  .stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 0 0; }
+  .slide { position: absolute; inset: 0; background: var(--bg); padding: 110px 120px; display: none; overflow: hidden; }
+  .slide.on { display: grid; grid-template-columns: 1fr auto; column-gap: 90px; align-items: center; }
+  .slide::before { content: ""; position: absolute; right: -260px; top: -260px; width: 1100px; height: 1100px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(155,240,92,.14), transparent 62%); pointer-events: none; }
+  .txt { position: relative; max-width: 1000px; }
+  .kicker { font-size: 26px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--lime); margin-bottom: 28px; }
+  h1 { font-size: 96px; line-height: 1.03; font-weight: 800; letter-spacing: -.04em; text-wrap: balance; }
+  h1 b { color: var(--lime); font-weight: 800; }
+  p { font-size: 38px; line-height: 1.35; color: var(--sub); margin-top: 36px; max-width: 26em; text-wrap: pretty; }
+  ul { list-style: none; padding: 0; margin-top: 40px; display: grid; gap: 18px; }
+  li { font-size: 38px; line-height: 1.25; padding-left: 52px; position: relative; }
+  li::before { content: ""; position: absolute; left: 0; top: .28em; width: 26px; height: 26px; border-radius: 50%; background: var(--lime); }
+  .shots { position: relative; display: flex; gap: 28px; align-items: flex-end; }
+  figure { margin: 0; }
+  figure img { display: block; height: 800px; border-radius: 44px; box-shadow: 0 0 0 2px var(--line), 0 40px 120px rgba(0,0,0,.7); }
+  .four figure img { height: 470px; border-radius: 28px; }
+  figcaption { font-size: 24px; font-weight: 600; color: var(--sub); text-align: center; margin-top: 18px; }
+  .slide.wide.on { grid-template-columns: 1fr; grid-template-rows: auto auto; row-gap: 50px; align-content: center; }
+  .slide.wide .shots { justify-content: space-between; }
+  table { border-collapse: collapse; margin-top: 44px; font-size: 34px; }
+  th, td { text-align: left; padding: 18px 40px 18px 0; border-bottom: 1px solid var(--line); }
+  th { color: var(--sub); font-weight: 600; font-size: 26px; }
+  td:last-child { color: var(--lime); font-weight: 700; }
+  td:first-child { white-space: nowrap; }
+  .foot { position: absolute; left: 120px; bottom: 48px; font-size: 22px; color: rgba(255,255,255,.4); }
+  .pager { position: absolute; right: 120px; bottom: 48px; font-size: 22px; color: rgba(255,255,255,.4); }
+
+  /* Light, staggered entrance */
+  .slide.on .in { animation: in .5s cubic-bezier(.2,.8,.2,1) both; }
+  .slide.on .in:nth-child(2) { animation-delay: .08s } .slide.on .in:nth-child(3) { animation-delay: .16s }
+  .slide.on .in:nth-child(4) { animation-delay: .24s }
+  .slide.on .shots.in { animation-delay: .2s }
+  @keyframes in { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
+  @media (prefers-reduced-motion: reduce) { .slide.on .in { animation: none } }
+
+  /* Print mode (?print): every slide on its own 1920×1080 page, no animation */
+  @page { size: 1920px 1080px; margin: 0; }
+  html.print, html.print body { height: auto; overflow: visible; background: #000; }
+  html.print .stage { position: static; transform: none !important; width: 1920px; height: auto; }
+  html.print .slide { position: relative; display: grid; grid-template-columns: 1fr auto; column-gap: 90px; align-items: center;
+    width: 1920px; height: 1080px; break-after: page; page-break-after: always; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html.print .slide.wide { grid-template-columns: 1fr; grid-template-rows: auto auto; row-gap: 50px; align-content: center; }
+  html.print .slide::before { display: none; }
+  html.print figure img { box-shadow: 0 0 0 2px var(--line); }   /* soft shadows print as boxes too */   /* the glow prints as a hard-edged box in some PDF viewers */
+  html.print .in { animation: none !important; opacity: 1 !important; transform: none !important; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+
+  <section class="slide">
+    <div class="txt">
+      <div class="kicker in">Think Twice</div>
+      <h1 class="in">Talk with <b>your own money.</b></h1>
+      <p class="in">Ask where it goes, what is safe to spend and what a cut would save. Then lock the spending that leaks.</p>
+    </div>
+    <div class="shots in">
+      <figure><img src="assets/chat-whatif.png" alt="Coach chat: cutting eating out by 20 % keeps 44,99 € a month, with a slider card"></figure>
+      <figure><img src="assets/skip-confetti.png" alt="Result screen: 33,18 € saved, with confetti"></figure>
+    </div>
+    <div class="foot">Junction 2026 · S-Pankki · Personal Economic Trainer</div><div class="pager">1 / 6</div>
+  </section>
+
+  <section class="slide">
+    <div class="txt">
+      <div class="kicker in">Problem</div>
+      <h1 class="in">Banking stops at <b>statements.</b></h1>
+      <p class="in">One customer in the S-Pankki dataset: 10 restaurant payments, 238,84 €, in August. The list shows it afterwards. Nothing explains it, and nothing happens at the till.</p>
+    </div>
+    <div class="shots in">
+      <figure><img src="assets/strictness.png" alt="Strictness screen: you could save up to 238,84 € a month on restaurants"></figure>
+    </div>
+    <div class="foot">Synthetic challenge data, customer CUST00849</div><div class="pager">2 / 6</div>
+  </section>
+
+  <section class="slide wide">
+    <div class="txt">
+      <div class="kicker in">Demonstration</div>
+      <h1 class="in">Ask. Understand. <b>Act.</b></h1>
+    </div>
+    <div class="shots four in">
+      <figure><img src="assets/chat-lookup.png" alt="Coach chat: 31,98 € on taxis last month, everyday basket"><figcaption>1. Ask your own data</figcaption></figure>
+      <figure><img src="assets/dashboard-baskets.png" alt="Dashboard card: safe to spend a week 225,94 € and the three baskets"><figcaption>2. Three baskets</figcaption></figure>
+      <figure><img src="assets/chat-whatif.png" alt="What-if reply with a slider card"><figcaption>3. Try a what-if</figcaption></figure>
+      <figure><img src="assets/lock-screen.png" alt="Lock screen with the Card locked alert"><figcaption>4. Lock what leaks</figcaption></figure>
+      <figure><img src="assets/skip-confetti.png" alt="Skip result with confetti"><figcaption>5. Skip, keep the money</figcaption></figure>
+    </div>
+    <div class="foot">Screenshots from the running app, iPhone simulator</div><div class="pager">3 / 6</div>
+  </section>
+
+  <section class="slide">
+    <div class="txt">
+      <div class="kicker in">Engineering</div>
+      <h1 class="in">Code does the maths. <b>The model does the talking.</b></h1>
+      <ul class="in">
+        <li>Every figure computed from 593 transactions</li>
+        <li>22 unit tests pass on the money logic</li>
+        <li>Still answers when the model is offline</li>
+      </ul>
+    </div>
+    <div class="shots in">
+      <figure><img src="assets/dashboard-baskets.png" alt="Dashboard card: fixed costs 687,22 €, irregular costs 416,19 €, everyday spending 999,00 €"></figure>
+    </div>
+    <div class="foot">Native SwiftUI, about 2 600 lines · model tested: Google Gemini</div><div class="pager">4 / 6</div>
+  </section>
+
+  <section class="slide">
+    <div class="txt">
+      <div class="kicker in">Advantage</div>
+      <h1 class="in">A coach that <b>can act.</b></h1>
+      <table class="in">
+        <tr><th></th><th>Chat over transactions</th><th>Think Twice</th></tr>
+        <tr><td>Answers</td><td>A figure</td><td>A figure, its basket, a next step</td></tr>
+        <tr><td>What-if</td><td>A paragraph</td><td>A slider you keep dragging</td></tr>
+        <tr><td>At the till</td><td>Nothing</td><td>A lock and a choice</td></tr>
+      </table>
+      <p class="in">Not yet tested with users.</p>
+    </div>
+    <div class="shots in">
+      <figure><img src="assets/hold.png" alt="Hold on game: seconds to unlock a 33,18 € fast food payment"></figure>
+    </div>
+    <div class="foot">Comparison is by design, not measured</div><div class="pager">5 / 6</div>
+  </section>
+
+  <section class="slide">
+    <div class="txt">
+      <div class="kicker in">Outcome</div>
+      <h1 class="in">It runs today. <b>Next: S-mobiili.</b></h1>
+      <ul class="in">
+        <li>Bank, card and decline are simulated</li>
+        <li>One synthetic customer, English, simulator</li>
+        <li>Next: Finnish, a Statistics Finland benchmark, a real card</li>
+      </ul>
+    </div>
+    <div class="shots in">
+      <figure><img src="assets/no-no-list.png" alt="No-no list of spending groups with switches"></figure>
+    </div>
+    <div class="foot">Built as a feature inside the bank's app</div><div class="pager">6 / 6</div>
+  </section>
+
+</div>
+<script>
+  const slides = [...document.querySelectorAll('.slide')], stage = document.getElementById('stage');
+  if (location.search.includes('print')) {
+    document.documentElement.classList.add('print');
+  } else {
+    let i = Math.max(0, Math.min(slides.length - 1, (+location.hash.slice(1) || 1) - 1));
+    const show = n => { i = Math.max(0, Math.min(slides.length - 1, n)); slides.forEach((s, k) => s.classList.toggle('on', k === i)); history.replaceState(null, '', '#' + (i + 1)); };
+    const fit = () => { const k = Math.min(innerWidth / 1920, innerHeight / 1080); stage.style.transform = `scale(${k}) translate(-50%, -50%)`; };
+    addEventListener('resize', fit); fit(); show(i);
+    addEventListener('keydown', e => {
+      if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) show(i + 1);
+      if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) show(i - 1);
+    });
+    addEventListener('click', e => show(i + (e.clientX < innerWidth / 3 ? -1 : 1)));
+  }
+</script>
+</body>
+</html>
