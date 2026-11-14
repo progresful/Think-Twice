@@ -26,8 +26,8 @@ if step in ('all', 'render', 'mux'):
         ins += ['-i', f'voice/v{i}.wav']; fil.append(f"[{k}:a]adelay={int(T[i]['voice']*1000)}:all=1[a{k}]")
     fil.append(''.join(f'[a{k}]' for k in range(len(V))) + f'amix=inputs={len(V)}:normalize=0,apad,atrim=0:{total},loudnorm=I=-16:TP=-1.5[a]')
     run('ffmpeg', '-y', *ins, '-filter_complex', ';'.join(fil), '-map', '[a]', '-ar', '48000', '-c:a', 'aac', '-b:a', '192k', 'voice.m4a')
-    run('ffmpeg', '-y', '-framerate', '30', '-i', 'frames/f%05d.jpg', '-i', 'voice.m4a', '-c:v', 'libx264', '-crf', '17', '-preset', 'slow',
-        '-pix_fmt', 'yuv420p', '-c:a', 'copy', '-shortest', '-movflags', '+faststart', '../video-v4.mp4')
+    run('ffmpeg', '-y', '-framerate', '30', '-i', 'frames/f%05d.jpg', '-i', 'voice.m4a', '-vf', 'scale=in_range=pc:out_range=tv,format=yuv420p', '-color_range', 'tv', '-c:v', 'libx264', '-crf', '18', '-profile:v', 'high', '-level', '4.1',
+        '-c:a', 'aac', '-b:a', '192k', '-ac', '2', '-shortest', '-movflags', '+faststart', '../video-v4.mp4')
     srt = []
     for i, x in enumerate(T):
         if not LINES[i]: continue
