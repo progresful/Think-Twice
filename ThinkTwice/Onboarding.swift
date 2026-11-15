@@ -58,7 +58,7 @@ private struct WelcomeStep: View {
                 Text("A moment before you pay.").sub(19)
             }
             .frame(maxHeight: .infinity)
-            Text("Lock the spending that stacks up. Unlock with a short game, or skip and save.")
+            Text("A reminder on the spending that stacks up. Pay after a short game, or skip and save.")
                 .sub().multilineTextAlignment(.center).padding(.bottom, 22)
             Button("Start") { m.next() }.buttonStyle(Btn())
         }
@@ -248,12 +248,12 @@ private struct CardStep: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("Add your card").h1()
-            Text("Payments on this card can be locked. Your bank card stays as it is.").sub().padding(.top, 8)
+            Text("Payments on this card can trigger a reminder. Your bank card stays as it is.").sub().padding(.top, 8)
             VStack(alignment: .leading) {
                 HStack {
                     Text("Think Twice").font(.system(size: 20, weight: .heavy)).tracking(-0.4)
                     Spacer()
-                    Image(systemName: "lock").font(.system(size: 19, weight: .semibold))
+                    Image(systemName: "bell").font(.system(size: 19, weight: .semibold))
                 }
                 Spacer()
                 Text("•••• •••• •••• \(String(m.data.customer.suffix(4)))")

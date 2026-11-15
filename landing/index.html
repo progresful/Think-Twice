@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#000000">
 <title>Think Twice: Broke by Friday? Not this month.</title>
-<meta name="description" content="A personal economic trainer for your bank's app. Ask your own money anything, see where it goes, and lock the everyday spending that leaks.">
+<meta name="description" content="A personal economic trainer for your bank's app. Ask your own money anything, see where it goes, and get a reminder before the everyday spending that leaks.">
 <link rel="canonical" href="https://thinktwice.pgf.lv/">
 <link rel="icon" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Think Twice">
 <meta property="og:title" content="Think Twice: Broke by Friday? Not this month.">
-<meta property="og:description" content="A coach in your bank's app that answers from your own transactions, and a lock that makes you pause before you pay.">
+<meta property="og:description" content="A coach in your bank's app that answers from your own transactions, and a reminder that makes you pause before you pay.">
 <meta property="og:url" content="https://thinktwice.pgf.lv/">
 <meta property="og:image" content="https://thinktwice.pgf.lv/og.png?v=2">
 <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
 <meta property="og:image:alt" content="Think Twice: the app's main screen and savings coach, with the line Broke by Friday? Not this month.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Think Twice: Broke by Friday? Not this month.">
-<meta name="twitter:description" content="A coach in your bank's app, and a lock that makes you pause before you pay.">
+<meta name="twitter:description" content="A coach in your bank's app, and a reminder that makes you pause before you pay.">
 <meta name="twitter:image" content="https://thinktwice.pgf.lv/og.png?v=2">
 <script>document.documentElement.classList.add('pre');setTimeout(function(){document.documentElement.classList.remove('pre')},2500)</script>
 <style>
@@ -277,9 +277,9 @@ dialog button{position:absolute;right:14px;top:14px;width:40px;height:40px;borde
 #wallet .ring::after{animation-delay:.6s}
 @keyframes wring{to{transform:scale(1.9);opacity:0}}
 #wallet .ring svg{width:38px;height:38px;fill:none;stroke:#0A84FF;stroke-width:2;stroke-linecap:round}
-#wallet .no{width:86px;height:86px;border-radius:50%;background:#FF453A;display:grid;place-items:center;animation:pop .4s cubic-bezier(.2,1.4,.4,1),shake .5s .1s}
+#wallet .no{width:86px;height:86px;border-radius:50%;background:#9BF05C;display:grid;place-items:center;animation:pop .4s cubic-bezier(.2,1.4,.4,1),shake .5s .1s}
 @keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
-#wallet .no svg{width:40px;height:40px;fill:none;stroke:#fff;stroke-width:3.2;stroke-linecap:round}
+#wallet .no svg{width:40px;height:40px;fill:none;stroke:#06140A;stroke-width:3.2;stroke-linecap:round}
 #wallet h2{font-size:28px;font-weight:700;letter-spacing:-.02em;margin-top:10px}
 #wallet .merchant{font-size:17px;color:var(--sub)}
 #wallet .demo{position:absolute;left:0;right:0;bottom:34px}
@@ -333,7 +333,7 @@ dialog button{position:absolute;right:14px;top:14px;width:40px;height:40px;borde
       <h1><span class="h1l"><span>Broke by</span></span> <span class="h1l"><span>Friday?</span></span> <span class="h1l"><span><em>Not this month.</em></span></span></h1>
       <div class="pitch">
         <div><h2>Why this matters</h2><p>One in three Europeans cannot cover a surprise bill. Small payments are why.</p></div>
-        <div><h2>How we solve it</h2><p>A coach in your bank's app, and a lock that makes you pause before you pay.</p></div>
+        <div><h2>How we solve it</h2><p>A coach in your bank's app, and a reminder that makes you pause before you pay.</p></div>
       </div>
       <button class="play" id="play" aria-haspopup="dialog"><span class="b"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l15-8.5z"/></svg></span><span>Watch the film<small>59 seconds</small></span></button>
       <p class="hint">The phone <span class="wide">on the right</span><span class="narrow">below</span> is the app. Try it: tap "Next payment" and double-press the side button to pay, or ask the coach a question.</p>
@@ -370,8 +370,8 @@ dialog button{position:absolute;right:14px;top:14px;width:40px;height:40px;borde
         <h3>Three steps. Your bank does the sign-in.</h3>
         <ol class="steps">
           <li><div><b>Connect your bank.</b><span>You approve on the bank's own page. Think Twice can read payments and cannot move money.</span></div></li>
-          <li><div><b>Choose how strict.</b><span>One slider, from "Broke by Friday" to "Financially Free". It shows what the lock would have saved you last month.</span></div></li>
-          <li><div><b>Add the card.</b><span>Payments on this card can be locked. Your bank card stays as it is.</span></div></li>
+          <li><div><b>Choose how strict.</b><span>One slider, from "Broke by Friday" to "Financially Free". It shows what the reminders would have saved you last month.</span></div></li>
+          <li><div><b>Add the card.</b><span>Payments on this card can trigger a reminder. Your bank card stays as it is.</span></div></li>
         </ol>
         <button class="go" data-go="0">Walk through the setup</button>
       </article>
@@ -379,7 +379,7 @@ dialog button{position:absolute;right:14px;top:14px;width:40px;height:40px;borde
 
     <footer class="foot">
       <p><b style="color:#fff">Made for the S-Pankki app.</b> Think Twice is designed to work inside S-mobiili, S-Pankki's mobile app, on iPhone and Android: it runs on the structure of the bank's own transaction data, and the bank handles sign-in and approval. It is a Junction 2026 prototype and is not in S-mobiili today; the prototype itself runs on iPhone, and there is no Android build yet.</p>
-      <p style="margin-top:12px"><b style="color:#fff">What is real here.</b> The app on this page is a working copy of the iPhone prototype: the figures, the lock, the games and the coach's answers are computed in your browser from one synthetic customer. The bank connection, the card and the declined payment are simulated, and no money moves. The live AI model is used only in the iPhone build. Nothing has been tested with users yet.</p>
+      <p style="margin-top:12px"><b style="color:#fff">What is real here.</b> The app on this page is a working copy of the iPhone prototype: the figures, the reminder, the games and the coach's answers are computed in your browser from one synthetic customer. The bank connection, the card and the reminder at the till are simulated, and no money moves. The live AI model is used only in the iPhone build. Nothing has been tested with users yet.</p>
       <p style="margin-top:12px">Sources: <a href="https://ec.europa.eu/eurostat/databrowser/view/ilc_mdes04/default/table">Eurostat ilc_mdes04</a>, <a href="https://www.stat.fi/til/eot/2021/01/eot_2021_01_2022-04-01_tie_001_en.html">Statistics Finland 2021</a>, <a href="https://github.com/hackjunction/Junction-2026-S-pankki">S-Bank challenge dataset</a>.</p>
     </footer>
   </div>
@@ -437,7 +437,7 @@ const PCT=[.9,.8,.7,.5,.25,0], LENS=[.5,.5,.5,1,1.5,1.5], GAMELEN=['short','shor
 const LEVELS=[0,1,2,3,5,8];
 let TIER=3, LIMIT=5, LEN=1;                                    // the default setting: "Thinks Twice", lock after 5 payments
 const limitOf=t=>Math.floor(D.usual*PCT[t]+.5);
-const limitText=t=>limitOf(t)===0?'Every payment locked.':`After ${limitOf(t)} payments a month.`;
+const limitText=t=>limitOf(t)===0?'A reminder on every payment.':`After ${limitOf(t)} payments a month.`;
 const couldSave=t=>D.before.amounts.slice(limitOf(t)).reduce((a,b)=>a+b,0);   // what the lock would have caught in August
 const CHECK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 let S;
@@ -456,7 +456,7 @@ function home(){
   <button class="money" data-act="chat"><div class="hd"><div><div class="lbl">Safe to spend a week</div><div class="num">${eur(M.week)}</div></div><div class="over">${M.left>=0?eur(M.left)+' a month safe to save':eur(-M.left)+' a month over'}</div></div>
     <div class="bars">${parts.map((p,i)=>`<i style="background:${tones[i]};flex:${p[1]/all}"></i>`).join('')}</div>
     <div class="leg">${parts.map((p,i)=>`<div><span><i style="background:${tones[i]}"></i>${p[0]}</span><b>${eur2(p[1])}</b></div>`).join('')}</div></button>
-  <div class="sec">Locked</div>
+  <div class="sec">Reminders</div>
   <div class="card"><div class="row"><div class="t">${D.type}<small>${limitText(TIER)}</small></div><div class="v num">${paid().length} paid<small>${eur(sumA(paid()))}</small></div><span class="chev">›</span></div></div>
   <div class="sec">${D.month}</div><div class="card">${[...S.log].reverse().map(([p,s])=>`<div class="row ${s==='Skipped'?'skip':''}"><div class="t">${p[0]}<small>${p[5]}, ${p[2]}</small></div>
     <div class="v num">${eur(p[3])}<small>${s==='Skipped'?'Saved':s}</small></div></div>`).join('')}</div>`;
@@ -475,23 +475,23 @@ function wallet(state){
   el.innerHTML=(state==='ready'?'<button class="dbl" data-act="dbl">Double-Click<br>to Pay<i></i></button>':'')+PAYCARD+`<div class="wst">${
     state==='ready'?`<div class="merchant">${p[0]}</div><h2 class="num">${eur(p[3])}</h2>`
    :state==='hold'?`<div class="ring"><svg viewBox="0 0 24 24"><path d="M8 8a6 6 0 0 1 0 8M12 5.5a10 10 0 0 1 0 13M16 3a14 14 0 0 1 0 18"/></svg></div><h2>Hold Near Reader</h2><div class="merchant">${p[0]}, ${eur(p[3])}</div>`
-   :`<div class="no"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div><h2>Declined</h2><div class="merchant">${p[0]}, ${eur(p[3])}. Card locked by Think Twice.</div>`}</div>
+   :`<div class="no"><svg viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg></div><h2>Think twice</h2><div class="merchant">${p[0]}, ${eur(p[3])}. A reminder from Think Twice.</div>`}</div>
    <div class="demo">Demo: no card, no terminal, no payment.</div>`;
 }
 function payNext(){ if(S.i>=S.queue.length)return; wt.forEach(clearTimeout); $('#banner').classList.remove('on'); wallet('ready'); }
-/* The side button, pressed twice: the card goes to the reader, the bank declines it, and the alert follows 2 seconds later. */
+/* The side button, pressed twice: the card goes to the reader, Think Twice pauses it with a reminder, and the alert follows 2 seconds later. */
 function doublePress(){
   if(!$('#ob').classList.contains('off')||$('#chat').classList.contains('on')||$('#game').classList.contains('on')||$('#ls').classList.contains('on'))return;
   if(W===null)return payNext();
   if(W!=='ready')return;
   wallet('hold'); const p=S.queue[S.i];
-  $('#banner').innerHTML=`<img src="icon.png" alt=""><span class="b"><span class="h">Card locked<span>now</span></span><span>${noteText(p)}</span></span>`;
+  $('#banner').innerHTML=`<img src="icon.png" alt=""><span class="b"><span class="h">Think twice<span>now</span></span><span>${noteText(p)}</span></span>`;
   wt=[setTimeout(()=>wallet('declined'),1500), setTimeout(()=>$('#banner').classList.add('on'),3500)];
 }
 function lockScreen(){
   const p=S.queue[S.i]; $('#banner').classList.remove('on'); W=null; $('#side').classList.remove('pulse');
   $('#ls').innerHTML=`<div class="d">${p[1]}</div><div class="c num">${p[2]}</div>
-   <button class="note" data-act="open"><img src="icon.png" alt=""><span class="b"><span class="h">Card locked<span>now</span></span><span>${noteText(p)}</span></span></button>`;
+   <button class="note" data-act="open"><img src="icon.png" alt=""><span class="b"><span class="h">Think twice<span>now</span></span><span>${noteText(p)}</span></span></button>`;
   $('#ls').classList.add('on'); $('#wallet').classList.remove('on');
 }
 
@@ -516,7 +516,7 @@ function ob(step){
     <div class="prog">${[1,2,3,4].map(i=>`<i class="${i<=[0,1,1,2,3,4][step]?'d':''}"></i>`).join('')}</div></div>`;
   const body={
    welcome:()=>`<div class="fill center"><img class="badge" src="icon.png" alt=""><div class="hello">Think Twice</div><div class="sub" style="font-size:19px">A moment before you pay.</div></div>
-     <p class="sub" style="text-align:center;margin-bottom:22px">Lock the spending that stacks up. Unlock with a short game, or skip and save.</p><button class="btn" data-ob="1">Start</button>`,
+     <p class="sub" style="text-align:center;margin-bottom:22px">A reminder on the spending that stacks up. Pay after a short game, or skip and save.</p><button class="btn" data-ob="1">Start</button>`,
    approve:()=>`<h1>Approve at S-Pankki</h1><p class="sub">You sign in on their page, not here.</p>
      <div class="facts"><div class="fact">${CHECK}<span>Reads accounts, balances and payments</span></div><div class="fact">${CHECK}<span>Cannot move money</span></div><div class="fact">${CHECK}<span>Access ends after 180 days</span></div></div>
      <div class="fill"></div><button class="btn" data-ob="2">Continue to bank</button>`,
@@ -527,7 +527,7 @@ function ob(step){
      <input type="range" id="range" min="0" max="5" step="1" value="${TIER}" aria-label="How hard to pay">
      <div class="ends"><span>${TIERS[0]}</span><span>${TIERS[5]}</span></div><p class="sub" id="tlimit"></p>
      <div class="fill"></div><button class="btn" data-ob="5">Save</button>`,
-   card:()=>`<h1>Add your card</h1><p class="sub">Payments on this card can be locked. Your bank card stays as it is.</p>${PAYCARD}
+   card:()=>`<h1>Add your card</h1><p class="sub">Payments on this card can trigger a reminder. Your bank card stays as it is.</p>${PAYCARD}
      <div class="fill"></div><button class="btn white" data-act="wallet-add">Add to Wallet</button><div class="demo">Demo: no card is issued.</div>`
   }[s]();
   $('#ob').innerHTML=nav+`<div class="step">${body}</div>`; $('#ob').classList.remove('off');
@@ -537,8 +537,8 @@ function ob(step){
       $('#tlimit').textContent=`${limitText(TIER)} Games: ${GAMELEN[TIER]}.`;$('#range').style.setProperty('--p',TIER*20+'%')};
     set();$('#range').oninput=e=>{TIER=+e.target.value;set()}}
 }
-const GAMES={tap:{name:'Tap it out',rule:'1 tap for every 10 cents, 50 at most',unit:'taps to unlock'},
-  hold:{name:'Hold on',rule:'1 second for every 2 €, at least 20. Letting go restarts.',unit:'seconds to unlock'},
+const GAMES={tap:{name:'Tap it out',rule:'1 tap for every 10 cents, 50 at most',unit:'taps to pay'},
+  hold:{name:'Hold on',rule:'1 second for every 2 €, at least 20. Letting go restarts.',unit:'seconds to pay'},
   type:{name:'Say it',rule:'Big payment. Type the sentence exactly.'}};
 const pick=a=>a<20?'tap':a<40?'hold':'type';
 function game(){
@@ -549,7 +549,7 @@ function game(){
    ?`<div style="width:100%"><div class="say" id="say"></div><input class="sayin" id="sayin" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type here" aria-label="${g.name}"></div>`
    :`<button class="tap" id="tap" aria-label="${g.name}"><svg viewBox="0 0 224 224"><circle class="bg" cx="112" cy="112" r="${R}"/><circle class="fg" id="ring" cx="112" cy="112" r="${R}" stroke-dasharray="${L}" stroke-dashoffset="${L}"/></svg>
      <span class="core"><span class="n num" id="n">${goal}</span><span class="u" id="u">${g.unit}</span></span></button>`;
-  $('#game').innerHTML=`<div class="state">Card locked</div><div class="amt num">${eur(p[3])}</div><div class="what">${p[0]}</div>
+  $('#game').innerHTML=`<div class="state">Think twice</div><div class="amt num">${eur(p[3])}</div><div class="what">${p[0]}</div>
    <div class="sub">${nth(paid().length+1)} this month, ${eur(sumA(paid()))} so far.</div><div class="pad">${pad}</div>
    <div class="pick">${g.name}</div><div class="rule" id="rule">${g.rule}</div>
    <button class="btn" data-act="skip">Skip and save ${eur(p[3])}</button><button class="btn alt" style="margin:10px 0 0" data-act="pay" id="pay" hidden>Pay ${eur(p[3])}</button>`;
@@ -565,7 +565,7 @@ function game(){
     return;
   }
   const tap=$('#tap'), show=v=>{$('#n').textContent=Math.ceil(v);$('#ring').style.strokeDashoffset=L*v/goal};
-  const win=()=>{show(0);$('#u').textContent='Unlocked';tap.classList.remove('down');unlocked()};
+  const win=()=>{show(0);$('#u').textContent='Go ahead';tap.classList.remove('down');unlocked()};
   const up=f=>['pointerup','pointerleave','pointercancel'].forEach(e=>tap.addEventListener(e,f));
   if(k==='tap'){
     tap.addEventListener('pointerdown',()=>{if(done)return;tap.classList.add('down');left--;show(left);if(left<=0)win()});
@@ -579,7 +579,7 @@ function game(){
 const DISS=[(n,t,e)=>`${nth(n)} this month. The food at home sends its regards.`,
  (n,t,e)=>`${eur(t)} on restaurants in ${D.month}. A chef somewhere thanks you.`,
  (n,t,e)=>`You ${e.k==='tap'?`tapped ${e.goal} times`:e.k==='hold'?`held on for ${e.goal} seconds`:`typed ${e.goal} letters`} for this. Dedication, wrongly aimed.`,
- (n,t,e)=>`Your card was locked for a reason. You were the reason.`,
+ (n,t,e)=>`You got a reminder for a reason. You were the reason.`,
  (n,t,e)=>`${TIERS[5]} just moved one rung further away.`];
 function result(skip){
   const p=S.queue[S.i], a=p[3], before=level();
@@ -589,7 +589,7 @@ function result(skip){
   $('#game').innerHTML=`${skip?`<div class="conf">${Array.from({length:70},(_,i)=>`<i style="left:${Math.random()*100}%;background:${colors[i%5]};animation-duration:${1.6+Math.random()*1.8}s;animation-delay:${Math.random()*.5}s;transform:rotate(${Math.random()*360}deg)"></i>`).join('')}</div>`:''}
     <div class="done"><div class="mark ${skip?'':'grey'}">${CHECK}</div><h2 class="num">${skip?eur(a)+' saved':'Paid '+eur(a)}</h2>
     <p>${skip?'Stays in your account. No action needed.':DISS[(S.i-1)%DISS.length](paid().length,sumA(paid()),S.effort)}</p>
-    ${skip?'':'<p class="sub" style="margin-top:2px">Card locked again.</p>'}
+    ${skip?'':'<p class="sub" style="margin-top:2px">The reminder stays on.</p>'}
     ${after>before?`<div style="margin-top:6px"><span class="pill lime">New level: ${TIERS[after]}</span></div>`:''}</div>
     ${skip?'<button class="btn alt" data-act="chat-skip">How to save even more</button>':''}<button class="btn" data-act="close">${skip?"Thanks, I'm the best":'Done'}</button>`;
   home();
@@ -657,7 +657,7 @@ function say(make,delay){C.busy=true;drawChat();setTimeout(()=>{C.busy=false;C.m
 function openChat(afterSkip){
   $('#chat').classList.add('on');
   if(!C.msgs.length&&!C.busy) say(()=>({text:afterSkip?`Good call on the ${eur(afterSkip)}. ${HABIT} You have kept ${eur(S.saved)} in ${D.month} so far. Ask me how to keep more of it.`
-    :`${HABIT} That is where your lock is aimed. Ask me how to keep more of it, or how to turn it into a buffer.`}),1300);
+    :`${HABIT} That is where your reminders are aimed. Ask me how to keep more of it, or how to turn it into a buffer.`}),1300);
   else drawChat();
 }
 function ask(q){q=q.trim().slice(0,500);if(!q||C.busy)return;C.msgs.push({me:true,text:q});say(()=>answer(q),900+Math.random()*700)}

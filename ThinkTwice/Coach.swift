@@ -60,7 +60,7 @@ enum Coach {
         Practice(id: 12, topic: .buffer, text: "Make the transfer automatic. A standing order saves on the days you would not have."),
         Practice(id: 13, topic: .buffer, text: "Keep the buffer in a separate account with no card attached, so it is one step away from temptation."),
         Practice(id: 14, topic: .buffer, text: "When money arrives that you did not plan for, such as a refund or a bonus, send half of it to the buffer."),
-        Practice(id: 15, topic: .buffer, text: "Each time you skip a locked payment, move that amount to savings the same day. Otherwise it gets spent on something else."),
+        Practice(id: 15, topic: .buffer, text: "Each time you skip a payment after a reminder, move that amount to savings the same day. Otherwise it gets spent on something else."),
         Practice(id: 16, topic: .emergency, text: "Without a buffer, a broken phone or a dentist bill goes on credit, and you pay for it twice: once for the repair and once in interest."),
         Practice(id: 17, topic: .emergency, text: "A gap in income is the expensive emergency. Three months of fixed costs lets you choose the next job instead of taking the first one."),
         Practice(id: 18, topic: .emergency, text: "A bill left unpaid long enough can become a payment default entry, which makes renting a home and signing contracts harder for years. A buffer is what keeps one bad month from becoming that."),
@@ -123,8 +123,8 @@ enum Coach {
         if let b = f.biggest { l.append("Largest single one: \(b.label), \(Logic.eur(b.amount)), \(b.longDate) at \(b.time).") }
         l.append("All card spending groups in \(d.beforeMonth): " + f.groups.map { "\($0.name) \($0.count) payments, \(Logic.eur($0.total))" }.joined(separator: "; ") + ".")
         l.append("Think Twice setting: \"\(s.tier.name)\". \(d.type): \(Logic.limitText(s.tier, d))")
-        l.append("With this setting the lock would have stopped \(Logic.eur(Logic.couldSave(s.tier, d))) of \(d.beforeMonth)'s \(noun(d)) payments.")
-        l.append("\(d.month) so far: \(s.paid.count) \(noun(d)) payments paid, \(Logic.eur(Logic.sum(s.paid))). Locked payments skipped: \(s.skipped), keeping \(Logic.eur(s.saved)). Level: \"\(Tier.all[s.level].name)\".")
+        l.append("With this setting the reminders would have covered \(Logic.eur(Logic.couldSave(s.tier, d))) of \(d.beforeMonth)'s \(noun(d)) payments.")
+        l.append("\(d.month) so far: \(s.paid.count) \(noun(d)) payments paid, \(Logic.eur(Logic.sum(s.paid))). Payments skipped after a reminder: \(s.skipped), keeping \(Logic.eur(s.saved)). Level: \"\(Tier.all[s.level].name)\".")
         let skipped = s.log.filter(\.skipped).map { "\($0.payment.label) \(Logic.eur($0.payment.amount)) on \($0.payment.shortDate)" }
         if !skipped.isEmpty { l.append("Skipped in \(d.month): " + skipped.joined(separator: "; ") + ".") }
         l.append(Money.bundled.factSheet())
@@ -149,8 +149,8 @@ enum Coach {
 
     static func systemPrompt(_ d: DemoData, _ s: Session) -> String {
         """
-        You are the savings coach inside Think Twice, a feature of a bank's mobile app that locks spending the customer \
-        asked to cut down on. The customer opens this chat to learn how to keep more of their money. You are talking \
+        You are the savings coach inside Think Twice, a feature of a bank's mobile app that reminds the customer, at the moment of paying, about spending they \
+        asked to cut down on. It never blocks the card. The customer opens this chat to learn how to keep more of their money. You are talking \
         with one customer on a phone, in a chat that looks like a messaging app.
 
         Directive from the bank: help this customer make better everyday financial decisions and understand their \
@@ -207,7 +207,7 @@ enum Coach {
         if let a = afterSkip {
             return "Good call on the \(Logic.eur(a)). \(habit) You have kept \(Logic.eur(s.saved)) in \(d.month) so far. Ask me how to keep more of it."
         }
-        return "\(habit) That is where your lock is aimed. Ask me how to keep more of it, or how to turn it into a buffer."
+        return "\(habit) That is where your reminders are aimed. Ask me how to keep more of it, or how to turn it into a buffer."
     }
 
     private static func fact(_ topic: Topic, _ d: DemoData, _ s: Session) -> String {
@@ -226,8 +226,8 @@ enum Coach {
             return group("Groceries") ?? "Your \(noun(d)) total was \(Logic.eur(f.total)) in \(d.beforeMonth); part of that can move to the kitchen."
         case .buffer:
             return s.saved > 0
-                ? "You have kept \(Logic.eur(s.saved)) in \(d.month) by skipping. At your setting the lock would have held back \(Logic.eur(could)) in \(d.beforeMonth), which is \(Logic.eur(could * 12)) a year if every month looked the same."
-                : "At your setting the lock would have held back \(Logic.eur(could)) in \(d.beforeMonth). That is \(Logic.eur(could * 12)) a year if every month looked the same."
+                ? "You have kept \(Logic.eur(s.saved)) in \(d.month) by skipping. At your setting the reminders would have covered \(Logic.eur(could)) in \(d.beforeMonth), which is \(Logic.eur(could * 12)) a year if every month looked the same."
+                : "At your setting the reminders would have covered \(Logic.eur(could)) in \(d.beforeMonth). That is \(Logic.eur(could * 12)) a year if every month looked the same."
         case .emergency:
             return "Your \(d.beforeMonth) \(noun(d)) total, \(Logic.eur(f.total)), is roughly the size of a phone repair or a dentist visit."
         case .impulse:
@@ -441,7 +441,7 @@ final class ChatStore {
         focusOnOpen = focus
         open = true
         guard messages.isEmpty, !typing else { return }
-        kickoff = afterSkip.map { "(The customer just skipped a locked payment of \(Logic.eur($0)) and opened the chat from the celebration screen.) " }
+        kickoff = afterSkip.map { "(The customer just skipped a payment of \(Logic.eur($0)) after a reminder and opened the chat from the celebration screen.) " }
             ?? "(The customer opened the chat from the dashboard.) "
         kickoff += "Open the conversation: one observation from my payments and an invitation to ask how to keep more."
         answer(d, s, minimum: 2) { Coach.opening(d, s, afterSkip: afterSkip) }

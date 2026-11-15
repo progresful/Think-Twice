@@ -83,8 +83,8 @@ enum GameKind: Equatable {
     }
     var unit: String {
         switch self {
-        case .tap: return "taps to unlock"
-        case .hold: return "seconds to unlock"
+        case .tap: return "taps to pay"
+        case .hold: return "seconds to pay"
         case .type: return ""
         }
     }
@@ -112,8 +112,8 @@ enum Logic {
     }
 
     static func limitText(_ t: Tier, _ d: DemoData) -> String {
-        guard let lim = limitOf(t, d) else { return "No lock. Weekly report only." }
-        return lim == 0 ? "Every payment locked." : "After \(lim) payments a month."
+        guard let lim = limitOf(t, d) else { return "No reminder. Weekly report only." }
+        return lim == 0 ? "A reminder on every payment." : "After \(lim) payments a month."
     }
 
     /// What the lock would have caught in the month before.
@@ -239,7 +239,7 @@ struct Session {
             case .type: did = "typed \(e.goal) letters"
             }
             return "You \(did) for this. Dedication, wrongly aimed."
-        case 3: return "Your card was locked for a reason. You were the reason."
+        case 3: return "You got a reminder for a reason. You were the reason."
         default: return "\(Tier.all[5].name) just moved one rung further away."
         }
     }

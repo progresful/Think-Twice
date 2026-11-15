@@ -31,12 +31,12 @@ struct LockScreenView: View {
                 Spacer(minLength: 0)
                 Button { m.openGame() } label: {
                     HStack(spacing: 12) {
-                        Image(systemName: "lock").font(.system(size: 18, weight: .semibold)).foregroundStyle(Color.limeInk)
+                        Image(systemName: "bell").font(.system(size: 18, weight: .semibold)).foregroundStyle(Color.limeInk)
                             .frame(width: 40, height: 40)
                             .background(Color.lime, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         VStack(alignment: .leading, spacing: 0) {
                             HStack {
-                                Text("Card locked").font(.system(size: 15, weight: .semibold))
+                                Text("Think twice").font(.system(size: 15, weight: .semibold))
                                 Spacer()
                                 Text("now").font(.system(size: 13)).opacity(0.6)
                             }
@@ -93,7 +93,7 @@ private struct GameView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Text("Card locked").font(.system(size: 13, weight: .semibold)).tracking(0.8)
+            Text("Think twice").font(.system(size: 13, weight: .semibold)).tracking(0.8)
                 .textCase(.uppercase).opacity(0.6)
             Text(Logic.eur(p.amount)).num(56).padding(.top, 8)
             Text(p.label).font(.system(size: 17, weight: .semibold)).padding(.top, 6)
@@ -187,7 +187,7 @@ private struct RingPad: View {
                 .scaleEffect(down ? 0.94 : 1).animation(.easeOut(duration: 0.08), value: down)
             VStack(spacing: 6) {
                 Text("\(Int(left.rounded(.up)))").num(60)
-                Text(done ? "Unlocked" : kind.unit).font(.system(size: 15)).opacity(0.6)
+                Text(done ? "Go ahead" : kind.unit).font(.system(size: 15)).opacity(0.6)
             }
         }
         .frame(width: 224, height: 224)
@@ -288,7 +288,7 @@ private struct ResultView: View {
                 Text(o.line).font(.system(size: 17)).opacity(0.65)
                     .multilineTextAlignment(.center).frame(maxWidth: 250)
                 if !o.skip {
-                    Text("Card locked again.").sub().padding(.top, 2)
+                    Text("The reminder stays on.").sub().padding(.top, 2)
                 }
                 if let level = o.newLevel {
                     Pill(text: "New level: \(level)", kind: .lime).padding(.top, 6)

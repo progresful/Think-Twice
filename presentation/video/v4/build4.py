@@ -24,11 +24,11 @@ if step in ('all', 'render', 'mux'):
     subprocess.run(['uv', 'run', '-q', '--python', '3.12', '--with', 'numpy', '--with', 'soundfile', 'mix.py', str(total)], check=True)
     run('ffmpeg', '-y', '-framerate', '30', '-i', 'frames/f%05d.png', '-i', 'mix.wav', '-vf', 'scale=in_range=pc:out_range=tv,format=yuv420p', '-color_range', 'tv',
         '-c:v', 'libx264', '-crf', '15', '-profile:v', 'high', '-level', '4.1', '-af', 'loudnorm=I=-15:TP=-1.5', '-c:a', 'aac', '-b:a', '192k', '-ac', '2', '-ar', '48000',
-        '-t', str(total), '-movflags', '+faststart', '../video-v6.mp4')
+        '-t', str(total), '-movflags', '+faststart', '../video-v7.mp4')
     srt = []
     for i, x in enumerate(T):
         if not LINES[i]: continue
         f = lambda s: '%02d:%02d:%06.3f' % (s // 3600, s % 3600 // 60, s % 60)
         srt.append(f"{i+1}\n{f(x['voice']).replace('.', ',')} --> {f(x['voice']+x['vlen']).replace('.', ',')}\n{LINES[i]}\n")
-    open('../transcript-v6.srt', 'w').write('\n'.join(srt))
-    print('wrote ../video-v6.mp4', round(dur('../video-v6.mp4'), 2), 's')
+    open('../transcript-v7.srt', 'w').write('\n'.join(srt))
+    print('wrote ../video-v7.mp4', round(dur('../video-v7.mp4'), 2), 's')

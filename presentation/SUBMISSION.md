@@ -11,7 +11,7 @@ Think Twice
 ## Punchline
 
 ```
-Broke by Friday? Not this month. Ask your own money anything, see the three baskets it falls into, and lock the spending that leaks.
+Broke by Friday? Not this month. Ask your own money anything, see the three baskets it falls into, and get a reminder before the spending that leaks.
 ```
 
 ## Description
@@ -27,7 +27,7 @@ Think Twice is a personal economic trainer in three steps.
 
 1. **Ask.** Chat with your own transactions in plain words, from lookups to reasoning.
 2. **Understand.** Every euro sits in one of three baskets: fixed costs, irregular costs, everyday spending. One number shows what is safe to spend this week.
-3. **Act.** Choose the everyday spending to cut. Past your own monthly limit the card locks. Unlock with a short game scaled to the price, or skip and keep the money. Each skip moves you up a ladder of six levels, from "Broke by Friday" to "Financially Free".
+3. **Act.** Choose the everyday spending to cut. Past your own monthly limit, the next payment brings a reminder: you want to be financially free. Pay after a short game scaled to the price, or skip and keep the money. Each skip moves you up a ladder of six levels, from "Broke by Friday" to "Financially Free".
 
 ## The brief, point by point
 
@@ -43,7 +43,7 @@ Think Twice is a personal economic trainer in three steps.
 
 ## Judging criteria
 
-- **Financial literacy.** The baskets teach where money goes. The lock turns the lesson into a habit at the moment of paying.
+- **Financial literacy.** The baskets teach where money goes. The reminder turns the lesson into a habit at the moment of paying.
 - **AI integration.** Code computes every figure; the model only words it. An answer is something you can drag, not only text to read.
 - **Mobile experience.** One number on the dashboard, chat one tap away, four setup screens.
 - **Feasibility.** 22 unit tests pass on the money logic. The coach still answers when the model is offline.
@@ -51,7 +51,7 @@ Think Twice is a personal economic trainer in three steps.
 
 ## Try it
 
-- **Web:** thinktwice.pgf.lv. Set up, double-press to pay, see the decline, play the game.
+- **Web:** thinktwice.pgf.lv. Set up, double-press to pay, get the reminder, play the game.
 - **iPhone:** a SwiftUI app. Runs in the simulator and installs on an iPhone 16.
 - **Film:** 50 seconds, on the demo page.
 
@@ -65,46 +65,22 @@ Think Twice is a personal economic trainer in three steps.
 ## Limits
 
 - One synthetic customer. English only. No user testing.
-- Bank approval, card, decline and saved money are simulated.
+- Bank approval, card, the reminder at the till and saved money are simulated.
 - The basket rule is by frequency, so a trip counts as irregular even when it is a choice.
 - The iPhone app sends this synthetic customer's figures to Google Gemini. A production version calls the bank's server.
 - The web demo answers from figures on the page, without the live model.
-- Double-press to pay and the decline are in the web demo. The iPhone app starts at the lock notification.
+- Double-press to pay is in the web demo. The iPhone app starts at the reminder notification.
 
 ## Next
 
-Finnish, a Statistics Finland benchmark for each basket, and a pilot with a real card: the share of locked payments that end in a skip.
+Finnish, a Statistics Finland benchmark for each basket, and a pilot with a real card: the share of reminders that end in a skip.
 ```
 
-Punchline: 132 of 200 characters. Description: 3552 of 5 000.
-
-## Challenge fit
-
-- **Financial literacy:** the three baskets from the brief are the backbone of every screen and answer.
-- **Originality of AI:** answers you can manipulate (the slider), and a coach connected to a lock that acts at the moment of paying.
-- **Mobile UX:** one number on the dashboard, chat one tap away, native iOS.
-- **Feasibility:** figures are computed by code and tested; the model only words them.
-- **S-mobiili:** built as a feature inside the bank's app, on the bank's own data structure.
-
-## Limitations
-
-- One synthetic customer. Simulator only, not run on a phone.
-- The basket rule is by frequency, so a trip counts as an irregular cost even when it is a choice.
-- The live model was tested with Google Gemini. The demo sends this synthetic customer's figures to the model provider from the app; a real version would call the bank's own server.
-- The model can still phrase a figure loosely, for example calling a six-month average "last month".
-- Bank approval, the card, the decline and the saved money are simulated. English only.
-- The video predates the coach and shows only the lock.
-
-## Next
-
-Finnish, a Statistics Finland benchmark for each basket, and a pilot with a real card: the share of locked payments that end in "Skip and save".
-```
-
-Description length: 4005 of 5 000 characters.
+Punchline: 149 of 200 characters. Description: 3607 of 5 000.
 
 ## Challenge
 
-Personal Economic Trainer, by S-Pankki. One line on why: it lets a customer chat with their own transaction data, teaches the three baskets in every answer, and adds a lock that acts on everyday leakage at the moment of payment.
+Personal Economic Trainer, by S-Pankki. One line on why: it lets a customer chat with their own transaction data, teaches the three baskets in every answer, and adds a reminder that acts on everyday leakage at the moment of payment.
 
 ## Tech challenges
 

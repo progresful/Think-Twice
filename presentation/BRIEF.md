@@ -20,6 +20,6 @@ Hackathon: Junction 2026, Espoo. The challenge page text was pasted by the team 
 | Field | Limit | Ours |
 |---|---|---|
 | Name | 30 characters | 11 |
-| Punchline | 200 characters | 132 |
-| Description | 5 000 characters, markdown | 3 552 |
+| Punchline | 200 characters | 149 |
+| Description | 5 000 characters  markdown | 3 607 |
 | Presentation | PDF, up to 20 MB | see REPORT.md |

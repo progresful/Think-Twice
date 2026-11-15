@@ -15,7 +15,7 @@ final class LogicTests: XCTestCase {
         XCTAssertEqual(Tier.all.map { Logic.limitOf($0, d) }, [9, 8, 7, 5, 3, 0])
         XCTAssertEqual(Tier.all.map { Logic.limitText($0, d) }, [
             "After 9 payments a month.", "After 8 payments a month.", "After 7 payments a month.",
-            "After 5 payments a month.", "After 3 payments a month.", "Every payment locked.",
+            "After 5 payments a month.", "After 3 payments a month.", "A reminder on every payment.",
         ])
     }
 

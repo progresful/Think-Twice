@@ -48,6 +48,7 @@ final class AppModel {
             session.saved = Logic.sum(Array(q)) + Logic.sum(data.payments) / Double(max(data.payments.count, 1)) * Double(n - q.count)
         }
         if args.contains("-dash") { onboarding = false }
+        if let n = Int(UserDefaults.standard.string(forKey: "step") ?? "") { onboarding = true; step = n }   // -step N opens that setup screen
         // -nag N opens the hold game frozen on its Nth line. For screenshots.
         if args.contains("-nag") { tierIndex = 5; start(); layer = .lockScreen; openGame() }
         // -chat opens the coach at launch; -ask "question" then sends one question. For demos and screenshots.
@@ -141,7 +142,7 @@ final class AppModel {
 
     private func schedule(_ body: String) {
         let content = UNMutableNotificationContent()
-        content.title = "Card locked"
+        content.title = "Think twice"
         content.body = body
         content.sound = .default
         let request = UNNotificationRequest(identifier: "card-locked", content: content,

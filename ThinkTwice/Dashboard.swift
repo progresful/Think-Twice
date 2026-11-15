@@ -35,7 +35,7 @@ struct DashboardView: View {
                         .buttonStyle(.plain)
                     }
                     Button { m.openChat(focus: false) } label: { MoneyCard(money: .bundled) }.buttonStyle(.plain)
-                    sec("Locked")
+                    sec("Reminders")
                     Button { m.openNoNo() } label: {
                         card {
                             HStack(spacing: 10) {
@@ -117,7 +117,7 @@ struct DashboardView: View {
             AskField { m.openChat(focus: true) }.padding(.bottom, 12)
             if s.ended {
                 Button("Start over") { m.restart() }.buttonStyle(Btn(bg: .white, fg: .black))
-                Demo(text: s.queue.isEmpty ? "No locked payments at this setting."
+                Demo(text: s.queue.isEmpty ? "No reminders at this setting."
                                            : "\(d.month) complete. \(Logic.eur(s.saved)) saved.")
             } else {
                 Button("Next payment") { m.nextPayment() }.buttonStyle(Btn(bg: .white, fg: .black))
