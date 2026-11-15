@@ -117,3 +117,7 @@ To use the live model, set `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` in the scheme
 - Bank connection, card, payments and saved money are simulated.
 - The basket rule is by frequency, so a trip counts as irregular even when it is a choice.
 - No Android build yet.
+
+---
+
+Made by Progresful (Emils Plavenieks, Jurgis Kacens, Krisjanis Mezulis) 2026
