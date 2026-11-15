@@ -1,67 +1,71 @@
 1
-00:00:00,100 --> 00:00:02,580
+00:00:00,050 --> 00:00:01,900
 Broke by Friday? Not this month.
 
 2
-00:00:03,167 --> 00:00:07,337
+00:00:02,250 --> 00:00:05,890
 Every skipped payment is a step up. All the way to Financially Free.
 
 3
-00:00:08,367 --> 00:00:13,217
+00:00:05,983 --> 00:00:09,303
 Almost one in three Europeans can't cover a single unexpected bill.
 
 4
-00:00:13,433 --> 00:00:15,453
+00:00:09,417 --> 00:00:10,857
 In Finland, one in four.
 
 5
-00:00:15,667 --> 00:00:20,637
+00:00:10,950 --> 00:00:15,300
 It's rarely the rent. It's ten small payments. Twenty-nine hundred euros a year.
 
 6
-00:00:20,867 --> 00:00:22,747
+00:00:15,417 --> 00:00:16,607
 Ask your own money anything.
 
 7
-00:00:22,967 --> 00:00:26,547
+00:00:17,317 --> 00:00:20,047
 Three baskets. One number that's safe to spend this week.
 
 8
-00:00:26,767 --> 00:00:29,217
+00:00:20,150 --> 00:00:21,750
 And every what-if is a slider.
 
 9
-00:00:29,433 --> 00:00:31,703
+00:00:21,850 --> 00:00:23,680
 So Think Twice does something rude.
 
 10
-00:00:31,933 --> 00:00:33,613
+00:00:23,783 --> 00:00:24,603
 Past your own limit,
 
 11
-00:00:34,433 --> 00:00:36,053
+00:00:25,340 --> 00:00:26,250
 it locks your card.
 
 12
-00:00:36,267 --> 00:00:38,787
-Want it back? Hold the button. We'll wait.
+00:00:26,350 --> 00:00:31,680
+Want it back? Hold the button. This is a poor choice. There is food at home. Your savings just sighed.
 
 13
-00:00:41,467 --> 00:00:43,667
+00:00:31,783 --> 00:00:33,823
 Or skip. And keep the money.
 
+14
+00:00:33,917 --> 00:00:35,577
+One skip. One step up.
+
 15
-00:00:45,700 --> 00:00:49,430
+00:00:35,683 --> 00:00:38,593
 Every figure is computed by code, on S-Bank's data.
 
 16
-00:00:49,633 --> 00:00:52,633
+00:00:38,683 --> 00:00:41,043
 Set up in a minute. Built for the bank's own app.
 
 17
-00:00:52,867 --> 00:00:55,667
+00:00:41,150 --> 00:00:42,950
 Here, the bank and the card are simulated.
 
 18
-00:00:55,900 --> 00:00:58,850
+00:00:43,050 --> 00:00:45,740
 Think Twice. Talk with your money. Then keep it.

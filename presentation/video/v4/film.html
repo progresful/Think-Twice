@@ -5,118 +5,151 @@
 html,body{width:1920px;height:1080px;overflow:hidden;background:#000;color:#fff;font-family:-apple-system,"SF Pro Display","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
 :root{--lime:#9BF05C}
 #glow{position:absolute;inset:-200px;background:radial-gradient(60% 55% at 62% 105%,#17400f 0%,#061006 50%,#000 78%)}
+#stage{position:absolute;inset:0}
 .scene{position:absolute;inset:0;display:none;overflow:hidden}
-.cam{position:absolute;left:50%;top:50%;width:414px;height:900px;margin:-450px 0 0 -207px;will-change:transform}
-.phone{position:absolute;inset:0;border-radius:62px;overflow:hidden;border:6px solid #2c2c2e;background:#000;box-shadow:0 0 140px rgba(155,240,92,.22)}
+/* the phone is laid out at its zoomed size (no transform scale), so close-ups are drawn from the full-resolution screenshot */
+.cam{position:absolute;--s:1}
+.phone{position:absolute;inset:0;border-radius:calc(var(--s)*62px);overflow:hidden;border:calc(var(--s)*6px) solid #2c2c2e;background:#000;box-shadow:0 0 140px rgba(155,240,92,.22)}
 .phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
 .phone .fl{position:absolute;inset:0;background:var(--lime);opacity:0;mix-blend-mode:screen}
+.hl{position:absolute;border:calc(var(--s)*1.5px) solid var(--lime);border-radius:calc(var(--s)*7px);box-shadow:0 0 calc(var(--s)*9px) rgba(155,240,92,.7),inset 0 0 calc(var(--s)*5px) rgba(155,240,92,.25);opacity:0}
 .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .h{font-weight:800;letter-spacing:-5px;line-height:.98;font-size:176px}
 .h span{display:inline-block;white-space:pre}
 .lime{color:var(--lime)}
 .tiles{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:56px;padding-bottom:70px}
-.tile{width:780px;height:440px;background:#1C1C1E;border-radius:52px;padding:56px 60px;display:flex;flex-direction:column;justify-content:center}
-.tile b{font-size:190px;font-weight:800;letter-spacing:-8px;color:var(--lime);line-height:1;font-variant-numeric:tabular-nums}
-.tile span{font-size:38px;line-height:1.28;color:#e2e2e6;margin-top:22px;font-weight:500}
-.tile i{font-style:normal;font-size:24px;color:#8e8e93;margin-top:14px}
+.tile{width:800px;height:470px;background:#1C1C1E;border-radius:52px;padding:56px 60px;display:flex;flex-direction:column;justify-content:center}
+.tile b{font-size:200px;font-weight:800;letter-spacing:-8px;color:var(--lime);line-height:1;font-variant-numeric:tabular-nums}
+.tile span{font-size:40px;line-height:1.28;color:#e2e2e6;margin-top:22px;font-weight:500}
+.tile i{font-style:normal;font-size:25px;color:#8e8e93;margin-top:14px}
 .photo{position:absolute;left:50%;top:47%;width:1320px;height:872px;margin:-436px 0 0 -660px;border-radius:40px;overflow:hidden;box-shadow:0 40px 160px rgba(0,0,0,.8),0 0 0 2px #2c2c2e}
 .photo img{width:100%;height:100%;object-fit:cover}
 .foot{position:absolute;inset:0}
 .foot img{position:absolute;inset:0;width:100%;height:100%;display:none}
 .black{position:absolute;inset:0;background:#000}
 #cap{position:absolute;left:0;right:0;bottom:64px;text-align:center;z-index:20}
-#cap span{display:inline-block;background:rgba(0,0,0,.78);padding:16px 38px;border-radius:24px;font-size:48px;font-weight:700;letter-spacing:-.8px;max-width:1700px}
-#wipe{position:absolute;top:-100px;left:0;width:2500px;height:1300px;background:var(--lime);transform:translateX(-3000px) skewX(-14deg);z-index:30;box-shadow:120px 0 0 rgba(155,240,92,.45),200px 0 0 rgba(155,240,92,.2)}
+#cap span{display:inline-block;background:rgba(0,0,0,.8);padding:16px 38px;border-radius:24px;font-size:50px;font-weight:700;letter-spacing:-.8px;max-width:1700px}
+#wipe{position:absolute;top:-100px;left:0;width:2500px;height:1300px;background:var(--lime);transform:translateX(-3200px) skewX(-14deg);z-index:30;box-shadow:120px 0 0 rgba(155,240,92,.45),200px 0 0 rgba(155,240,92,.2)}
+#bar{position:absolute;left:0;bottom:0;height:8px;background:var(--lime);z-index:25}
 .pill{position:absolute;top:60px;left:70px;border:2px solid var(--lime);color:var(--lime);font-size:26px;font-weight:800;letter-spacing:3px;padding:8px 24px;border-radius:40px}
 .sub{font-size:40px;color:#b0b0b6;font-weight:500;margin-top:34px;line-height:1.3;max-width:1300px}
 .icon{width:230px;height:230px;border-radius:52px;margin-bottom:44px}
 .link{font-size:44px;font-weight:700;color:#b0b0b6;margin-top:40px}
 </style></head><body>
-<div id="glow"></div><div id="stage"></div><div id="cap"><span></span></div><div id="wipe"></div>
+<div id="glow"></div><div id="stage"></div><div id="cap"><span></span></div><div id="bar"></div><div id="wipe"></div>
 <script src="timing.js"></script>
 <script>
 const A='../../deck/assets/', SH='../../storyboard/shots/', PW=414, PH=900;
 const LAD=[.02,.158,.96,.372];
+// hl: [cropIndex, x, y, w, h] in fractions of the phone screen; each one pops with a click
 const SC=[
  {k:'title', w:[['Broke','by','Friday?'],['Not','this','month.']]},
  {k:'phone', imgs:[0,1,2,3,5,8].map(n=>SH+'level-'+n+'.png'), crops:[LAD], cap:'From Broke by Friday… to Financially Free.', pill:'OVER TIME', flash:1},
  {k:'tiles', wipe:1, focus:0, cap:'Almost 1 in 3 Europeans has no buffer.', tiles:[['30 %','of people in the EU cannot face an unexpected expense.','Eurostat, EU-SILC 2024',30,' %'],['1 in 4','Finnish households could not cover a surprise bill of about 1 200 €.','Statistics Finland, 2021']]},
  {k:'tiles', focus:1, cap:'In Finland: 1 household in 4.', tiles:[['30 %','of people in the EU cannot face an unexpected expense.','Eurostat, EU-SILC 2024'],['1 in 4','Finnish households could not cover a surprise bill of about 1 200 €.','Statistics Finland, 2021']]},
- {k:'phone', imgs:[A+'dashboard-baskets.png'], crops:[[.02,.33,.96,.2],[.02,.6,.96,.2]], cap:'Not the rent. 10 small payments. 2 866 € a year.'},
- {k:'phone', imgs:[A+'chat-lookup.png'], crops:[[.3,.345,.7,.1],[.0,.43,.8,.22]], cap:'Ask your money anything.'},
- {k:'phone', imgs:[A+'dashboard-baskets.png'], crops:[[.02,.14,.96,.2],[.02,.17,.96,.2]], cap:'Three baskets. Safe to spend: 225,94 € a week.'},
- {k:'phone', imgs:[A+'chat-whatif.png'], crops:[[.4,.39,.6,.06],[.02,.655,.96,.185]], cap:'Cut eating out by 20 %: 539,86 € a year.'},
+ {k:'phone', imgs:[A+'dashboard-baskets.png'], crops:[[.02,.47,.96,.2],[.02,.575,.96,.2]], cap:'Not the rent. 10 small payments. 2 866 € a year.',
+  hl:[[0,.7,.499,.27,.046],[0,.7,.571,.27,.046],[1,.7,.643,.27,.046],[1,.7,.715,.27,.046]]},
+ {k:'phone', imgs:[A+'chat-lookup.png'], crops:[[.3,.345,.7,.1],[.0,.43,.8,.22]], cap:'Ask your money anything.', hl:[[1,.228,.447,.152,.03]]},
+ {k:'phone', imgs:[A+'dashboard-baskets.png'], crops:[[.02,.15,.96,.2]], cap:'Three baskets. Safe to spend: 225,94 € a week.',
+  hl:[[0,.05,.173,.36,.045],[0,.05,.243,.27,.052],[0,.345,.243,.28,.052],[0,.645,.243,.31,.052]]},
+ {k:'phone', imgs:[A+'chat-whatif.png'], crops:[[.02,.655,.96,.185]], cap:'Cut eating out by 20 %: 539,86 € a year.', hl:[[0,.05,.745,.33,.045],[0,.68,.757,.29,.042]]},
  {k:'photo', src:SH+'cafe.jpg', cap:'Friday. One more coffee.'},
  {k:'foot', n:120, cap:'Tap to pay…'},
- {k:'phone', black:.5, imgs:[A+'lock-screen.png'], crops:[[.02,.06,.96,.095]], cap:'Card locked.'},
- {k:'phone', imgs:[0,1,2,3,4].map(n=>SH+'nag-'+n+'.png'), crops:[[.06,.325,.88,.34]], cap:'Want it back? Hold on. We’ll wait.', shake:1},
+ {k:'phone', black:.28, imgs:[A+'lock-screen.png'], crops:[[.02,.06,.96,.095]], cap:'Card locked.', hl:[[0,.03,.068,.94,.078]]},
+ {k:'phone', imgs:[0,3,4].map(n=>SH+'nag-'+n+'.png'), crops:[[.06,.325,.88,.34]], cap:'Want it back? Hold on. We’ll wait.', shake:1, swapAt:[.5,.74]},
  {k:'phone', imgs:[A+'skip-confetti.png'], crops:[[.05,.33,.9,.33]], cap:'Or skip. Keep the 33,18 €.', pop:1},
  {k:'phone', imgs:[SH+'level-0.png',SH+'level-1.png'], crops:[[.02,.36,.96,.17]], cap:'One skip. One step up.', flash:1},
  {k:'tiles', wipe:1, focus:2, cap:'Code does the maths. The model talks.', tiles:[['593','transactions. Every figure computed by code.','',593,''],['22','unit tests pass on the money logic.','',22,'']]},
- {k:'phone', imgs:[A+'strictness.png'], crops:[[.02,.12,.96,.16],[.02,.37,.96,.2]], cap:'Set up in a minute. One slider.'},
+ {k:'phone', imgs:[A+'strictness.png'], crops:[[.02,.12,.96,.16],[.02,.37,.96,.2]], cap:'Set up in a minute. One slider.', hl:[[0,.04,.178,.8,.085],[1,.04,.386,.72,.06]]},
  {k:'big', h:'<span class="lime">3,5 million</span><br>S-Bank customers.', sub:'Prototype on iPhone. Bank, card and decline are simulated. Not part of S-mobiili today.', cap:'Built for S-mobiili.'},
  {k:'end', wipe:1, cap:'Talk with your money. Then keep it.'},
 ];
 const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2, out=x=>1-Math.pow(1-x,3),
       back=x=>{const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)}, mix=(a,b,p)=>a+(b-a)*p;
-const camOf=c=>{ if(!c) return {x:0,y:-30,s:1}; const [x,y,w,h]=c, s=Math.min(1500/(w*PW),690/(h*PH),3.4); return {x:-(x+w/2-.5)*PW*s, y:-(y+h/2-.5)*PH*s-56, s}; };
+const camOf=c=>{ if(!c) return {x:0,y:-30,s:1}; const [x,y,w,h]=c, s=Math.min(1500/(w*PW),690/(h*PH),3.04); return {x:-(x+w/2-.5)*PW*s, y:-(y+h/2-.5)*PH*s-56, s}; };
 const stage=document.getElementById('stage'), capEl=document.querySelector('#cap span'), wipe=document.getElementById('wipe');
 SC.forEach((s,i)=>{ const d=document.createElement('div'); d.className='scene'; s.el=d;
   if(s.k=='title') d.innerHTML=`<div class="center"><div class="h">${s.w.map((l,li)=>l.map(w=>`<span class="${li?'lime':''}">${w} </span>`).join('')).join('<br>')}</div></div>`;
-  if(s.k=='phone') d.innerHTML=`<div class="cam"><div class="phone">${s.imgs.map(x=>`<img src="${x}">`).join('')}<div class="fl"></div></div></div>${s.pill?`<div class="pill">${s.pill}</div>`:''}${s.black?'<div class="black"></div>':''}`;
+  if(s.k=='phone') d.innerHTML=`<div class="cam"><div class="phone">${s.imgs.map(x=>`<img src="${x}">`).join('')}<div class="fl"></div>${(s.hl||[]).map(h=>`<div class="hl" style="left:${h[1]*100}%;top:${h[2]*100}%;width:${h[3]*100}%;height:${h[4]*100}%"></div>`).join('')}</div></div>${s.pill?`<div class="pill">${s.pill}</div>`:''}${s.black?'<div class="black"></div>':''}`;
   if(s.k=='tiles') d.innerHTML=`<div class="tiles">${s.tiles.map(t=>`<div class="tile"><b>${t[0]}</b><span>${t[1]}</span>${t[2]?`<i>${t[2]}</i>`:''}</div>`).join('')}</div>`;
   if(s.k=='photo') d.innerHTML=`<div class="photo"><img src="${s.src}"></div>`;
   if(s.k=='foot') d.innerHTML=`<div class="foot">${Array.from({length:s.n},(_,j)=>`<img src="foot/f${String(j+1).padStart(3,'0')}.jpg">`).join('')}</div>`;
-  if(s.k=='big') d.innerHTML=`<div class="center" style="padding-bottom:90px"><div class="h" style="font-size:150px">${s.h}</div><div class="sub">${s.sub}</div></div>`;
+  if(s.k=='big') d.innerHTML=`<div class="center" style="padding-bottom:90px"><div class="h" style="font-size:160px">${s.h}</div><div class="sub">${s.sub}</div></div>`;
   if(s.k=='end') d.innerHTML=`<div class="center" style="padding-bottom:110px"><img class="icon" src="${A}icon.png"><div class="h" style="font-size:128px;letter-spacing:-4px">Broke by Friday?<br><span class="lime">Not this month.</span></div><div class="link">thinktwice.pgf.lv</div></div>`;
   stage.appendChild(d); });
+const TOTAL=T[T.length-1].start+T[T.length-1].dur;
+// timing of one phone scene, shared by the picture and the sound list
+function plan(i){ const s=SC[i], d=T[i].dur, b=s.black||0, n=s.crops.length, t0=.06, mv=.5, hold=(d-b-t0-mv-.12)/n;
+  const arr=s.crops.map((_,k)=>k?t0+mv+hold*k+.22:t0+mv), end=s.crops.map((_,k)=>k<n-1?t0+mv+hold*(k+1)-.24:d-b-.15);
+  const m=s.imgs.length, ts=t0+mv+.05, te=d-b-.2, swaps=[]; for(let k=1;k<m;k++) swaps.push(s.swapAt?s.swapAt[k-1]*(d-b):ts+(te-ts)*k/m);
+  const hl=(s.hl||[]).map((h,j,all)=>{ const same=all.filter(x=>x[0]==h[0]), q=same.indexOf(h), k=h[0]; return arr[k]+.06+q*Math.max(.16,(end[k]-arr[k]-.1)/same.length); });
+  return {b,t0,mv,hold,arr,swaps,hl}; }
+// every sound in the film: [time, name, pitch step, length]
+function sfx(){ const E=[]; SC.forEach((s,i)=>{ const S=T[i].start, d=T[i].dur;
+  if(s.wipe) E.push([S-.27,'swoosh']);
+  if(s.k=='title') s.w.flat().forEach((_,k)=>E.push([S+.1+k*.13,k%3==0?'hit':'tick']));
+  if(s.k=='tiles'){ if(s.focus==2){E.push([S+.12,'hit'],[S+.42,'hit']);} else E.push([S+.1,s.focus?'click':'hit']); if(s.focus!=1) for(let q=0;q<6;q++) E.push([S+.2+q*.11,'tick']); }
+  if(s.k=='photo') E.push([S,'hit']);
+  if(s.k=='foot') E.push([S+.45,'beep']);
+  if(s.k=='big') E.push([S+.08,'hit']);
+  if(s.k=='end') E.push([S+.25,'pop',0],[S+.5,'hit'],[S+1.1,'click']);
+  if(s.k=='phone'){ const p=plan(i);
+    if(s.black) E.push([S,'decline'],[S+p.b,'ding']); else E.push([S,'whoosh']);
+    p.swaps.forEach((t,k)=>E.push([S+p.b+t,s.shake?'tick':'pop',k+1]));
+    p.hl.forEach(t=>E.push([S+p.b+t,'click']));
+    if(s.pop) E.push([S+p.t0+p.mv,'win']);
+    if(s.shake) E.push([S,'tension',0,d]); }
+ }); return E.sort((a,b)=>a[0]-b[0]); }
+const HITS=sfx().filter(e=>e[1]=='hit'||e[1]=='decline').map(e=>e[0]);
 let cur=-1;
 function setT(t){
   let i=T.findIndex(x=>t<x.start+x.dur); if(i<0) i=T.length-1;
   const s=SC[i], u=t-T[i].start, d=T[i].dur, el=s.el;
   if(i!=cur){ SC.forEach(x=>x.el.style.display='none'); el.style.display='block'; cur=i; capEl.textContent=s.cap||''; }
-  // caption
-  const cp=cl((u-.12-(s.black||0))/.25); capEl.parentNode.style.opacity=s.cap?cp:0; capEl.style.transform=`translateY(${(1-out(cp))*26}px)`;
-  // wipe across the cut into scenes marked wipe
+  const cp=cl((u-.05-(s.black||0))/.18); capEl.parentNode.style.opacity=s.cap?cp:0; capEl.style.transform=`translateY(${(1-out(cp))*26}px) scale(${mix(.94,1,out(cp))})`;
   let wx=-3200; SC.forEach((x,j)=>{ if(!x.wipe) return; const p=(t-(T[j].start-.27))/.52; if(p>0&&p<1) wx=mix(-2900,2300,p); });
   wipe.style.transform=`translateX(${wx}px) skewX(-14deg)`;
-  document.getElementById('glow').style.transform=`translate(${Math.sin(t*.35)*60}px,${Math.cos(t*.3)*30}px)`;
+  document.getElementById('bar').style.width=(t/TOTAL*1920)+'px';
+  document.getElementById('glow').style.transform=`translate(${Math.sin(t*.9)*90}px,${Math.cos(t*.7)*40}px) scale(${1+Math.sin(t*1.3)*.04})`;
+  // a small camera kick on every impact
+  let kick=0; HITS.forEach(h=>{ const a=t-h; if(a>=0&&a<.22) kick=Math.max(kick,(1-a/.22)); });
+  stage.style.transform=kick?`translate(${Math.sin(t*140)*kick*9}px,${Math.cos(t*120)*kick*7}px) scale(${1+kick*.012})`:'none';
   if(s.k=='title'){ const sp=[...el.querySelectorAll('span')];
-    sp.forEach((w,k)=>{ const p=cl((u-.1-k*.13)/.24); w.style.opacity=cl(p*3); w.style.transform=`scale(${mix(1.7,1,out(p))})`; });
-    const e=io(cl((u-(d-.34))/.34)); el.firstChild.style.transform=`translateY(${-e*260}px) scale(${1-e*.35})`; el.firstChild.style.opacity=1-e; }
-  if(s.k=='phone'){ const camEl=el.querySelector('.cam'), imgs=[...el.querySelectorAll('.phone img')], b=s.black||0, v=u-b;
+    sp.forEach((w,k)=>{ const p=cl((u-.1-k*.13)/.2); w.style.opacity=cl(p*3); w.style.transform=`scale(${mix(1.9,1,out(p))}) rotate(${(1-out(p))*(k%2?4:-4)}deg)`; });
+    const e=io(cl((u-(d-.26))/.26)); el.firstChild.style.transform=`translateY(${-e*300}px) scale(${1-e*.4})`; el.firstChild.style.opacity=1-e; }
+  if(s.k=='phone'){ const camEl=el.querySelector('.cam'), imgs=[...el.querySelectorAll('.phone img')], p=plan(i), b=p.b, v=u-b;
     if(s.black) el.querySelector('.black').style.opacity=v<0?1:0;
     const prevPhone=i>0&&SC[i-1].k=='phone', nextPhone=i<SC.length-1&&SC[i+1].k=='phone'&&!SC[i+1].black;
-    const full=camOf(), cs=s.crops.map(camOf), t0=.22, mv=.75, hold=(d-b-t0-mv-.25)/cs.length;
-    let c=full; if(v>t0){ let p=io(cl((v-t0)/mv)); c={x:mix(full.x,cs[0].x,p),y:mix(full.y,cs[0].y,p),s:mix(full.s,cs[0].s,p)};
-      for(let k=1;k<cs.length;k++){ const p2=io(cl((v-(t0+mv+hold*k-.35))/.7)); c={x:mix(c.x,cs[k].x,p2),y:mix(c.y,cs[k].y,p2),s:mix(c.s,cs[k].s,p2)}; } }
-    // slow creep while holding
-    c={...c,s:c.s*(1+cl(v/d)*.035)};
+    const full=camOf(), cs=s.crops.map(camOf);
+    let c=full; if(v>p.t0){ let q=io(cl((v-p.t0)/p.mv)); c={x:mix(full.x,cs[0].x,q),y:mix(full.y,cs[0].y,q),s:mix(full.s,cs[0].s,q)};
+      for(let k=1;k<cs.length;k++){ const q2=io(cl((v-(p.arr[k]-.46))/.46)); c={x:mix(c.x,cs[k].x,q2),y:mix(c.y,cs[k].y,q2),s:mix(c.s,cs[k].s,q2)}; } }
+    c={...c,s:c.s*(1+cl(v/d)*.03)};
     let ex=0, ey=0, blur=0, rot=0;
-    const en=out(cl(v/.42)); if(prevPhone&&!s.black){ ex+=(1-en)*2100; blur=(1-en)*14; } else if(!s.black) ey+=(1-en)*1150;
-    if(nextPhone){ const q=cl((u-(d-.2))/.2); ex-=q*q*2300; blur=Math.max(blur,q*16); }
-    // image swaps, one by one
-    const m=imgs.length, ts=t0+mv+.1, te=d-b-.45; let idx=0, since=9;
-    for(let k=1;k<m;k++){ const at=ts+(te-ts)*k/m; if(v>=at){ idx=k; since=v-at; } }
+    const en=out(cl(v/.34)); if(prevPhone&&!s.black){ ex+=(1-en)*2100; blur=(1-en)*14; } else if(!s.black) ey+=(1-en)*1150;
+    if(nextPhone){ const q=cl((u-(d-.16))/.16); ex-=q*q*2300; blur=Math.max(blur,q*16); }
+    let idx=0, since=9; p.swaps.forEach((at,k)=>{ if(v>=at){ idx=k+1; since=v-at; } });
     imgs.forEach((im,k)=>im.style.opacity=k<=idx?1:0);
-    const fl=el.querySelector('.fl'), f=s.flash&&idx>0?cl(1-since/.3):0; fl.style.opacity=f*.5;
-    let bump=1+f*.045;
-    if(s.pop){ const p=cl((v-t0-mv)/.5); bump*=1+Math.sin(p*Math.PI)*.08; }
-    if(s.shake){ const a=2+idx*3.2; ex+=Math.sin(v*47)*a; ey+=Math.cos(v*39)*a*.5; rot=Math.sin(v*31)*a*.07; }
-    camEl.style.transform=`translate(${c.x+ex}px,${c.y+ey}px) scale(${c.s*bump}) rotate(${rot}deg)`; camEl.style.filter=blur>.3?`blur(${blur}px)`:'none';
-    const pill=el.querySelector('.pill'); if(pill) pill.style.opacity=cl((v-1)/.3); }
-  if(s.k=='tiles'){ [...el.querySelectorAll('.tile')].forEach((tl,k)=>{ const on=s.focus==2||s.focus==k, p=out(cl((u-.1-(s.focus==2?k*.3:0))/.45));
-      const first=s.focus!=1; tl.style.opacity=on?(first?p:1):mix(first?0:1,.22,first?cl(u/.3):out(cl(u/.35)));
-      tl.style.transform=`scale(${on?mix(first?.86:.94,1.03,p):.94}) translateY(${on&&first?(1-p)*60:0}px)`;
-      const tt=s.tiles[k]; if(tt[3]&&on){ const q=out(cl((u-.15-(s.focus==2?k*.3:0))/.9)); tl.querySelector('b').textContent=Math.round(tt[3]*q)+tt[4]; } }); }
-  if(s.k=='photo'){ const p=u/d; el.firstChild.style.transform=`scale(${mix(1.02,1.16,p)}) rotate(${mix(-1.6,0,out(cl(u/.6)))}deg) translate(${p*40}px,${-p*20}px)`; }
+    const fl=el.querySelector('.fl'), f=s.flash&&idx>0?cl(1-since/.26):0; fl.style.opacity=f*.5;
+    let bump=1+f*.05; if(s.shake&&idx>0) bump*=1+cl(1-since/.2)*.04;
+    if(s.pop){ const q=cl((v-p.t0-p.mv)/.45); bump*=1+Math.sin(q*Math.PI)*.09; }
+    if(s.shake){ const a=2+idx*4; ex+=Math.sin(v*47)*a; ey+=Math.cos(v*39)*a*.5; rot=Math.sin(v*31)*a*.08; }
+    [...el.querySelectorAll('.hl')].forEach((h,j)=>{ const a=v-p.hl[j], q=cl(a/.16); h.style.opacity=a<0?0:1; h.style.transform=`scale(${mix(1.5,1,out(q))})`; bump*=1+(a>=0?cl(1-a/.14)*.012:0); });
+    const S=c.s*bump, w=PW*S, hh=PH*S;
+    camEl.style.cssText=`left:${960+c.x+ex-w/2}px;top:${540+c.y+ey-hh/2}px;width:${w}px;height:${hh}px;--s:${S};transform:${rot?`rotate(${rot}deg)`:'none'};filter:${blur>.3?`blur(${blur}px)`:'none'}`;
+    const pill=el.querySelector('.pill'); if(pill) pill.style.opacity=cl((v-.7)/.25); }
+  if(s.k=='tiles'){ [...el.querySelectorAll('.tile')].forEach((tl,k)=>{ const on=s.focus==2||s.focus==k, p=out(cl((u-.08-(s.focus==2?k*.3:0))/.34));
+      const first=s.focus!=1; tl.style.opacity=on?(first?p:1):mix(first?0:1,.22,first?cl(u/.25):out(cl(u/.3)));
+      const punch=on&&!first?1+Math.sin(cl(u/.3)*Math.PI)*.06:1;
+      tl.style.transform=`scale(${(on?mix(first?.8:1,1.03,p):.94)*punch}) translateY(${on&&first?(1-p)*80:0}px)`;
+      const tt=s.tiles[k]; if(tt[3]&&on){ const q=out(cl((u-.12-(s.focus==2?k*.3:0))/.75)); tl.querySelector('b').textContent=Math.round(tt[3]*q)+tt[4]; } }); }
+  if(s.k=='photo'){ const p=u/d; el.firstChild.style.transform=`scale(${mix(1.0,1.2,io(p))}) rotate(${mix(-2.5,0,out(cl(u/.5)))}deg) translate(${p*50}px,${-p*24}px)`; }
   if(s.k=='foot'){ const n=Math.min(s.n-1,Math.floor(u*30)); if(s.last!=n){ const im=el.querySelectorAll('img'); if(s.last!=null) im[s.last].style.display='none'; im[n].style.display='block'; s.last=n; }
-    el.firstChild.style.transform=`scale(${1.04+u/d*.08})`; }
-  if(s.k=='big'){ const p=out(cl((u-.08)/.5)); const h=el.querySelector('.h'); h.style.transform=`scale(${mix(1.35,1,p)})`; h.style.opacity=cl(p*2);
-    el.querySelector('.sub').style.opacity=cl((u-.7)/.4); }
-  if(s.k=='end'){ const p=back(cl((u-.25)/.5)); el.querySelector('.icon').style.transform=`scale(${cl(p,0,2)})`;
-    const q=out(cl((u-.5)/.45)); const h=el.querySelector('.h'); h.style.opacity=q; h.style.transform=`translateY(${(1-q)*50}px)`;
-    el.querySelector('.link').style.opacity=cl((u-1.1)/.4); }
+    el.firstChild.style.transform=`scale(${1.04+u/d*.12})`; }
+  if(s.k=='big'){ const p=out(cl((u-.06)/.38)); const h=el.querySelector('.h'); h.style.transform=`scale(${mix(1.6,1,p)})`; h.style.opacity=cl(p*2);
+    el.querySelector('.sub').style.opacity=cl((u-.5)/.3); }
+  if(s.k=='end'){ const p=back(cl((u-.25)/.4)); el.querySelector('.icon').style.transform=`scale(${cl(p,0,2)})`;
+    const q=out(cl((u-.5)/.35)); const h=el.querySelector('.h'); h.style.opacity=q; h.style.transform=`translateY(${(1-q)*50}px) scale(${mix(1.15,1,q)})`;
+    el.querySelector('.link').style.opacity=cl((u-1.1)/.3); }
 }
 setT(0);
 </script></body></html>

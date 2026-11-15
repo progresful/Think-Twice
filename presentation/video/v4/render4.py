@@ -1,11 +1,11 @@
-"""Render film.html frame by frame to JPEGs through Chrome's debugging protocol.
+"""Render film.html frame by frame to PNGs through Chrome's debugging protocol.
 Usage: uv run --python 3.12 --with websockets render4.py <seconds> <out_dir> [first_frame last_frame]"""
 import asyncio, json, base64, subprocess, sys, time, urllib.request, os
 import websockets
 CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 HERE = os.path.dirname(os.path.abspath(__file__))
 total, out, FPS, PORT = float(sys.argv[1]), sys.argv[2], 30, 9334
-os.makedirs(out, exist_ok=True)
+if out != '-': os.makedirs(out, exist_ok=True)
 
 async def main():
     p = subprocess.Popen([CHROME, '--headless=new', f'--remote-debugging-port={PORT}', f'--user-data-dir={HERE}/tmp/chrome-render',
@@ -32,10 +32,13 @@ async def main():
                 r = await call('Runtime.evaluate', expression='[...document.images].every(i=>i.complete&&i.naturalWidth>0)')
                 if r.get('result', {}).get('value'): break
             else: raise SystemExit('images did not load')
+            r = await call('Runtime.evaluate', expression='JSON.stringify(sfx())')
+            open(f'{HERE}/events.json', 'w').write(r['result']['value'])
+            if out == '-': return
             for f in range(int(sys.argv[3]) if len(sys.argv) > 3 else 0, int(sys.argv[4]) if len(sys.argv) > 4 else int(total * FPS)):
                 await call('Runtime.evaluate', expression=f'setT({f / FPS})')
-                r = await call('Page.captureScreenshot', format='jpeg', quality=94)
-                open(f'{out}/f{f:05d}.jpg', 'wb').write(base64.b64decode(r['data']))
+                r = await call('Page.captureScreenshot', format='png')
+                open(f'{out}/f{f:05d}.png', 'wb').write(base64.b64decode(r['data']))
     finally:
         p.terminate()
 asyncio.run(main())
