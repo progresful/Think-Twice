@@ -53,7 +53,7 @@ Think Twice is a personal economic trainer in three steps.
 
 - **Web:** thinktwice.pgf.lv. Set up, double-press to pay, see the decline, play the game.
 - **iPhone:** a SwiftUI app. Runs in the simulator and installs on an iPhone 16.
-- **Film:** 46 seconds, on the demo page.
+- **Film:** 50 seconds, on the demo page.
 
 ## How it works
 
@@ -114,9 +114,9 @@ None claimed. The coach calls a language model (Google Gemini in our tests; an A
 
 | Link | Value | Status |
 |---|---|---|
-| Demo | https://thinktwice.pgf.lv | Live, with the 46-second film. Opened on desktop and at phone width; not opened in an incognito window on a real phone |
+| Demo | https://thinktwice.pgf.lv | Live, with the 50-second film. Opened on desktop and at phone width; not opened in an incognito window on a real phone |
 | Source | https://github.com/progresful/Think-Twice | Private. Make it public, or invite the judges, before it goes in the form |
-| Video | `presentation/video/video.mp4` | 46.3 s, built from the storyboard, ElevenLabs voice and sound effects. Also plays on the demo page. Team to upload as unlisted if the form needs a video link |
+| Video | `presentation/video/video.mp4` | 50.0 s, built from the storyboard, ElevenLabs voice and sound effects. Also plays on the demo page. Team to upload as unlisted if the form needs a video link |
 | Other | none | |
 
 Each link must open in an incognito window on a phone before it goes in the form.

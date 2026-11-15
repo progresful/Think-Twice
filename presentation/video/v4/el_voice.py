@@ -14,5 +14,6 @@ for i, text in enumerate(lines):
     open(f'voice/raw{i}.mp3', 'wb').write(urllib.request.urlopen(req, timeout=120).read())
     trim = 'silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.02'
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', f'voice/raw{i}.mp3', '-af', f'{trim},areverse,{trim},areverse', '-ar', '48000', '-ac', '1', f'voice/v{i}.wav'], check=True)
-    d = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f'voice/v{i}.wav']))
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', f'voice/v{i}.wav', '-af', 'silenceremove=stop_periods=-1:stop_duration=0.24:stop_silence=0.13:stop_threshold=-42dB', f'voice/t{i}.wav'], check=True)
+    d = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f'voice/t{i}.wav']))
     print(i, round(d, 2), text[:50])

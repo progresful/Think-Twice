@@ -52,16 +52,14 @@ const SC=[
  {k:'phone', imgs:[A+'chat-lookup.png'], crops:[[.3,.345,.7,.1],[.0,.43,.8,.22]], cap:'Ask your money anything.', hl:[[1,.228,.447,.152,.03]]},
  {k:'phone', imgs:[A+'dashboard-baskets.png'], crops:[[.02,.15,.96,.2]], cap:'Three baskets. Safe to spend: 225,94 € a week.',
   hl:[[0,.05,.173,.36,.045],[0,.05,.243,.27,.052],[0,.345,.243,.28,.052],[0,.645,.243,.31,.052]]},
- {k:'phone', imgs:[A+'chat-whatif.png'], crops:[[.02,.655,.96,.185]], cap:'Cut eating out by 20 %: 539,86 € a year.', hl:[[0,.05,.745,.33,.045],[0,.68,.757,.29,.042]]},
- {k:'photo', src:SH+'cafe.jpg', cap:'Friday. One more coffee.'},
- {k:'foot', n:120, cap:'Tap to pay…'},
- {k:'phone', black:.28, imgs:[A+'lock-screen.png'], crops:[[.02,.06,.96,.095]], cap:'Card locked.', hl:[[0,.03,.068,.94,.078]]},
- {k:'phone', imgs:[0,3,4].map(n=>SH+'nag-'+n+'.png'), crops:[[.06,.325,.88,.34]], cap:'Want it back? Hold on. We’ll wait.', shake:1, swapAt:[.5,.74]},
+ {k:'phone', imgs:[A+'chat-whatif.png'], crops:[[.02,.655,.96,.185]], cap:'Cut eating out by 20 %: 539,86 € a year.', hl:[[0,.06,.766,.245,.033],[0,.545,.766,.2,.033]]},
+ {k:'foot', n:120, cap:'About to pay past your own limit…'},
+ {k:'phone', black:.26, imgs:[0,3,4].map(n=>SH+'nag-'+n+'.png'), crops:[[.06,.325,.88,.34]], cap:'A reminder: you want to be financially free.', shake:1, swapAt:[.7,.85]},
  {k:'phone', imgs:[A+'skip-confetti.png'], crops:[[.05,.33,.9,.33]], cap:'Or skip. Keep the 33,18 €.', pop:1},
  {k:'phone', imgs:[SH+'level-0.png',SH+'level-1.png'], crops:[[.02,.36,.96,.17]], cap:'One skip. One step up.', flash:1},
  {k:'tiles', wipe:1, focus:2, cap:'Code does the maths. The model talks.', tiles:[['593','transactions. Every figure computed by code.','',593,''],['22','unit tests pass on the money logic.','',22,'']]},
  {k:'phone', imgs:[A+'strictness.png'], crops:[[.02,.12,.96,.16],[.02,.37,.96,.2]], cap:'Set up in a minute. One slider.', hl:[[0,.04,.178,.8,.085],[1,.04,.386,.72,.06]]},
- {k:'big', h:'<span class="lime">3,5 million</span><br>S-Bank customers.', sub:'Prototype on iPhone. Bank, card and decline are simulated. Not part of S-mobiili today.', cap:'Built for S-mobiili.'},
+ {k:'big', h:'<span class="lime">3,5 million</span><br>S-Bank customers.', sub:'Prototype on iPhone. Bank and card are simulated. Not part of S-mobiili today.', cap:'Built for S-mobiili.'},
  {k:'end', wipe:1, cap:'Talk with your money. Then keep it.'},
 ];
 const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), io=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2, out=x=>1-Math.pow(1-x,3),
@@ -94,7 +92,7 @@ function sfx(){ const E=[]; SC.forEach((s,i)=>{ const S=T[i].start, d=T[i].dur;
   if(s.k=='big') E.push([S+.08,'hit']);
   if(s.k=='end') E.push([S+.25,'pop',0],[S+.5,'hit'],[S+1.1,'click']);
   if(s.k=='phone'){ const p=plan(i);
-    if(s.black) E.push([S,'decline'],[S+p.b,'ding']); else E.push([S,'whoosh']);
+    if(s.black) E.push([S+p.b,'ding']); else E.push([S,'whoosh']);
     p.swaps.forEach((t,k)=>E.push([S+p.b+t,s.shake?'tick':'pop',k+1]));
     p.hl.forEach(t=>E.push([S+p.b+t,'click']));
     if(s.pop) E.push([S+p.t0+p.mv,'win']);

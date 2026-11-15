@@ -1,0 +1,63 @@
+1
+00:00:00,050 --> 00:00:02,100
+Broke by Friday? Not this month.
+
+2
+00:00:02,450 --> 00:00:06,060
+Every skipped payment is a step up. All the way to Financially Free.
+
+3
+00:00:06,183 --> 00:00:09,973
+Almost one in three Europeans can't cover a single unexpected bill.
+
+4
+00:00:10,083 --> 00:00:11,443
+In Finland, one in four.
+
+5
+00:00:11,550 --> 00:00:15,450
+It's rarely the rent. It's ten small payments. Twenty-nine hundred euros a year.
+
+6
+00:00:15,550 --> 00:00:16,680
+Ask your own money anything.
+
+7
+00:00:17,450 --> 00:00:20,380
+Three baskets. One number that's safe to spend this week.
+
+8
+00:00:20,483 --> 00:00:22,483
+And every what-if is a slider.
+
+9
+00:00:22,583 --> 00:00:24,763
+So right when you're about to pay past your own limit,
+
+10
+00:00:25,153 --> 00:00:34,113
+Think Twice reminds you: you want to be financially free. Still paying? Hold the button. This is a poor choice. There is food at home. Your savings just sighed.
+
+11
+00:00:34,217 --> 00:00:36,047
+Or skip. And keep the money.
+
+12
+00:00:36,150 --> 00:00:38,190
+One skip. One step up.
+
+13
+00:00:38,317 --> 00:00:41,617
+Every figure is computed by code, on S-Bank's data.
+
+14
+00:00:41,717 --> 00:00:44,447
+Set up in a minute. Built for the bank's own app.
+
+15
+00:00:44,550 --> 00:00:46,640
+Here, the bank and the card are simulated.
+
+16
+00:00:46,750 --> 00:00:49,430
+Think Twice. Talk with your money. Then keep it.
